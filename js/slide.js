@@ -1,25 +1,4 @@
 
-// const heroSection = document.getElementById("heroSection");
-// const images = [
-//   "../images/1.jpg",
-//   "",
-//   "",
-//   // "https://res.cloudinary.com/dgel7fmas/image/upload/v1691314294/easypizy/1_idppo7.jpg",
-//   // "https://res.cloudinary.com/dgel7fmas/image/upload/v1691314295/easypizy/5_o9ccor.jpg",
-//   // "https://res.cloudinary.com/dgel7fmas/image/upload/v1691314294/easypizy/3_gtvjmm.jpg",
-// ];
-
-// let currentImageIndex = 0;
-
-// function changeBackgroundImage() {
-//   heroSection.style.backgroundImage = `url(${images[currentImageIndex]})`;
-
-//   currentImageIndex = (currentImageIndex + 1) % images.length;
-// }
-
-// // Change background image every 2 seconds (2000 milliseconds)
-// setInterval(changeBackgroundImage, 3000);
-
 window.addEventListener("scroll", function() {
   const heroSectionHeight = document.querySelector(".hero-section").offsetHeight;
   const navbar = document.querySelector(".navbar");
@@ -68,4 +47,19 @@ function sendToWhatsApp() {
       whatsappButton.style.display = "none"; // Hide the button if scrolled back above 100vh
     }
   });
+
+  // Function to check if the device is a mobile device
+function isMobileDevice() {
+  return window.matchMedia("(max-width: 767px)").matches;
+}
+
+// Check if it is not a mobile device, and if not, initialize Wow.js and add Animate.css classes
+if (isMobileDevice()) {
+  // Remove Animate.css classes from elements on mobile devices
+  const elementsToRemoveAnimateClasses = document.querySelectorAll(".animate-animated");
+  elementsToRemoveAnimateClasses.forEach((element) => {
+    element.classList.remove("animate__animated");
+  });
+}
+
 
