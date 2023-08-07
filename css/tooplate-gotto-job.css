@@ -1899,7 +1899,7 @@ div.container:nth-child(3) {
   box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2);
   border-radius: 62%;
 }
-@media screen and (min-width: 992px) {
+@media screen and (max-width: 992px) {
    #whatsapp-button {
     bottom: 15px;
     left: 10px;
