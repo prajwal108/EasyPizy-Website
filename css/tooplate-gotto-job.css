@@ -1901,6 +1901,6 @@ div.container:nth-child(3) {
 }
 @media screen and (min-width: 992px) {
    #whatsapp-button {
-    /* width: 10%; */
+    width: 10%;
   }
 }
