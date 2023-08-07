@@ -1899,6 +1899,9 @@ div.container:nth-child(3) {
   border-radius: 62%;
   background-color: transparent;
 }
+#whatsapp-button a img{
+  width: -webkit-fill-available;
+}
 @media only screen and (max-width: 992px) {
    #whatsapp-button a img{
     max-width: 64px;
