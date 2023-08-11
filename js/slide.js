@@ -48,18 +48,6 @@ function sendToWhatsApp() {
     }
   });
 
-  // Function to check if the device is a mobile device
-function isMobileDevice() {
-  return window.matchMedia("(max-width: 767px)").matches;
-}
 
-// Check if it is not a mobile device, and if not, initialize Wow.js and add Animate.css classes
-if (isMobileDevice()) {
-  // Remove Animate.css classes from elements on mobile devices
-  const elementsToRemoveAnimateClasses = document.querySelectorAll(".animate-animated");
-  elementsToRemoveAnimateClasses.forEach((element) => {
-    element.classList.remove("animate__animated");
-  });
-}
 
 
