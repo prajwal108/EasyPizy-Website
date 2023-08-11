@@ -1,25 +1,25 @@
 
-window.addEventListener("scroll", function() {
-  const heroSectionHeight = document.querySelector(".hero-section").offsetHeight;
-  const navbar = document.querySelector(".navbar");
+// window.addEventListener("scroll", function() {
+//   const heroSectionHeight = document.querySelector(".hero-section").offsetHeight;
+//   const navbar = document.querySelector(".navbar");
 
-  if (window.scrollY > heroSectionHeight) {
-    navbar.classList.add("transparent");
-  } else {
-    navbar.classList.remove("transparent");
-  }
-});
+//   if (window.scrollY > heroSectionHeight) {
+//     navbar.classList.add("transparent");
+//   } else {
+//     navbar.classList.remove("transparent");
+//   }
+// });
 
-window.addEventListener("scroll", function () {
-  const SectionHeight = document.querySelector(".site-header").offsetHeight;
-  const navbar = document.querySelector(".navbar");
+// window.addEventListener("scroll", function () {
+//   const SectionHeight = document.querySelector(".site-header").offsetHeight;
+//   const navbar = document.querySelector(".navbar");
 
-  if (window.scrollY > SectionHeight) {
-    navbar.classList.add("transparent");
-  } else {
-    navbar.classList.remove("transparent");
-  }
-});
+//   if (window.scrollY > SectionHeight) {
+//     navbar.classList.add("transparent");
+//   } else {
+//     navbar.classList.remove("transparent");
+//   }
+// });
 
 function sendToWhatsApp() {
   // Get form data
