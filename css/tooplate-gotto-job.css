@@ -1912,3 +1912,14 @@ div.container:nth-child(3) {
 left: 2px;
   }
 }
+/* stop animations on smaller devices */
+/* @media screen and (max-width: 800px) {
+   .wow{ animation-name: none !important;
+     visibility: visible !important; }
+ } */
+
+
+
+
+
+ 
