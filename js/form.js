@@ -4,7 +4,6 @@
     $("#contact-form").submit(function(event) {
       event.preventDefault(); // Prevent the default form submission
       var formData = $(this).serialize();
-
       $.ajax({
         type: "POST",
         url: $(this).attr("action"),
