@@ -1918,8 +1918,11 @@ left: 2px;
      visibility: visible !important; }
  } */
 
-
-
-
-
- 
+.site-footer-title button{
+width: 10px;
+height: 10px;
+}
+.site-footer-title button img{
+width: 100%;
+height: 100%;
+}
