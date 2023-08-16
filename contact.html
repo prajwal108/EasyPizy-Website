@@ -115,7 +115,7 @@ Bootstrap 5 HTML CSS Template
                     <div class="row justify-content-center">
 
                         <div class="col-lg-6 col-12 mb-lg-5 mb-3 wow animate__animated animate__fadeInLeft">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d60023.87391612684!2d75.31788977910162!3d19.9036565!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bdba3fe2601a82f%3A0x988b5abe8fdda8eb!2sAjinkya%20jewellers!5e0!3m2!1sen!2s!4v1691267195667!5m2!1sen!2s" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d60023.87391612684!2d75.31788977910162!3d19.9036565!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bdba3fe2601a82f%3A0x988b5abe8fdda8eb!2sAjinkya%20jewellers!5e0!3m2!1sen!2s!4v1691267195667!5m2!1sen!2s" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" id="map"></iframe>
                         </div>
 
                         <div class="col-lg-5 col-12 mb-3 mx-auto wow animate__animated animate__fadeInRight">
@@ -169,7 +169,7 @@ Bootstrap 5 HTML CSS Template
                         </div>
 
                         <div class="col-lg-8 col-12 mx-auto wow animate__animated animate__fadeInUp" style="padding-top: 70px;">
-                            <form class="custom-form contact-form" id="contact-form" action="#" method="post" role="form">
+                            <form class="custom-form contact-form" id="contact-form" action="https://formspree.io/f/mvojknqd" method="post" role="form">
                                 <h2 class="text-center mb-4">Business in mind? Let’s Talk</h2>
 
                                 <div class="row">
@@ -192,10 +192,13 @@ Bootstrap 5 HTML CSS Template
                                     </div>
 
                                     <div class="col-lg-4 col-md-4 col-6 mx-auto">
-                                        <button type="submit" class="form-control" onclick="sendToWhatsApp()">Send Message</button>
+                                        <button type="submit" class="form-control" value="SEND" id="submit">Send Message</button>
                                     </div>
                                 </div>
                             </form>
+                              <div id="success-message" class="wow animate__animated animate__rubberBand" style="display: none;">
+    Your inquiry has been submitted successfully.<br> We will get in touch with you shortly.
+</div>
                         </div>
 
                     </div>
@@ -303,7 +306,7 @@ Bootstrap 5 HTML CSS Template
         </footer>
  <div id="whatsapp-button" class="wow animate__animated animate__tada animate__duration-2s">
       <a id="whatsapp-link" href="https://api.whatsapp.com/send?phone=9049058976&text=Hello%2C%20I%20want%20to%20know%20more%20about%20EasyPizy%20Products%21" target="_blank">
-          <img src="images/logos\whatsapp-icon.png" alt="WhatsApp" >
+          <img src="images/logos/whatsapp-icon.png" alt="WhatsApp" >
         </a>
       </div>
         <!-- JAVASCRIPT FILES -->
@@ -314,5 +317,6 @@ Bootstrap 5 HTML CSS Template
         <script src="js/custom.js"></script>
         <script src="js/slide.js"></script>
         <script>      new WOW().init();</script>
+        <script src="js/form.js"></script>
     </body>
 </html>
