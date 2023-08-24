@@ -1026,38 +1026,38 @@ transition: background-color 0.3s ease;
   padding: 25px 50px;
 }
 
-.job-listings-page .hero-form .badge:hover {
+.product-listing-page .hero-form .badge:hover {
   background: var(--primary-color);
 }
 
-.job-thumb {
+.product-thumb {
   border-radius: var(--border-radius-small);
   margin-bottom: 25px;
   padding: 25px;
   transition: all 0.5s ease;
 }
 
-.job-thumb:hover,
-.job-thumb:nth-of-type(even) {
+.product-thumb:hover,
+.product-thumb:nth-of-type(even) {
   background: var(--white-color);
   box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
 }
 
-.job-title-link {
+.product-title-link {
   color: var(--dark-color);
 }
-.job-title {
+.product-title {
   text-align: center;
 }
-.job-thumb p {
+.product-thumb p {
   font-size: 18px;
 }
 
-.job-thumb .badge {
+.product-thumb .badge {
   border: 0;
 }
 
-.job-thumb-box {
+.product-thumb-box {
   border: 1px solid var(--border-color);
   position: relative;
   overflow: hidden;
@@ -1066,48 +1066,48 @@ transition: background-color 0.3s ease;
   padding: 0;
 }
 
-.job-thumb-box .job-body {
+.product-thumb-box .product-body {
   padding: 25px;
 }
 
-.job-thumb-box .job-body .job-image-wrap {
+.product-thumb-box .product-body .product-image-wrap {
   width: 50px;
   min-width: 50px;
   height: 50px;
 }
 
-.job-thumb-box .job-body .job-image {
+.product-thumb-box .product-body .product-image {
   padding: 10px;
 }
 
-.job-thumb-box .job-location,
-.job-thumb-box .job-date {
+.product-thumb-box .job-location,
+.product-thumb-box .job-date {
   min-width: inherit;
 }
 
-.job-thumb-box .job-date {
+.product-thumb-box .job-date {
   margin-right: 0;
 }
 
-.job-image-box-wrap {
+.product-image-box-wrap {
   position: relative;
 }
 
-.job-image-box-wrap .job-image {
+.product-image-box-wrap .product-image {
   padding: 0;
 }
 
-.job-image-box-wrap .badge-level {
+.product-image-box-wrap .badge-level {
   border-color: transparent;
 }
 
-.job-image-box-wrap .badge-level:hover,
-.job-image-box-wrap .badge:hover {
+.product-image-box-wrap .badge-level:hover,
+.product-image-box-wrap .badge:hover {
   background: var(--custom-btn-bg-color);
   border-color: transparent;
 }
 
-.job-image-box-wrap-info {
+.product-image-box-wrap-info {
   position: absolute;
   bottom: 0;
   right: 0;
@@ -1115,20 +1115,20 @@ transition: background-color 0.3s ease;
   margin: 20px 25px;
 }
 
-.job-image-wrap {
+.product-image-wrap {
   border-radius: var(--border-radius-large);
   width: 80px;
   min-width: 80px;
   height: 80px;
 }
 
-.job-image {
+.product-image {
   display: block;
   margin: auto;
   padding: 20px;
 }
 
-.job-body {
+.product-body {
   flex: auto;
 }
 
@@ -1145,21 +1145,21 @@ transition: background-color 0.3s ease;
   min-width: 155px;
 }
 
-.job-price {
+.product-price {
   min-width: 120px;
   margin-right: 10px;
   margin-left: 10px;
 }
 
-.job-thumb-detail,
-.job-thumb-detail:hover {
+.product-thumb-detail,
+.product-thumb-detail:hover {
   background: transparent;
   box-shadow: none;
   margin: 0;
   padding: 0;
 }
 
-.job-thumb-detail-box {
+.product-thumb-detail-box {
   padding: 40px;
 }
 
@@ -1421,7 +1421,7 @@ transition: background-color 0.3s ease;
   RESPONSIVE STYLES               
 -----------------------------------------*/
 @media screen and (min-width: 1025px) {
-  .job-featured-section .job-thumb {
+  .job-featured-section .product-thumb {
     max-width: 1120px;
     margin-right: auto;
     margin-left: auto;
@@ -1527,7 +1527,7 @@ transition: background-color 0.3s ease;
   border-radius: 0 0 var(--border-radius-medium) var(--border-radius-medium);
 }
 
-.job-body p {
+.product-body p {
   font-size: var(--btn-font-size);
 }
 
@@ -1535,7 +1535,7 @@ transition: background-color 0.3s ease;
   min-width: 140px;
 }
 
-.job-price {
+.product-price {
   min-width: inherit;
   margin-top: 5px;
   margin-left: 0;
@@ -1615,12 +1615,12 @@ div.container:nth-child(3) {
 /* product hover */
 
 /* CSS for the hover effect */
-.job-image-box-wrap {
+.product-image-box-wrap {
   position: relative;
   overflow: hidden;
 }
 
-.job-image-hover {
+.product-image-hover {
   display: none;
   position: absolute;
   top: 0;
@@ -1629,259 +1629,259 @@ div.container:nth-child(3) {
   transition: opacity 0.3s ease;
 }
 
-#paneer-tikka-masala:hover .job-image {
+#paneer-tikka-masala:hover .product-image {
   opacity: 0;
 }
 
-#paneer-tikka-masala:hover .job-image-hover {
+#paneer-tikka-masala:hover .product-image-hover {
   opacity: 1;
   display: block;
 }
-#chola-masala:hover .job-image {
+#chola-masala:hover .product-image {
   opacity: 0;
 }
-#chola-masala:hover .job-image-hover {
-  opacity: 1;
-  display: block;
-}
-
-#misal:hover .job-image {
-  opacity: 0;
-}
-#misal:hover .job-image-hover {
+#chola-masala:hover .product-image-hover {
   opacity: 1;
   display: block;
 }
 
-#pulav:hover .job-image {
+#misal:hover .product-image {
   opacity: 0;
 }
-#pulav:hover .job-image-hover {
+#misal:hover .product-image-hover {
+  opacity: 1;
+  display: block;
+}
+
+#pulav:hover .product-image {
+  opacity: 0;
+}
+#pulav:hover .product-image-hover {
   opacity: 1;
   display: block;
   justify-content: center;
 }
 
-#garam-masala:hover .job-image {
+#garam-masala:hover .product-image {
   opacity: 0;
 }
-#garam-masala:hover .job-image-hover {
+#garam-masala:hover .product-image-hover {
   opacity: 1;
   display: block;
 }
-#kala-masala:hover .job-image {
+#kala-masala:hover .product-image {
   opacity: 0;
 }
-#kala-masala:hover .job-image-hover {
-  opacity: 1;
-  display: block;
-}
-
-#paneer-butter-masala:hover .job-image {
-  opacity: 0;
-}
-#paneer-butter-masala:hover .job-image-hover {
+#kala-masala:hover .product-image-hover {
   opacity: 1;
   display: block;
 }
 
-#kaju-curry-masala:hover .job-image {
+#paneer-butter-masala:hover .product-image {
   opacity: 0;
 }
-#kaju-curry-masala:hover .job-image-hover {
+#paneer-butter-masala:hover .product-image-hover {
   opacity: 1;
   display: block;
 }
 
-#biryani-masala:hover .job-image {
+#kaju-curry-masala:hover .product-image {
   opacity: 0;
 }
-#biryani-masala:hover .job-image-hover {
+#kaju-curry-masala:hover .product-image-hover {
   opacity: 1;
   display: block;
 }
 
-#kitchen-king-masala:hover .job-image {
+#biryani-masala:hover .product-image {
   opacity: 0;
 }
-#kitchen-king-masala:hover .job-image-hover {
+#biryani-masala:hover .product-image-hover {
   opacity: 1;
   display: block;
 }
 
-#bengen-masala:hover .job-image {
+#kitchen-king-masala:hover .product-image {
   opacity: 0;
 }
-#bengen-masala:hover .job-image-hover {
+#kitchen-king-masala:hover .product-image-hover {
   opacity: 1;
   display: block;
 }
 
-#shahi-paneer-masala:hover .job-image {
+#bengen-masala:hover .product-image {
   opacity: 0;
 }
-#shahi-paneer-masala:hover .job-image-hover {
+#bengen-masala:hover .product-image-hover {
   opacity: 1;
   display: block;
 }
-#kashmiri-chilli-powder:hover .job-image {
+
+#shahi-paneer-masala:hover .product-image {
   opacity: 0;
 }
-#kashmiri-chilli-powder:hover .job-image-hover {
+#shahi-paneer-masala:hover .product-image-hover {
   opacity: 1;
   display: block;
 }
-#turmeric-powder:hover .job-image {
+#kashmiri-chilli-powder:hover .product-image {
   opacity: 0;
 }
-#turmeric-powder:hover .job-image-hover {
+#kashmiri-chilli-powder:hover .product-image-hover {
   opacity: 1;
   display: block;
 }
-#dry-mango-powder:hover .job-image {
+#turmeric-powder:hover .product-image {
   opacity: 0;
 }
-#dry-mango-powder:hover .job-image-hover {
+#turmeric-powder:hover .product-image-hover {
   opacity: 1;
   display: block;
 }
-#sabji-masala:hover .job-image {
+#dry-mango-powder:hover .product-image {
   opacity: 0;
 }
-#sabji-masala:hover .job-image-hover {
+#dry-mango-powder:hover .product-image-hover {
   opacity: 1;
   display: block;
 }
-#khichadi-masala:hover .job-image {
+#sabji-masala:hover .product-image {
   opacity: 0;
 }
-#khichadi-masala:hover .job-image-hover {
+#sabji-masala:hover .product-image-hover {
   opacity: 1;
   display: block;
 }
-#maratha-masala:hover .job-image {
+#khichadi-masala:hover .product-image {
   opacity: 0;
 }
-#maratha-masala:hover .job-image-hover {
+#khichadi-masala:hover .product-image-hover {
   opacity: 1;
   display: block;
 }
-#chaat-masala:hover .job-image {
+#maratha-masala:hover .product-image {
   opacity: 0;
 }
-#chaat-masala:hover .job-image-hover {
+#maratha-masala:hover .product-image-hover {
   opacity: 1;
   display: block;
 }
-#pav-bhaji-masala:hover .job-image {
+#chaat-masala:hover .product-image {
   opacity: 0;
 }
-#pav-bhaji-masala:hover .job-image-hover {
+#chaat-masala:hover .product-image-hover {
   opacity: 1;
   display: block;
 }
-#pani-puri-masala:hover .job-image {
+#pav-bhaji-masala:hover .product-image {
   opacity: 0;
 }
-#pani-puri-masala:hover .job-image-hover {
+#pav-bhaji-masala:hover .product-image-hover {
   opacity: 1;
   display: block;
 }
-#sambar-masala:hover .job-image {
+#pani-puri-masala:hover .product-image {
   opacity: 0;
 }
-#sambar-masala:hover .job-image-hover {
+#pani-puri-masala:hover .product-image-hover {
   opacity: 1;
   display: block;
 }
-#tandoori-tikka-masala:hover .job-image {
+#sambar-masala:hover .product-image {
   opacity: 0;
 }
-#tandoori-tikka-masala:hover .job-image-hover {
+#sambar-masala:hover .product-image-hover {
   opacity: 1;
   display: block;
 }
-#dal-tadka-masala:hover .job-image {
+#tandoori-tikka-masala:hover .product-image {
   opacity: 0;
 }
-#dal-tadka-masala:hover .job-image-hover {
+#tandoori-tikka-masala:hover .product-image-hover {
   opacity: 1;
   display: block;
 }
-#poha-masala:hover .job-image {
+#dal-tadka-masala:hover .product-image {
   opacity: 0;
 }
-#poha-masala:hover .job-image-hover {
+#dal-tadka-masala:hover .product-image-hover {
   opacity: 1;
   display: block;
 }
-#usal-masala:hover .job-image {
+#poha-masala:hover .product-image {
   opacity: 0;
 }
-#usal-masala:hover .job-image-hover {
+#poha-masala:hover .product-image-hover {
   opacity: 1;
   display: block;
 }
-#goda-masala:hover .job-image {
+#usal-masala:hover .product-image {
   opacity: 0;
 }
-#goda-masala:hover .job-image-hover {
+#usal-masala:hover .product-image-hover {
   opacity: 1;
   display: block;
 }
-#coriander-powder:hover .job-image {
+#goda-masala:hover .product-image {
   opacity: 0;
 }
-#coriander-powder:hover .job-image-hover {
+#goda-masala:hover .product-image-hover {
   opacity: 1;
   display: block;
 }
-#red-chilli-powder:hover .job-image {
+#coriander-powder:hover .product-image {
   opacity: 0;
 }
-#red-chilli-powder:hover .job-image-hover {
+#coriander-powder:hover .product-image-hover {
   opacity: 1;
   display: block;
 }
-#jeera-powder:hover .job-image {
+#red-chilli-powder:hover .product-image {
   opacity: 0;
 }
-#jeera-powder:hover .job-image-hover {
+#red-chilli-powder:hover .product-image-hover {
   opacity: 1;
   display: block;
 }
-#usal-masala:hover .job-image {
+#jeera-powder:hover .product-image {
   opacity: 0;
 }
-#usal-masala:hover .job-image-hover {
+#jeera-powder:hover .product-image-hover {
   opacity: 1;
   display: block;
 }
-#usal-masala:hover .job-image {
+#usal-masala:hover .product-image {
   opacity: 0;
 }
-#usal-masala:hover .job-image-hover {
+#usal-masala:hover .product-image-hover {
   opacity: 1;
   display: block;
 }
-#usal-masala:hover .job-image {
+#usal-masala:hover .product-image {
   opacity: 0;
 }
-#usal-masala:hover .job-image-hover {
+#usal-masala:hover .product-image-hover {
   opacity: 1;
   display: block;
 }
-#usal-masala:hover .job-image {
+#usal-masala:hover .product-image {
   opacity: 0;
 }
-#usal-masala:hover .job-image-hover {
+#usal-masala:hover .product-image-hover {
   opacity: 1;
   display: block;
 }
-#usal-masala:hover .job-image {
+#usal-masala:hover .product-image {
   opacity: 0;
 }
-#usal-masala:hover .job-image-hover {
+#usal-masala:hover .product-image-hover {
+  opacity: 1;
+  display: block;
+}
+#usal-masala:hover .product-image {
+  opacity: 0;
+}
+#usal-masala:hover .product-image-hover {
   opacity: 1;
   display: block;
 }
