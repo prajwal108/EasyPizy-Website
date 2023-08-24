@@ -1126,6 +1126,10 @@ transition: background-color 0.3s ease;
   display: block;
   margin: auto;
   padding: 20px;
+  width: auto;
+  height: 300px;
+  object-position: center;
+  object-fit: cover;
 }
 
 .product-body {
@@ -1620,273 +1624,13 @@ div.container:nth-child(3) {
   overflow: hidden;
 }
 
-.product-image-hover {
-  display: none;
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+.product-item .product-image{
+  transition: transform 0.2s ease-in-out;
+}
+.product-item:hover .product-image{
+ transform: scale(1.2);
 }
 
-#paneer-tikka-masala:hover .product-image {
-  opacity: 0;
-}
-
-#paneer-tikka-masala:hover .product-image-hover {
-  opacity: 1;
-  display: block;
-}
-#chola-masala:hover .product-image {
-  opacity: 0;
-}
-#chola-masala:hover .product-image-hover {
-  opacity: 1;
-  display: block;
-}
-
-#misal:hover .product-image {
-  opacity: 0;
-}
-#misal:hover .product-image-hover {
-  opacity: 1;
-  display: block;
-}
-
-#pulav:hover .product-image {
-  opacity: 0;
-}
-#pulav:hover .product-image-hover {
-  opacity: 1;
-  display: block;
-  justify-content: center;
-}
-
-#garam-masala:hover .product-image {
-  opacity: 0;
-}
-#garam-masala:hover .product-image-hover {
-  opacity: 1;
-  display: block;
-}
-#kala-masala:hover .product-image {
-  opacity: 0;
-}
-#kala-masala:hover .product-image-hover {
-  opacity: 1;
-  display: block;
-}
-
-#paneer-butter-masala:hover .product-image {
-  opacity: 0;
-}
-#paneer-butter-masala:hover .product-image-hover {
-  opacity: 1;
-  display: block;
-}
-
-#kaju-curry-masala:hover .product-image {
-  opacity: 0;
-}
-#kaju-curry-masala:hover .product-image-hover {
-  opacity: 1;
-  display: block;
-}
-
-#biryani-masala:hover .product-image {
-  opacity: 0;
-}
-#biryani-masala:hover .product-image-hover {
-  opacity: 1;
-  display: block;
-}
-
-#kitchen-king-masala:hover .product-image {
-  opacity: 0;
-}
-#kitchen-king-masala:hover .product-image-hover {
-  opacity: 1;
-  display: block;
-}
-
-#bengen-masala:hover .product-image {
-  opacity: 0;
-}
-#bengen-masala:hover .product-image-hover {
-  opacity: 1;
-  display: block;
-}
-
-#shahi-paneer-masala:hover .product-image {
-  opacity: 0;
-}
-#shahi-paneer-masala:hover .product-image-hover {
-  opacity: 1;
-  display: block;
-}
-#kashmiri-chilli-powder:hover .product-image {
-  opacity: 0;
-}
-#kashmiri-chilli-powder:hover .product-image-hover {
-  opacity: 1;
-  display: block;
-}
-#turmeric-powder:hover .product-image {
-  opacity: 0;
-}
-#turmeric-powder:hover .product-image-hover {
-  opacity: 1;
-  display: block;
-}
-#dry-mango-powder:hover .product-image {
-  opacity: 0;
-}
-#dry-mango-powder:hover .product-image-hover {
-  opacity: 1;
-  display: block;
-}
-#sabji-masala:hover .product-image {
-  opacity: 0;
-}
-#sabji-masala:hover .product-image-hover {
-  opacity: 1;
-  display: block;
-}
-#khichadi-masala:hover .product-image {
-  opacity: 0;
-}
-#khichadi-masala:hover .product-image-hover {
-  opacity: 1;
-  display: block;
-}
-#maratha-masala:hover .product-image {
-  opacity: 0;
-}
-#maratha-masala:hover .product-image-hover {
-  opacity: 1;
-  display: block;
-}
-#chaat-masala:hover .product-image {
-  opacity: 0;
-}
-#chaat-masala:hover .product-image-hover {
-  opacity: 1;
-  display: block;
-}
-#pav-bhaji-masala:hover .product-image {
-  opacity: 0;
-}
-#pav-bhaji-masala:hover .product-image-hover {
-  opacity: 1;
-  display: block;
-}
-#pani-puri-masala:hover .product-image {
-  opacity: 0;
-}
-#pani-puri-masala:hover .product-image-hover {
-  opacity: 1;
-  display: block;
-}
-#sambar-masala:hover .product-image {
-  opacity: 0;
-}
-#sambar-masala:hover .product-image-hover {
-  opacity: 1;
-  display: block;
-}
-#tandoori-tikka-masala:hover .product-image {
-  opacity: 0;
-}
-#tandoori-tikka-masala:hover .product-image-hover {
-  opacity: 1;
-  display: block;
-}
-#dal-tadka-masala:hover .product-image {
-  opacity: 0;
-}
-#dal-tadka-masala:hover .product-image-hover {
-  opacity: 1;
-  display: block;
-}
-#poha-masala:hover .product-image {
-  opacity: 0;
-}
-#poha-masala:hover .product-image-hover {
-  opacity: 1;
-  display: block;
-}
-#usal-masala:hover .product-image {
-  opacity: 0;
-}
-#usal-masala:hover .product-image-hover {
-  opacity: 1;
-  display: block;
-}
-#goda-masala:hover .product-image {
-  opacity: 0;
-}
-#goda-masala:hover .product-image-hover {
-  opacity: 1;
-  display: block;
-}
-#coriander-powder:hover .product-image {
-  opacity: 0;
-}
-#coriander-powder:hover .product-image-hover {
-  opacity: 1;
-  display: block;
-}
-#red-chilli-powder:hover .product-image {
-  opacity: 0;
-}
-#red-chilli-powder:hover .product-image-hover {
-  opacity: 1;
-  display: block;
-}
-#jeera-powder:hover .product-image {
-  opacity: 0;
-}
-#jeera-powder:hover .product-image-hover {
-  opacity: 1;
-  display: block;
-}
-#usal-masala:hover .product-image {
-  opacity: 0;
-}
-#usal-masala:hover .product-image-hover {
-  opacity: 1;
-  display: block;
-}
-#usal-masala:hover .product-image {
-  opacity: 0;
-}
-#usal-masala:hover .product-image-hover {
-  opacity: 1;
-  display: block;
-}
-#usal-masala:hover .product-image {
-  opacity: 0;
-}
-#usal-masala:hover .product-image-hover {
-  opacity: 1;
-  display: block;
-}
-#usal-masala:hover .product-image {
-  opacity: 0;
-}
-#usal-masala:hover .product-image-hover {
-  opacity: 1;
-  display: block;
-}
-#usal-masala:hover .product-image {
-  opacity: 0;
-}
-#usal-masala:hover .product-image-hover {
-  opacity: 1;
-  display: block;
-}
-/* 
- */
 
 /* Styles for WhatsApp button */
 #whatsapp-button {
@@ -1937,3 +1681,51 @@ height: 100%;
   font-weight: 700;
   font-size: 21px;
 }
+/* #pagination{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20px;
+} */
+
+ #pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+    }
+    #prevBtn,
+    #nextBtn {
+        margin: 0 10px;
+        padding: 5px 10px;
+        /* background-color: #f0f0f0; */
+        border: none;
+        cursor: pointer;
+    }
+    #page-numbers {
+        margin: 0 5px;
+        padding: 5px;
+        /* background-color: #f0f0f0; */
+        cursor: pointer;
+    }
+
+
+     #pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+    }
+    #pagination label {
+        margin: 0 5px;
+        padding: 5px;
+        /* background-color: #f0f0f0; */
+        cursor: pointer;
+    }
+    #pagination input[type="radio"] {
+        display: none;
+    }
+    #pagination input[type="radio"]:checked + label {
+        background-color: #333;
+        color: #fff;
+    }
