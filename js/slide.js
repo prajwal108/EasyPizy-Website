@@ -49,5 +49,27 @@ function sendToWhatsApp() {
   });
 
 
+// Example JavaScript code
+const accountText = document.getElementById("accountText");
+const accountMenu = document.getElementById("accountMenu");
+
+// Check if the user is logged in or signed up
+const isLoggedIn = true; // Set this to true if the user is logged in
+const isSignedUp = true; // Set this to true if the user is signed up
+
+if (isLoggedIn || isSignedUp) {
+    // Update the account text and display additional options
+    accountText.textContent = ""; // Replace with the user's name
+    accountMenu.innerHTML = `
+        <li><a class="dropdown-item" href="#">Account Details</a></li>
+        <li><a class="dropdown-item" href="#">Track Your Order</a></li>
+        <li><a class="dropdown-item" href="#">Order History</a></li>
+        <li><a class="dropdown-item" href="#">Saved Items</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="#">Logout</a></li>
+    `;
+}
+
+
 
 

@@ -44,17 +44,7 @@
   <body id="top">
     <nav class="navbar navbar-expand-lg">
       <div class="container">
-        <a class="navbar-brand d-flex align-items-center" href="index.html">
-          <!-- <img src="images/logo.png" class="img-fluid logo-image"> -->
-
-          <div class="d-flex flex-column">
-            <img src="images/LOGO-PNG.png" alt="Logo" class="img-fluid logo-image" >
-            <!-- <strong class="logo-text">EasyPizy</strong> -->
-            <!-- <small class="logo-slogan"></small> -->
-          </div>
-        </a>
-
-        <button
+                <button
           class="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
@@ -65,6 +55,16 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
+        <a class="navbar-brand d-flex align-items-center" href="index.html">
+          <!-- <img src="images/logo.png" class="img-fluid logo-image"> -->
+
+          <div class="d-flex flex-column">
+            <img src="images/LOGO-PNG.png" alt="Logo" class="img-fluid logo-image" >
+            <!-- <strong class="logo-text">EasyPizy</strong> -->
+            <!-- <small class="logo-slogan"></small> -->
+          </div>
+        </a>
+        
 
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav align-items-center ms-lg-5">
@@ -102,12 +102,52 @@
                 </li>
               </ul>
             </li>
+            <li class="nav-item dropdown" id="accountNavDrop">
+              <a
+                class="nav-link dropdown-toggle"
+                href="products.html"
+                id="navbarLightDropdownMenuLink"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                >Account</a>
 
+              <ul
+                class="dropdown-menu dropdown-menu-light"
+                aria-labelledby="navbarLightDropdownMenuLink"
+              >
+                <li>
+                  <a class="dropdown-item" href="spice-Mix.html">Login/Signup</a>
+                </li>
+              </ul>
+            </li>
+            
             <li class="nav-item">
               <a class="nav-link" href="contact.html">Contact</a>
             </li>
+            
           </ul>
         </div>
+
+         
+
+        <div class="nav-item dropdown ms-lg-4" id="accountNavbar">
+          
+    <button class="btn accountDropdown dropdown-toggle" type="button" id="accountDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="bi bi-person me-2"></i>
+        <span id="accountText">Account</span>
+    </button>
+    <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="dropdown-menu-light" id="accountMenu">
+        <li><a class="dropdown-item" href="#">Login/Signup</a></li>
+    </ul>
+  </div>
+    <div class="d-flex">
+          <a href="cart.html" class="btn btn-cart ms-lg-4">
+                <i class="bi bi-cart-fill me-2"></i><span id="cart-count"></span></a>
+     </div>
+
+
+
       </div>
     </nav>
 
@@ -170,7 +210,7 @@
               <div class="custom-text-block">
                 <img src="images/LOGO-PNG.png" class="center" ><br >
 
-                <strong class="text-white intro">
+                <strong class="intro">
                   Welcome to EasyPizy, your ultimate destination for authentic
                   Indian spices and spice mixes. We take pride in handcrafting
                   flavorful blends that elevate your culinary creations to a new
@@ -1020,5 +1060,28 @@
     <script>
       new WOW().init();
     </script>
+    <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.3.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyChpg85GDTdpX9WdaN2cmGC9B-bKF_NVxU",
+    authDomain: "easypizy-signup.firebaseapp.com",
+    projectId: "easypizy-signup",
+    storageBucket: "easypizy-signup.appspot.com",
+    messagingSenderId: "456276577737",
+    appId: "1:456276577737:web:e27a3cae99a9ca3c5aec18",
+    measurementId: "G-HH335V8J5D"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
   </body>
 </html>
