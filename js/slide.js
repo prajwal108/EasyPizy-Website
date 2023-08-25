@@ -83,31 +83,55 @@ window.addEventListener("click", (event) => {
   }
 });
 
+// Initialize the FirebaseUI Widget using Firebase.
+var ui = new firebaseui.auth.AuthUI(firebase.auth());
 
-const loginForm = document.getElementById("loginForm");
-const sendOtpBtn = document.getElementById("sendOtpBtn");
+// Reference the HTML elements
+const phoneForm = document.getElementById("loginForm");
+const sendCodeButton = document.getElementById("sendOtpBtn");
+const phoneInput = document.getElementById("phoneNumber");
+const verifyAndLoginBtn = document.getElementById("verifyAndLoginBtn");
+const verificationCodeInput = document.getElementById("verificationCode");
 
-// Function to handle sending OTP
-sendOtpBtn.addEventListener("click", () => {
-  const phoneNumber = document.getElementById("phoneNumber").value;
+// Set up reCAPTCHA verifier
+const recaptchaVerifier = new firebase.auth.RecaptchaVerifier("loginForm", {
+  size: "invisible", // Use invisible reCAPTCHA
+  callback: (response) => {
+    // reCAPTCHA solved, allow signInWithPhoneNumber.
+    sendVerificationCode();
+  },
+});
 
-  firebase
-    .auth()
-    .signInWithPhoneNumber(phoneNumber, recaptchaVerifier)
-    .then((confirmationResult) => {
-      const verificationCode = prompt("Enter OTP sent to your phone:");
-      return confirmationResult.confirm(verificationCode);
-    })
-    .then((userCredential) => {
-      // User is logged in or signed up
+let confirmationResult; // Store confirmation result globally
+
+// Attach event listener to the send code button
+sendCodeButton.addEventListener('click', () => {
+  const phoneNumber = phoneInput.value;
+  sendCodeButton.disabled = true;
+  // Send verification code
+  firebase.auth().signInWithPhoneNumber(phoneNumber, recaptchaVerifier)
+    .then((result) => {
+      // Code sent successfully
+      sendCodeButton.disabled = false;
+      confirmationResult = result; // Store the confirmation result
     })
     .catch((error) => {
-      console.error(error);
+      console.error('Error:', error.message);
+      sendCodeButton.disabled = false;
     });
 });
 
-// Function to handle form submission
-loginForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  // Your form submission logic
+// Attach event listener to the verify and login button
+verifyAndLoginBtn.addEventListener('click', () => {
+  const verificationCode = verificationCodeInput.value;
+  if (confirmationResult) {
+    confirmationResult.confirm(verificationCode)
+      .then((result) => {
+        // User signed in successfully
+        console.log('User signed in:', result.user);
+      })
+      .catch((error) => {
+        console.error('Error:', error.message);
+      });
+  }
 });
