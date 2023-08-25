@@ -82,7 +82,21 @@ window.addEventListener("click", (event) => {
     modalOverlay.style.display = "none";
   }
 });
+const firebaseConfig = {
+  apiKey: "AIzaSyChpg85GDTdpX9WdaN2cmGC9B-bKF_NVxU",
 
+  authDomain: "easypizy-signup.firebaseapp.com",
+
+  projectId: "easypizy-signup",
+
+  storageBucket: "easypizy-signup.appspot.com",
+
+  messagingSenderId: "456276577737",
+
+  appId: "1:456276577737:web:e27a3cae99a9ca3c5aec18",
+
+  measurementId: "G-HH335V8J5D",
+};
 // Initialize the FirebaseUI Widget using Firebase.
 var ui = new firebaseui.auth.AuthUI(firebase.auth());
 
