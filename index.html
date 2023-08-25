@@ -103,21 +103,20 @@
               </ul>
             </li>
             <li class="nav-item dropdown" id="accountNavDrop">
-              <a
+              <span
                 class="nav-link dropdown-toggle"
-                href="products.html"
+                href=""
                 id="navbarLightDropdownMenuLink"
                 role="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
-                >Account</a>
-
+                >Account</span>
               <ul
                 class="dropdown-menu dropdown-menu-light"
                 aria-labelledby="navbarLightDropdownMenuLink"
               >
                 <li>
-                  <a class="dropdown-item" href="spice-Mix.html">Login/Signup</a>
+                  <button class="dropdown-item" id="loginBtnS">Login/Signup</button>
                 </li>
               </ul>
             </li>
@@ -132,24 +131,61 @@
          
 
         <div class="nav-item dropdown ms-lg-4" id="accountNavbar">
-          
-    <button class="btn accountDropdown dropdown-toggle" type="button" id="accountDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+          <button class="btn accountDropdown dropdown-toggle" type="button" id="accountDropdown" data-bs-toggle="dropdown" aria-expanded="false">
         <i class="bi bi-person me-2"></i>
         <span id="accountText">Account</span>
-    </button>
-    <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="dropdown-menu-light" id="accountMenu">
-        <li><a class="dropdown-item" href="#">Login/Signup</a></li>
-    </ul>
-  </div>
-    <div class="d-flex">
+         </button>
+         <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="dropdown-menu-light" id="accountMenu">
+             <li><button class="dropdown-item" id="loginBtn">Login/Signup</button></li>
+         </ul>
+        </div>
+
+        <div class="d-flex">
           <a href="cart.html" class="btn btn-cart ms-lg-4">
                 <i class="bi bi-cart-fill me-2"></i><span id="cart-count"></span></a>
-     </div>
+         </div>
 
 
 
       </div>
     </nav>
+
+    <!-- Add this inside your <body> tag -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <h3>Login / Signup</h3>
+      <button class="close-modal btn" id="closeModal">&times;</button>
+    </div>
+    <div class="modal-content">
+      <!-- Your login and signup forms can go here -->
+      <!-- For simplicity, let's assume you have a login and signup form with IDs "loginForm" and "signupForm" -->
+      <form id="loginForm">
+    <h4>Get started</h4>
+    <p>Enter your phone number to receive an OTP:</p>
+    <div class="form-content">
+      
+      <div class="form-group">
+      <label for="phoneNumber">Phone Number:</label>
+      <input class="form-control" type="tel" id="phoneNumber" name="phoneNumber" value="+91" required>
+      <button class="btn custom-btn" type="button" id="sendOtpBtn">Send OTP</button>
+    </div>
+
+    <div class="form-group">
+      <label for="otp">Enter OTP:</label>
+      <input class="form-control" type="text" id="otp" name="otp" required>
+    </div>
+    <div class="form-group">
+      <button class="custom-btn btn" type="submit">Verify and Login</button>
+    </div>
+
+    </div>
+   
+  </form>
+    </div>
+  </div>
+</div>
+
 
     <main>
       <section
@@ -1050,16 +1086,6 @@
     </footer>
 
     <!-- JAVASCRIPT FILES -->
-    <script src="js/slide.js"></script>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/counter.js"></script>
-    <script src="js/custom.js"></script>
-    <script src="js/wow.min.js"></script>
-    <script>
-      new WOW().init();
-    </script>
     <script type="module">
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.0/firebase-app.js";
@@ -1083,5 +1109,16 @@
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
 </script>
+    <script src="js/slide.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/counter.js"></script>
+    <script src="js/custom.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script>
+      new WOW().init();
+    </script>
+    
   </body>
 </html>
