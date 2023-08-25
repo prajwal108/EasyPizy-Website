@@ -9,36 +9,6 @@
 
     <title>EasyPizy</title>
     <link rel="icon" href="images/title-icon.jpg" >
-
-    <script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.3.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
-
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyChpg85GDTdpX9WdaN2cmGC9B-bKF_NVxU",
-    authDomain: "easypizy-signup.firebaseapp.com",
-    projectId: "easypizy-signup",
-    storageBucket: "easypizy-signup.appspot.com",
-    messagingSenderId: "456276577737",
-    appId: "1:456276577737:web:e27a3cae99a9ca3c5aec18",
-    measurementId: "G-HH335V8J5D"
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-</script>
-
-    <script src="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.js">
-    </script>
-<link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.css" />
-
-
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/graingert-wow/1.2.2/wow.min.js"
       integrity="sha512-W0pro5TDSuKuwBag9ERPMdNzd8E5z5p7BmWqMflUsGN+jW3JPrVvE5F5EJXIDk3vX9YYvJ+fZ55grIU9mHzvhw=="
@@ -70,8 +40,7 @@
     <link rel="stylesheet" href="css/animate.css" >
   </head>
 
-  <bod
-  y id="top">
+  <body id="top">
     <nav class="navbar navbar-expand-lg">
       <div class="container">
                 <button
@@ -181,7 +150,7 @@
     </nav>
 
     <!-- Add this inside your <body> tag -->
-<div class="modal-overlay" id="modalOverlay">
+    <div class="modal-overlay" id="modalOverlay">
   <div class="modal" id="modal">
     <div class="modal-header">
       <h3>Login / Signup</h3>
@@ -214,7 +183,7 @@
   </form>
     </div>
   </div>
-</div>
+    </div>
 
 
     <main>
@@ -1122,7 +1091,6 @@
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/counter.js"></script>
     <script src="js/custom.js"></script>
-    <script src="js/wow.min.js"></script>
     <script>
       new WOW().init();
     </script>
