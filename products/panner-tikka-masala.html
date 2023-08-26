@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1" >
+
+    <meta name="description" content="" >
+    <meta name="author" content="" >
+
+    <title>EasyPizy</title>
+    <link rel="icon" href="../images/title-icon.jpg" >
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/graingert-wow/1.2.2/wow.min.js"
+      integrity="sha512-W0pro5TDSuKuwBag9ERPMdNzd8E5z5p7BmWqMflUsGN+jW3JPrVvE5F5EJXIDk3vX9YYvJ+fZ55grIU9mHzvhw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <link rel="stylesheet"    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+    <!-- CSS FILES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" >
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin >
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100;300;400;600;700&display=swap"
+      rel="stylesheet"
+    >
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet" >
+
+    <link href="../css/bootstrap-icons.css" rel="stylesheet" >
+
+    <link href="../css/owl.carousel.min.css" rel="stylesheet" >
+
+    <link href="../css/owl.theme.default.min.css" rel="stylesheet" >
+
+    <link href="../css/tooplate-gotto-job.css" rel="stylesheet" >
+
+    <link rel="stylesheet" href="../css/animate.css" >
+    <link rel="stylesheet" href="../css/styles.css">
+  </head>
+
+<body>
+    
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+                <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand d-flex align-items-center" href="../index.html">
+          <!-- <img src="images/logo.png" class="img-fluid logo-image"> -->
+
+          <div class="d-flex flex-column">
+            <img src="../images/LOGO-PNG.png" alt="Logo" class="img-fluid logo-image" >
+            <!-- <strong class="logo-text">EasyPizy</strong> -->
+            <!-- <small class="logo-slogan"></small> -->
+          </div>
+        </a>
+        
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav align-items-center ms-lg-5">
+            <li class="nav-item ms-lg-auto">
+              <a class="nav-link active" href="../index.html">Homepage</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="../about.html">About Us</a>
+            </li>
+
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="../products.html"
+                id="navbarLightDropdownMenuLink"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                >Products</a
+              >
+
+              <ul
+                class="dropdown-menu dropdown-menu-light"
+                aria-labelledby="navbarLightDropdownMenuLink"
+              >
+                <li>
+                  <a class="dropdown-item" href="../spice-Mix.html">Spice Mix</a>
+                </li>
+
+                <li>
+                  <a class="dropdown-item" href="../pure-spices.html"
+                    >Pure Spice</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown" id="accountNavDrop">
+              <span
+                class="nav-link dropdown-toggle"
+                href=""
+                id="navbarLightDropdownMenuLink"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                >Account</span>
+              <ul
+                class="dropdown-menu dropdown-menu-light"
+                aria-labelledby="navbarLightDropdownMenuLink"
+              >
+                <li>
+                  <button class="dropdown-item" id="loginBtnS">Login/Signup</button>
+                </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" href="../contact.html">Contact</a>
+            </li>
+            
+          </ul>
+        </div>
+
+         
+
+        <div class="nav-item dropdown ms-lg-4" id="accountNavbar">
+          <button class="btn accountDropdown dropdown-toggle" type="button" id="accountDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="bi bi-person me-2"></i>
+        <span id="accountText">Account</span>
+         </button>
+         <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="dropdown-menu-light" id="accountMenu">
+             <li><button class="dropdown-item" id="loginBtn">Login/Signup</button></li>
+         </ul>
+        </div>
+
+        <div class="d-flex">
+          <a href="../cart.html" class="btn btn-cart ms-lg-4">
+                <i class="bi bi-cart-fill me-2"></i><span id="cart-count"></span></a>
+         </div>
+
+
+
+      </div>
+    </nav>
+    <!-- Add this inside your <body> tag -->
+    <div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <h3>Login / Signup</h3>
+      <button class="close-modal btn" id="closeModal">&times;</button>
+    </div>
+    <div class="modal-content">
+      <!-- Your login and signup forms can go here -->
+      <!-- For simplicity, let's assume you have a login and signup form with IDs "loginForm" and "signupForm" -->
+      <form id="loginForm">
+    <h4>Get started</h4>
+    <p>Enter your phone number to receive an OTP:</p>
+    <div class="form-content">
+      
+      <div class="form-group">
+      <label for="phoneNumber">Phone Number:</label>
+      <input class="form-control" type="tel" id="phoneNumber" name="phoneNumber" value="+91 " required>
+      <button class="btn custom-btn" type="button" id="sendOtpBtn">Send OTP</button>
+    </div>
+
+    <div class="form-group">
+      <label for="otp">Enter OTP:</label>
+      <input class="form-control" type="text" id="otp" name="otp" required>
+    </div>
+    <div class="form-group">
+      <button class="custom-btn btn" type="submit" id="verifyAndLoginBtn">Verify and Login</button>
+    </div>
+
+    </div>
+   
+  </form>
+    </div>
+  </div>
+    </div>
+    <!-- ##### Single Product Details Area Start ##### -->
+    <section class="single_product_details_area d-flex align-items-center">
+
+        <!-- Single Product Thumb -->
+        <div class="single_product_thumb clearfix">
+            <div class="product_thumbnail_slides owl-carousel">
+                <img src="img/product-img/product-big-1.jpg" alt="">
+                <img src="img/product-img/product-big-2.jpg" alt="">
+                <img src="img/product-img/product-big-3.jpg" alt="">
+            </div>
+        </div>
+
+        <!-- Single Product Description -->
+        <div class="single_product_desc clearfix">
+            <span>mango</span>
+            <a href="../cart.html">
+                <h2>One Shoulder Glitter Midi Dress</h2>
+            </a>
+            <p class="product-price"><span class="old-price">$65.00</span> $49.00</p>
+            <p class="product-desc">Mauris viverra cursus ante laoreet eleifend. Donec vel fringilla ante. Aenean finibus velit id urna vehicula, nec maximus est sollicitudin.</p>
+
+            <!-- Form -->
+            <form class="cart-form clearfix" method="post">
+                <!-- Select Box -->
+                <div class="select-box d-flex mt-50 mb-30">
+                    <select name="select" id="productSize" class="mr-5">
+                        <option value="value">Size: XL</option>
+                        <option value="value">Size: X</option>
+                        <option value="value">Size: M</option>
+                        <option value="value">Size: S</option>
+                    </select>
+                    <select name="select" id="productColor">
+                        <option value="value">Color: Black</option>
+                        <option value="value">Color: White</option>
+                        <option value="value">Color: Red</option>
+                        <option value="value">Color: Purple</option>
+                    </select>
+                </div>
+                <!-- Cart & Favourite Box -->
+                <div class="cart-fav-box d-flex align-items-center">
+                    <!-- Cart -->
+                    <button type="submit" name="addtocart" value="5" class="btn essence-btn">Add to cart</button>
+                    <!-- Favourite -->
+                    <div class="product-favourite ml-4">
+                        <a href="#" class="favme fa fa-heart"></a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+    <!-- ##### Single Product Details Area End ##### -->
+
+    <!-- ##### Footer Area Start ##### -->
+   <footer class="site-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-6 col-12 mb-3">
+            <div class="d-flex align-items-center mb-4">
+              <div class="d-flex flex-column">
+                <img class="img-fluid logo-image" src="../images/LOGO-PNG.png" alt="Logo">
+              </div>
+            </div>
+
+            <p class="mb-2">
+              <i class="custom-icon bi-globe me-1"></i>
+
+              <a href="#" class="site-footer-link"> www.EasyPizy.com </a>
+            </p>
+
+            <p class="mb-2">
+              <i class="custom-icon bi-telephone me-1"></i>
+
+              <a href="tel:305-240-9671" class="site-footer-link">
+                305-240-9671
+              </a>
+            </p>
+
+            <p>
+              <i class="custom-icon bi-envelope me-1"></i>
+
+              <a href="mailto:info@yourgmail.com" class="site-footer-link">
+                info@msail.co
+              </a>
+            </p>
+          </div>
+
+          <div class="col-lg-2 col-md-3 col-6 ms-lg-auto">
+            <h6 class="site-footer-title">Company</h6>
+
+            <ul class="footer-menu">
+              <li class="footer-menu-item">
+                <a href="#" class="footer-menu-link">About</a>
+              </li>
+
+              <li class="footer-menu-item">
+                <a href="#" class="footer-menu-link">Products</a>
+              </li>
+
+              <li class="footer-menu-item">
+                <a href="#" class="footer-menu-link">Blogs</a>
+              </li>
+
+              <li class="footer-menu-item">
+                <a href="#" class="footer-menu-link">Contact</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-lg-4 col-md-8 col-12 mt-3 mt-lg-0">
+            <h6 class="site-footer-title">WhatsApp Group</h6>
+            <p class="mb-2">For New Recepies: <br></p>
+            <a href="../products.html" class="custom-btn btn  wow animate__ animate__fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">Join Now</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="site-footer-bottom">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-4 col-12 d-flex align-items-center">
+              <p class="copyright-text">Copyright © EasyPizy</p>
+            </div>
+
+            <div class="col-lg-5 col-12 mt-2 mt-lg-0">
+              <ul class="social-icon">
+                <li class="social-icon-item">
+                  <a href="#" class="social-icon-link bi-twitter"></a>
+                </li>
+
+                <li class="social-icon-item">
+                  <a href="#" class="social-icon-link bi-facebook"></a>
+                </li>
+
+                <li class="social-icon-item">
+                  <a href="#" class="social-icon-link bi-linkedin"></a>
+                </li>
+
+                <li class="social-icon-item">
+                  <a href="#" class="social-icon-link bi-instagram"></a>
+                </li>
+
+                <li class="social-icon-item">
+                  <a href="#" class="social-icon-link bi-youtube"></a>
+                </li>
+              </ul>
+            </div>
+            <a
+              class="back-top-icon bi-arrow-up smoothscroll d-flex justify-content-center align-items-center"
+              href="#top"
+            ></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- ##### Footer Area End ##### -->
+
+    <!-- JAVASCRIPT FILES -->  
+    <script src="../js/slide.js"></script>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/owl.carousel.min.js"></script>
+    <script src="../js/counter.js"></script>
+    <script src="../js/custom.js"></script>
+    <script>
+      new WOW().init();
+    </script>
+</body>
+
+</html>
