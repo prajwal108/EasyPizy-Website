@@ -1896,6 +1896,94 @@ right: 24%;
 #otp {
 width: 149%;
 }
+.product-info{
+  flex-direction: column;
+}
 
 }
   
+.size-checkboxes {
+  color: var(--p-color);
+font-size: var(--p-font-size);
+font-weight: var(--font-weight-light);
+ display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.size-checkboxes label {
+  font-size: var(--p-font-size);
+font-weight: var(--font-weight-light);
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.size-checkboxes label span {
+  font-size: 14px;
+}
+
+.size-checkboxes input[type="radio"] {
+  margin-right: 5px;
+  width: 20px;
+  height: 20px;
+  display: none;
+}
+
+.size-checkboxes input[type="radio"]:checked + span {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+.size-checkboxes span {
+  border: 1px solid #ced4da;
+  border-radius: 3px;
+  padding: 5px 10px;
+   font-size: var(--btn-font-size);
+  cursor: pointer;
+}
+.updated-price {
+  margin-left: 5px;
+}
+.size-checkboxes p{
+  font-weight: var(--font-weight-light);
+}
+p.product-price {
+font-weight: var(--font-weight-light);
+margin-left: 5px;
+}
+
+
+
+
+.product-data{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: -26px;
+}
+.buyNowBtn{
+  display: flex;
+  align-self: flex-end;
+}
+
+.product-price {
+  display: flex;
+  align-items: center;
+}
+
+.discount {
+  color: red;
+  margin-left: 10px;
+}
+
+.final-price {
+  margin-right: 9px;
+font-size: 1.2rem;
+font-weight: initial;
+}
+span.original-price {
+  text-decoration: line-through;
+}
