@@ -1,6 +1,10 @@
 // Get necessary elements
-// const addToCartButton = document.getElementById("addToCart");
+const addToCartBtn = document.getElementById("addToCart");
 // const buyNowButton1 = document.getElementById("buyNowBtn1");
+const flipAddCartBtn = document.getElementById("flipAddCartBtn");
+const plusBtn = document.getElementById("plusBtn");
+const minusBtn = document.getElementById("minusBtn");
+const inputBtn = document.getElementById("inputBtn");
 
 window.addEventListener("load", () => {
   const sizeRadios = document.querySelectorAll("input[type='radio']");
@@ -39,13 +43,6 @@ window.addEventListener("load", () => {
   });
 });
 
-// // Add to Cart button click event
-// addToCartButton.addEventListener("click", function (event) {
-//   event.preventDefault();
-//   // Add your logic here for adding to cart
-//   console.log("Item added to cart");
-// });
-
 // // Buy Now button click event
 // buyNowButton1.addEventListener("click", function (event) {
 //   event.preventDefault();
@@ -53,4 +50,32 @@ window.addEventListener("load", () => {
 //   console.log("Buy Now clicked");
 // });
 
+let quantity = 1;
+
+addToCartBtn.addEventListener("click", function (event) {
+  event.preventDefault(); // Prevent form submission
+  addToCartBtn.addEventListener("click", () => {
+    addToCartBtn.style.display = "none";
+    flipAddCartBtn.style.display = "flex";
+  });
+});
+
+plusBtn.addEventListener("click", function (event){
+  event.preventDefault(); // Prevent form submission
+  if (quantity < 6) {
+    quantity++;
+    inputBtn.textContent = quantity;
+  }
+});
+
+minusBtn.addEventListener("click", function (event){
+  event.preventDefault(); // Prevent form submission
+  if (quantity > 1) {
+    quantity--;
+    inputBtn.textContent = quantity;
+  } else {
+    flipAddCartBtn.style.display = "none";
+    addToCartBtn.style.display = "block";
+  }
+});
 
