@@ -124,3 +124,20 @@ window.addEventListener("load", () => {
   });
 
 });
+
+
+  $(document).ready(function () {
+    $(".product_thumbnail_slides").owlCarousel({
+      items: 1, // Number of items to show
+      loop: true, // Loop the carousel
+      autoplay: true, // Autoplay the carousel
+      autoplayTimeout: 3000, // Autoplay every 'n' milliseconds
+      autoplayHoverPause: true, // Pause the autoplay on hover
+      dots: false, // Show navigation dots
+      nav: true, // Show navigation arrows
+      navText: [
+        '<i class="bi bi-arrow-bar-left"></i>',
+        '<i class="bi bi-arrow-bar-right"></i>',
+      ], // Customize navigation arrows
+    });
+  });
