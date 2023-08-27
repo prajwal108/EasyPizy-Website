@@ -1,6 +1,6 @@
 // Get necessary elements
-const addToCartButton = document.getElementById("addToCart");
-const buyNowButton1 = document.getElementById("buyNowBtn1");
+// const addToCartButton = document.getElementById("addToCart");
+// const buyNowButton1 = document.getElementById("buyNowBtn1");
 
 window.addEventListener("load", () => {
   const sizeRadios = document.querySelectorAll("input[type='radio']");
@@ -39,16 +39,18 @@ window.addEventListener("load", () => {
   });
 });
 
-// Add to Cart button click event
-addToCartButton.addEventListener("click", function (event) {
-  event.preventDefault();
-  // Add your logic here for adding to cart
-  console.log("Item added to cart");
-});
+// // Add to Cart button click event
+// addToCartButton.addEventListener("click", function (event) {
+//   event.preventDefault();
+//   // Add your logic here for adding to cart
+//   console.log("Item added to cart");
+// });
 
-// Buy Now button click event
-buyNowButton1.addEventListener("click", function (event) {
-  event.preventDefault();
-  // Add your logic here for the Buy Now action
-  console.log("Buy Now clicked");
-});
+// // Buy Now button click event
+// buyNowButton1.addEventListener("click", function (event) {
+//   event.preventDefault();
+//   // Add your logic here for the Buy Now action
+//   console.log("Buy Now clicked");
+// });
+
+

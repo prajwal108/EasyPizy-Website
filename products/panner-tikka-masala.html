@@ -204,13 +204,7 @@
         <div class="single_product_desc clearfix">
 
             
-                <h1 class="border-bottom">Paneer Tikka Masala</h1>
-
-                <p class="product-desc">
-Prepare to be amazed as this spice mix transforms your simple paneer cubes into a flavor-packed, restaurant-quality dish.
-Try our Paneer Tikka Masala Spice Mix today and unlock a world of flavor in your own kitchen. Order now and experience the true essence of Indian cuisine with every meal!
-</p>
-            
+                <h1 class="border-bottom" style="text-align: center;">Paneer Tikka Masala</h1>            
             <!-- Form -->
             <form class="cart-form clearfix" method="post">
                 <!-- Select Box -->
@@ -240,19 +234,24 @@ Try our Paneer Tikka Masala Spice Mix today and unlock a world of flavor in your
 
   
                     </div>
+                    <p class="product-desc">
+Prepare to be amazed as this spice mix transforms your simple paneer cubes into a flavor-packed, restaurant-quality dish.
+Try our Paneer Tikka Masala Spice Mix today and unlock a world of flavor in your own kitchen. Order now and experience the true essence of Indian cuisine with every meal!
+</p>
                     <div class="product-btn">
-                    <a href="#" class="custom-btn btn ms-auto" id="addToCart">Add To Cart</a>
-                    <a href="#" class="custom-btn btn ms-auto" id="buyNowBtn1">Buy Now</a>
-
+                    <button class="custom-btn btn ms-auto" id="addToCart"
+                    >Add To Cart</button>
+                    <div id="flipAddCartBtn">
+                      <button class="custom-btn btn ms-auto" id="plusBtn">+</button>
+                      <div class="custom-btn btn ms-auto" id="inputBtn">1</div>
+                      <button class="custom-btn btn ms-auto" id="minusBtn">-</button>
                     </div>
-
-  
+                    <button class="custom-btn btn ms-auto" id="buyNowBtn1">Buy Now</button>
+                    </div>
                   </div>
                 </div>
-                
-            </form>
 
-            
+            </form>    
         </div>
     </section>
     <!-- ##### Single Product Details Area End ##### -->

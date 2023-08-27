@@ -142,3 +142,7 @@ window.addEventListener("load", () => {
 
     });
   });
+
+  // addnow buttton
+
+  
