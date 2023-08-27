@@ -139,5 +139,6 @@ window.addEventListener("load", () => {
         '<i class="bi bi-arrow-bar-left"></i>',
         '<i class="bi bi-arrow-bar-right"></i>',
       ], // Customize navigation arrows
+
     });
   });
