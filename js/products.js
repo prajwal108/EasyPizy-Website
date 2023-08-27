@@ -54,10 +54,8 @@ let quantity = 1;
 
 addToCartBtn.addEventListener("click", function (event) {
   event.preventDefault(); // Prevent form submission
-  addToCartBtn.addEventListener("click", () => {
     addToCartBtn.style.display = "none";
     flipAddCartBtn.style.display = "flex";
-  });
 });
 
 plusBtn.addEventListener("click", function (event){
