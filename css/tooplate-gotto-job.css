@@ -1870,7 +1870,8 @@ div.form-group:nth-child(3) {
   .buyNowBtn{
     justify-content: center;
     margin-top: 15px;
-    margin-right:35%;
+    margin-right:24%;
+    width: 57%;
   }
   .modal{
     width: 100%;
