@@ -82,20 +82,25 @@ minusBtn.addEventListener("click", function (event){
     $('.related-carousel').owlCarousel({
         loop: true,
         margin: 29,
-        nav: false,
         autoplay: true,
         smartSpeed: 1000,
+        slideBy: 1,        
         responsive: {
-            0:{
-                items:1
-            },
-            768:{
+          0:{
+            items:1
+          },
+            845:{
                 items:2
             },
-            992:{
+            1325:{
                 items:3
             }
-        }
-    });
+        },
 
-    
+         nav: true, // Show navigation arrows
+      navText: [
+        '<i class="bi bi-arrow-bar-left"></i>',
+        '<i class="bi bi-arrow-bar-right"></i>',
+      ], // Customize navigation arrows
+      dots: true, // Show dots navigation
+    });

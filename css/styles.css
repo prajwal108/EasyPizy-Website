@@ -280,22 +280,61 @@ padding-bottom: 25%;
 }
 
 .related-carousel .owl-item {
-  min-width: 400px;
+  max-width: 400px;
   margin-right: 29px;
+  min-height: fit-content;
 }
 div.owl-carousel .related-carousel .owl-loaded .owl-drag{
   min-height: fit-content;
 }
-.row > * {
-  flex-shrink: 0;
-  width: 100%;
-  max-width: 100%;
-  padding-right: calc(var(--bs-gutter-x) * 0.5);
-  padding-left: calc(var(--bs-gutter-x) * 0.5);
-  margin-top: var(--bs-gutter-y);
-  min-height: 46%;
-}
+
 
 p.product-price {
   margin-left: 15px;
+}
+
+
+div.owl-carousel:nth-child(2) > div:nth-child(2) > button:nth-child(1) {
+  position: absolute;
+  top: 30%;
+  left: -4%;
+}
+
+div.owl-carousel:nth-child(2) > div:nth-child(2) > button:nth-child(2) > i:nth-child(1) {
+  position: absolute;
+  top: 30%;
+  right: -3.6%;
+}
+
+@media screen and (max-width: 995px) {
+div.owl-carousel:nth-child(2) > div:nth-child(2) > button:nth-child(1) {
+  top: 29%;
+  left: 2%;
+}
+
+div.owl-carousel:nth-child(2) > div:nth-child(2) > button:nth-child(2) > i:nth-child(1) {
+  top: 29%;
+  right: 3.4%;
+}
+
+}
+
+/* Customize dots appearance */
+.owl-dots {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.owl-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: black;
+    border-radius: 50%;
+    margin: 0 5px;
+    transition: background-color 0.3s ease;
+}
+
+.owl-dot.active {
+    background-color: var(--primary-color);
 }
