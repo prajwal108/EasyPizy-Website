@@ -125,6 +125,45 @@ window.addEventListener("load", () => {
 
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+  const addToCartBtns = document.querySelectorAll(".add-to-cart-btn");
+  const plusBtns = document.querySelectorAll(".plus-btn");
+  const minusBtns = document.querySelectorAll(".minus-btn");
+  const inputBtns = document.querySelectorAll(".inputBtn");
+  const plusMinusInputs = document.querySelectorAll(".plus-minus-input");
+
+  addToCartBtns.forEach((addToCartBtn, index) => {
+    let quantity = 1;
+
+    addToCartBtn.addEventListener("click", function (event) {
+      event.preventDefault();
+      addToCartBtn.style.display = "none";
+      plusMinusInputs[index].style.display = "flex";
+    });
+
+    plusBtns[index].addEventListener("click", function (event) {
+      event.preventDefault();
+      if (quantity < 6) {
+        quantity++;
+        inputBtns[index].textContent = quantity;
+      }
+    });
+
+    minusBtns[index].addEventListener("click", function (event) {
+      event.preventDefault();
+      if (quantity > 1) {
+        quantity--;
+        inputBtns[index].textContent = quantity;
+      } else {
+        plusMinusInputs[index].style.display = "none";
+        addToCartBtn.style.display = "block";
+      }
+    });
+  });
+});
+
+
+
 
   $(document).ready(function () {
     $(".product_thumbnail_slides").owlCarousel({
@@ -142,7 +181,3 @@ window.addEventListener("load", () => {
 
     });
   });
-
-  // addnow buttton
-
-  
