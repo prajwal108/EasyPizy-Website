@@ -417,6 +417,10 @@ div.form-group:nth-child(3) {
 .media {
   width: 100%;
   min-height: 87%;
+  border: 2px solid;
+padding: 22px;
+overflow: scroll;
+height:454px;
 }
 .media-body-title{
   display: flex;
@@ -424,7 +428,11 @@ div.form-group:nth-child(3) {
   justify-content: space-between;
 }
 .media-body {
-  padding: 30px;
+  background-color: aliceblue;
+  padding: 20px;
+border: 1px solid black;
+border-radius: 26px;
+margin-bottom: 15px;
 }
 
 #comment-form > div:nth-child(1) {
@@ -438,4 +446,10 @@ div.form-group:nth-child(3) {
 .bi-arrow-right-circle-fill, .bi-arrow-left-circle-fill{
   font-size: var(--h3-font-size);
   color: var(--primary-color);
+}
+.text-primary i {
+font-size: 12px;
+}
+.media-body >p{
+  font-size: 1.1em;
 }
