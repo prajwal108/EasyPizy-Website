@@ -148,13 +148,13 @@ strong {
 
 .back-top-icon {
   background: var(--secondary-color);
-  width: 65px;
+  width: 35px;
   color: var(--white-color);
   font-size: var(--h4-font-size);
   position: absolute;
   top: 0;
   bottom: 0;
-  right: 0;
+  right: 22px;
   transition: all 0.5s;
 }
 
@@ -1070,7 +1070,7 @@ transition: background-color 0.3s ease;
 }
 
 .product-thumb-box .product-body {
-  padding: 25px;
+  padding: 12px;
 }
 
 .product-thumb-box .product-body .product-image-wrap {
@@ -2119,6 +2119,9 @@ flex-direction: row;
     height: 90%;
      left: 0%;
      top: 24%;
+  }
+  a.back-top-icon{
+    display: none;
   }
   
 }

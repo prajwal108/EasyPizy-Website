@@ -229,11 +229,6 @@ span.original-price-1 {
   text-decoration: line-through;
 }
 
-.product-data {
-  position: relative;
-  top: -5%;
-  left: -27%;
-}
 
 @media screen and (max-width: 908px) {
   .product-btn {
