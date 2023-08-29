@@ -175,9 +175,8 @@ document.addEventListener("DOMContentLoaded", function () {
       dots: false, // Show navigation dots
       nav: true, // Show navigation arrows
       navText: [
-        '<i class="bi bi-arrow-bar-left"></i>',
-        '<i class="bi bi-arrow-bar-right"></i>',
+        '<i class="bi bi-arrow-left-circle-fill"></i>',
+        '<i class="bi bi-arrow-right-circle-fill"></i>',
       ], // Customize navigation arrows
-
     });
   });

@@ -79,30 +79,31 @@ minusBtn.addEventListener("click", function (event){
 
 //  related owl container
 // Related carousel
-    $('.related-carousel').owlCarousel({
-        loop: true,
-        margin: 29,
-        autoplay: true,
-        smartSpeed: 1000,
-        slideBy: 1,        
-        responsive: {
-          0:{
-            items:1
-          },
-            845:{
-                items:2
-            },
-            1325:{
-                items:3
-            }
+    $(".related-carousel").owlCarousel({
+      loop: true,
+      margin: 29,
+      autoplay: true,
+      smartSpeed: 1000,
+      slideBy: 1,
+      responsive: {
+        0: {
+          items: 1,
         },
+        845: {
+          items: 2,
+        },
+        1325: {
+          items: 3,
+        },
+      },
 
-         nav: true, // Show navigation arrows
+      nav: true, // Show navigation arrows
       navText: [
-        '<i class="bi bi-arrow-bar-left"></i>',
-        '<i class="bi bi-arrow-bar-right"></i>',
+        '<i class="bi bi-arrow-left-circle-fill"></i>',
+        '<i class="bi bi-arrow-right-circle-fill"></i>',
       ], // Customize navigation arrows
       dots: true, // Show dots navigation
+      
     });
 
 // Get all tab links and tab content
