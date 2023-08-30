@@ -1652,9 +1652,9 @@ div.container:nth-child(3) {
   display: none;
   position: fixed;
   bottom: 20px;
-  left: 20px;
+  right: 20px;
   z-index: 999;
-  width: 86px;
+  width: 66px;
   border-radius: 62%;
   background-color: transparent;
 }
@@ -1668,7 +1668,7 @@ div.container:nth-child(3) {
   }
   #whatsapp-button {
    bottom: 24px;
-right: 16px;
+left: 2px;
   }
 }
 /* stop animations on smaller devices */
