@@ -1668,7 +1668,7 @@ div.container:nth-child(3) {
   }
   #whatsapp-button {
    bottom: 24px;
-left: 2px;
+right: 16px;
   }
 }
 /* stop animations on smaller devices */
