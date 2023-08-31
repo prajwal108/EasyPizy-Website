@@ -459,7 +459,7 @@ transition: background-color 0.3s ease;
 
 .logo-image {
   display: block;
-  width: 188px;
+  width: 150px;
   margin-right: 15px;
 }
 
@@ -1668,6 +1668,8 @@ div.container:nth-child(3) {
   }
   #whatsapp-button {
    bottom: 24px;
+
+   
   }
 }
 /* stop animations on smaller devices */
@@ -1742,7 +1744,7 @@ color: var(--white-color);
 
 @media screen and (max-width: 330px) {
   .logo-image{
-    width: 135px;
+    width: 115px;
   }
   .center {
   width: 87%;
