@@ -1620,8 +1620,8 @@ transition: background-color 0.3s ease;
   }
 }
 .center {
-  width: 56%;
-  height: 26%;
+  width: 50%;
+height: 24%;
 }
 
 /* Element | http://127.0.0.1:5500/about.html */
@@ -2211,4 +2211,23 @@ justify-content: center;
 
 .cart-container {
   margin-bottom: 15px;
+}
+.input-group-text {
+  text-align: center;
+  padding: 7px;
+  border: 1px solid;
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--p-color);
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 0.25rem;
 }

@@ -177,7 +177,12 @@ Bootstrap 5 HTML CSS Template
       
       <div class="form-group">
       <label for="phoneNumber">Phone Number:</label>
-      <input class="form-control" type="tel" id="phoneNumber" name="phoneNumber" value="+91 " required>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">+91 </span>
+        </div>
+        <input class="form-control" type="tel" id="phoneNumber" name="phoneNumber" pattern="[0-9]{10}" required>
+      </div>
       <button class="btn custom-btn" type="button" id="sendOtpBtn">Send OTP</button>
     </div>
 
