@@ -1620,7 +1620,7 @@ transition: background-color 0.3s ease;
   }
 }
 .center {
-  width: 66%;
+  width: 56%;
   height: 26%;
 }
 
@@ -1760,6 +1760,10 @@ color: var(--white-color);
     #accountNavDrop{
     display: block;
     }
+    .center {
+  width: 60%;
+  height: 18%;
+}
   }
 
   /* Add this in your <style> tag or external stylesheet */
