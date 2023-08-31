@@ -20,9 +20,11 @@ jobs:
 
       - name: Install Dependencies
         run: npm ci
+        working-directory: D:\EasyPizy\git\functions
 
       - name: Build
         run: npm run build
+        working-directory: D:\EasyPizy\git\functions
 
       - name: Deploy to Firebase Hosting
         run: |
