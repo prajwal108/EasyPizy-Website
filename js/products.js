@@ -1,10 +1,12 @@
 // Get necessary elements
 const addToCartBtn = document.getElementById("addToCart");
-// const buyNowButton1 = document.getElementById("buyNowBtn1");
+const buyNowBtn = document.getElementById("buyNowBtn1");
 const flipAddCartBtn = document.getElementById("flipAddCartBtn");
 const plusBtn = document.getElementById("plusBtn");
 const minusBtn = document.getElementById("minusBtn");
 const inputBtn = document.getElementById("inputBtn");
+const checkoutBtn = document.getElementById("checkoutBtn");
+
 
 window.addEventListener("load", () => {
   const sizeRadios = document.querySelectorAll("input[type='radio']");
@@ -56,6 +58,8 @@ addToCartBtn.addEventListener("click", function (event) {
   event.preventDefault(); // Prevent form submission
     addToCartBtn.style.display = "none";
     flipAddCartBtn.style.display = "flex";
+    buyNowBtn.style.display = "none";
+    checkoutBtn.style.display = "flex";
 });
 
 plusBtn.addEventListener("click", function (event){
@@ -74,7 +78,13 @@ minusBtn.addEventListener("click", function (event){
   } else {
     flipAddCartBtn.style.display = "none";
     addToCartBtn.style.display = "block";
+    buyNowBtn.style.display = "block";
+    checkoutBtn.style.display = "none";
   }
+});
+checkoutBtn.addEventListener("click", function (event){
+  event.preventDefault(); // Prevent form submission
+  window.location.href = "../cart.html";
 });
 
 //  related owl container

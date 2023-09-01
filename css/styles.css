@@ -164,7 +164,7 @@
   display:block;
   width:100%;
   cursor: pointer;
-  transition: 0.4ms ease-in-out;
+  transition: transform 0.4s ease-in-out;
 }
 
 .owl-carousel .owl-item img:hover {
@@ -194,13 +194,12 @@ width: 100%;
 
 
 #addToCart {
-  width: 98%;
+  width: 90%;
   margin-right: 11px;
 }
 
 #buyNowBtn1 {
   width: 90%;
-  margin-left: 12px;
 }
 .bi-cash {
 display: flex;
@@ -447,4 +446,11 @@ font-size: 12px;
 }
 .media-body >p{
   font-size: 1.1em;
+}
+#checkoutBtn {
+  width: 90%;
+  display: none;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
 }
