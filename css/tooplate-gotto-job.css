@@ -2231,3 +2231,11 @@ justify-content: center;
   appearance: none;
   border-radius: 0.25rem;
 }
+select {
+  word-wrap: normal;
+  background-color: white;
+}
+.close-list-btn{
+  color: red;
+  background-color: white;
+}
