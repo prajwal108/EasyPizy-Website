@@ -167,13 +167,19 @@
       <form id="loginForm">
     <h4>Get started</h4>
     <p>Enter your phone number to receive an OTP:</p>
-    <div class="form-content">
-      
+    <div class="form-content">      
       <div class="form-group">
       <label for="phoneNumber">Phone Number:</label>
-      <input class="form-control" type="tel" id="phoneNumber" name="phoneNumber" value="+91 " required>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">+91 </span>
+        </div>
+        <input class="form-control" type="tel" id="phoneNumber" name="phoneNumber" pattern="[0-9]{10}" required>
+      </div>
       <button class="btn custom-btn" type="button" id="sendOtpBtn">Send OTP</button>
     </div>
+    <!-- Add the reCAPTCHA container here -->
+      <div id="recaptcha-container"></div>
 
     <div class="form-group">
       <label for="otp">Enter OTP:</label>
@@ -182,10 +188,8 @@
     <div class="form-group">
       <button class="custom-btn btn" type="submit" id="verifyAndLoginBtn">Verify and Login</button>
     </div>
-
     </div>
-   
-  </form>
+      </form>
     </div>
   </div>
     </div>
@@ -945,8 +949,16 @@ Try our Paneer Tikka Masala Spice Mix today and unlock a world of flavor in your
     </footer>
     <!-- ##### Footer Area End ##### -->
 
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    
+    <!-- Include Firebase script first -->
+<script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js"></script>
+
     <!-- JAVASCRIPT FILES -->  
-    <script src="../js/firebase.js"></script>
+    <script  src="../js/firebase.js"></script>
     <script src="../js/jquery.min.js"></script>
     <script src="../js/slide.js"></script>
     <script src="../js/bootstrap.min.js"></script>
