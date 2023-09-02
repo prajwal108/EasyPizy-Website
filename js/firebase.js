@@ -14,75 +14,78 @@
     measurementId: "G-SYY5K0GJ7H"
   };
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-  const auth = getAuth(app);
-  
-const sendOtpButton = document.getElementById('sendOtpBtn');
-const phoneNumberInput = document.getElementById('phoneNumber');
-let confirmationResult;
-let isButtonDisabled = false; // Track whether the button is disabled
+  document.addEventListener("DOMContentLoaded", () => {
+    // Your Firebase and event listener code here
 
-sendOtpButton.addEventListener("click", () => {
-  if (isButtonDisabled) {
-    return; // Don't do anything if the button is already disabled
-  }
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const auth = getAuth(app);
 
-  const phoneNumber = "+91" + phoneNumberInput.value; // Construct the full phone number
-  
-  // Create reCAPTCHA verifier
-  const appVerifier = new firebase.auth.RecaptchaVerifier(
-    "recaptcha-container",
-    {
-      size: "invisible", // Set to 'invisible' for invisible reCAPTCHA
-    }
-  );
+    const sendOtpButton = document.getElementById("sendOtpBtn");
+    const phoneNumberInput = document.getElementById("phoneNumber");
+    let confirmationResult;
+    let isButtonDisabled = false; // Track whether the button is disabled
 
-  // Disable the button
-  sendOtpButton.disabled = true;
-  isButtonDisabled = true;
+    sendOtpButton.addEventListener("click", () => {
+      if (isButtonDisabled) {
+        return; // Don't do anything if the button is already disabled
+      }
 
-  // Send OTP to the user's phone
-  signInWithPhoneNumber(auth, phoneNumber, appVerifier)
-    .then((confirmationResult) => {
-      // OTP sent successfully, proceed to verification
-      // Save the 'confirmationResult' to use in the next step
+      const phoneNumber = "+91" + phoneNumberInput.value; // Construct the full phone number
 
-      // Set a timer to re-enable the button after 1 minute (60,000 milliseconds)
-      setTimeout(() => {
-        sendOtpButton.disabled = false;
-        isButtonDisabled = false;
-      }, 60000); // 1 minute
-    })
-    .catch((error) => {
-      console.error("Error sending OTP:", error);
-      // Handle error
+      // Create reCAPTCHA verifier
+      const appVerifier = new firebase.auth.RecaptchaVerifier(
+        "recaptcha-container",
+        {
+          size: "invisible", // Set to 'invisible' for invisible reCAPTCHA
+        }
+      );
 
-      // Re-enable the button in case of an error
-      sendOtpButton.disabled = false;
-      isButtonDisabled = false;
+      // Disable the button
+      sendOtpButton.disabled = true;
+      isButtonDisabled = true;
+
+      // Send OTP to the user's phone
+      signInWithPhoneNumber(auth, phoneNumber, appVerifier)
+        .then((confirmationResult) => {
+          // OTP sent successfully, proceed to verification
+          // Save the 'confirmationResult' to use in the next step
+
+          // Set a timer to re-enable the button after 1 minute (60,000 milliseconds)
+          setTimeout(() => {
+            sendOtpButton.disabled = false;
+            isButtonDisabled = false;
+          }, 60000); // 1 minute
+        })
+        .catch((error) => {
+          console.error("Error sending OTP:", error);
+          // Handle error
+
+          // Re-enable the button in case of an error
+          sendOtpButton.disabled = false;
+          isButtonDisabled = false;
+        });
     });
-});
 
-const otpInput = document.getElementById("otp");
-const verifyAndLoginButton = document.getElementById("verifyAndLoginBtn");
+    const otpInput = document.getElementById("otp");
+    const verifyAndLoginButton = document.getElementById("verifyAndLoginBtn");
 
-verifyAndLoginButton.addEventListener("click", () => {
-  const otp = otpInput.value;
+    verifyAndLoginButton.addEventListener("click", () => {
+      const otp = otpInput.value;
 
-  // Use the confirmationResult from the previous step to verify the OTP
-  confirmationResult
-    .confirm(otp)
-    .then((userCredential) => {
-      // User successfully authenticated, you can now access userCredential.user
-      const user = userCredential.user;
-      console.log("User signed in:", user);
-      // Redirect or perform other actions as needed
-    })
-    .catch((error) => {
-      console.error("Error verifying OTP:", error);
-      // Handle error
+      // Use the confirmationResult from the previous step to verify the OTP
+      confirmationResult
+        .confirm(otp)
+        .then((userCredential) => {
+          // User successfully authenticated, you can now access userCredential.user
+          const user = userCredential.user;
+          console.log("User signed in:", user);
+          // Redirect or perform other actions as needed
+        })
+        .catch((error) => {
+          console.error("Error verifying OTP:", error);
+          // Handle error
+        });
     });
-});
-
+  });
