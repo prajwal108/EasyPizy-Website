@@ -1,10 +1,10 @@
   // TODO: Add SDKs for Firebase products that you want to use
 //  import firebase from "firebase/app";
- const firebase = require("firebase/app");
-  require("firebase/auth");
-  require("firebase/firestore");
-  require("firebase/analytics");
-  require("firebase/database");
+ import firebase from "firebase/app";
+  import "firebase/auth";
+  import "firebase/firestore";
+  import "firebase/analytics";
+  import "firebase/database";
 
 
   // https://firebase.google.com/docs/web/setup#available-libraries
@@ -28,8 +28,8 @@
    // Your Firebase and event listener code here
    // Initialize Firebase
    const app = firebase.initializeApp(firebaseConfig);
-   const analytics = getAnalytics(app);
-   const auth = getAuth(app);
+   const analytics = firebase.analytics(app);
+   const auth = firebase.auth();
 
    const sendOtpButton = document.getElementById("sendOtpBtn");
    const phoneNumberInput = document.getElementById("phoneNumber");
@@ -43,7 +43,7 @@
      const phoneNumber = "+91" + phoneNumberInput.value; // Construct the full phone number
 
      // Create reCAPTCHA verifier
-     const appVerifier = new firebase.auth.RecaptchaVerifier(
+     const appVerifier = new _auth.RecaptchaVerifier(
        "recaptcha-container",
        {
          size: "invisible", // Set to 'invisible' for invisible reCAPTCHA

@@ -1,7 +1,7 @@
 const path = require("path");
 
 module.exports = {
-  entry: "./src/", // Entry point for your application
+  entry: "src/firebase.js", // Entry point for your application
   output: {
     filename: "bundle.js", // Name of the output bundle file
     path: path.resolve(__dirname, "dist"), // Output directory (create a 'dist' folder)
