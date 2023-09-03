@@ -32,7 +32,7 @@
     const sendOtpButton = document.getElementById("sendOtpBtn");
     const phoneNumberInput = document.getElementById("phoneNumber");
     let isButtonDisabled = false; // Track whether the button is disabled
-
+    
     sendOtpButton.addEventListener("click", () => {
       if (isButtonDisabled) {
         return; // Don't do anything if the button is already disabled
@@ -64,10 +64,10 @@
 
       // Send OTP to the user's phone
       signInWithPhoneNumber(auth, phoneNumber, appVerifier)
-        .then((confirmationResult) => {
+        .then((result) => {
           // OTP sent successfully, proceed to verification
           // Save the 'confirmationResult' to use in the next step
-
+          confirmationResult = result;
           // Set a timer to re-enable the button after 1 minute (60,000 milliseconds)
           setTimeout(() => {
             sendOtpButton.disabled = false;
