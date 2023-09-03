@@ -2,6 +2,7 @@
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-analytics.js";
   import { getAuth, RecaptchaVerifier, signInWithPhoneNumber } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js";
+  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js";
   
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
@@ -92,14 +93,69 @@
 
       // Use the confirmationResult from the previous step to verify the OTP
       confirmationResult.confirm(otp).then((userCredential) => {
-          // User successfully authenticated, you can now access userCredential.user
-          const user = userCredential.user;
-          console.log("User signed in:", user);
-          // Redirect or perform other actions as needed
-        })
+        // User successfully authenticated, you can now access userCredential.user
+        const user = userCredential.user;
+        console.log("User signed in:", user);
+        // Redirect or perform other actions as needed
+        // Hide the login modal
+        const modal = document.getElementById("modal");
+        modal.style.display = "none";
+        // Display the user data modal
+        const userDataModal = document.getElementById("userdata");
+        userDataModal.style.display = "block";
+      })
         .catch((error) => {
           console.error("Error verifying OTP:", error);
           // Handle error
         });
     });
 
+
+    // Event listener for the "Save Profile" button inside the user data modal
+const saveProfileButton = document.getElementById("saveProfileBtn");
+saveProfileButton.addEventListener("click", (event) => {
+  event.preventDefault(); // Prevent form submission (if it's inside a form)
+
+  // Collect profile data from the form
+  const fullName = document.getElementById("fullName").value;
+  const email = document.getElementById("email").value;
+  const mobileNumber = document.getElementById("mobileNumber").value;
+  const address = document.getElementById("address").value;
+  const pincode = document.getElementById("pincode").value;
+  const city = document.getElementById("city").value;
+  const state = document.getElementById("state").value;
+
+  // Create a user profile object
+  const userProfile = {
+    uid: user.uid, // Include the UID from Firebase Authentication
+    fullName,
+    email,
+    mobileNumber,
+    address,
+    pincode,
+    city,
+    state,
+  };
+
+  // Store the user profile in Firestore
+  const db = getFirestore(app); // Assuming you've imported getFirestore
+  const userProfilesRef = collection(db, "userProfiles");
+
+  // Add the user profile data to Firestore
+  addDoc(userProfilesRef, userProfile)
+    .then(() => {
+      // Profile data successfully saved
+
+      // Close the user data modal
+      const userDataModal = document.getElementById("userdata");
+      userDataModal.style.display = "none";
+
+      // Hide the modal overlay
+      const modalOverlay = document.getElementById("modalOverlay");
+      modalOverlay.style.display = "none";
+    })
+    .catch((error) => {
+      console.error("Error saving profile data:", error);
+      // Handle error
+    });
+});
