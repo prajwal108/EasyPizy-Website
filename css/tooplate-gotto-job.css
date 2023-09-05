@@ -2268,7 +2268,7 @@ select {
 .form-group-1{
   padding-bottom: 4%;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: row;
 }
 div.form-group:nth-child(8) {
   text-align: center;
@@ -2302,6 +2302,9 @@ div.form-group:nth-child(5) {
   text-align: center;
 }
 @media screen and (max-width: 991px) {
+  .form-group-1{
+    flex-wrap: wrap;
+  }
    #userdata {
   position: fixed;
   /*! top: 9%; */left: 0%;

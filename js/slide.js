@@ -34,33 +34,21 @@ const LoginBtn = document.getElementById("loginBtn");
 const LoginBtnS = document.getElementById("loginBtnS");
 const closeModalBtn1 = document.getElementById("closeModal1");
 
-// Show the modal when "Login/Signup" is clicked
-LoginBtn.addEventListener("click", () => {
-  modalOverlay.style.display = "flex";
-  modal.style.display = "block";
-
+document.addEventListener("click", (event) => {
+  if (event.target && event.target.id === "loginBtn") {
+    // Show the modal when "Login/Signup" is clicked
+    modalOverlay.style.display = "flex";
+    modal.style.display = "block";
+  } else if (event.target && event.target.id === "loginBtnS") {
+    // Show the modal when "Login/Signup" is clicked (alternative)
+    modalOverlay.style.display = "flex";
+    modal.style.display = "block";
+  } else if (event.target && (event.target.id === "closeModal" ||event.target.id === "closeModal1")) {
+    // Close the modal when the close button is clicked
+    console.log("close");
+    modalOverlay.style.display = "none";
+  }
 });
-// Show the modal when "Login/Signup" is clicked
-LoginBtnS.addEventListener("click", () => {
-  modalOverlay.style.display = "flex";
-  modal.style.display = "block";
-});
-
-// Close the modal when the close button is clicked
-closeModalBtn.addEventListener("click", () => {
-  modalOverlay.style.display = "none";
-});
- 
-closeModalBtn1.addEventListener("click", () => {
-  modalOverlay.style.display = "none";
-});
-
-// Close the modal if user clicks outside the modal content
-// window.addEventListener("click", (event) => {
-//   if (event.target === modalOverlay) {
-//     modalOverlay.style.display = "none";
-//   }
-// });
 
 window.addEventListener("load", () => {
   const productCards = document.querySelectorAll(".product-item");

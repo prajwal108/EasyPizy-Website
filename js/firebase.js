@@ -32,8 +32,7 @@
     const auth = getAuth(app);
 
   // Set up local persistence
-  auth.setPersistence(browserLocalPersistence)
-    .then(() => {
+  auth.setPersistence(browserLocalPersistence).then(() => {
       // Local persistence enabled successfully
     })
     .catch((error) => {
@@ -45,105 +44,182 @@
     const phoneNumberInput = document.getElementById("phoneNumber");
     let isButtonDisabled = false; // Track whether the button is disabled
     
-    sendOtpButton.addEventListener("click", () => {
-      if (isButtonDisabled) {
-        return; // Don't do anything if the button is already disabled
-      }
+    document.addEventListener("click", (event) => {
+      if (event.target && event.target.id === "sendOtpBtn") {
+        if (isButtonDisabled) {
+          return; // Don't do anything if the button is already disabled
+        }
 
-      const phoneNumber = "+91" + phoneNumberInput.value; // Construct the full phone number
+        const phoneNumber = "+91" + phoneNumberInput.value; // Construct the full phone number
 
-      // Create reCAPTCHA verifier
-      const appVerifier = new RecaptchaVerifier(auth, 'verifyAndLoginBtn',{
-        'size': 'invisible',
-  'callback': (response) => {
-    // reCAPTCHA solved, allow signInWithPhoneNumber.
-    onSignInSubmit();
-  }
-      });
-// Check if reCAPTCHA has already been rendered in the container
-  const recaptchaContainer = document.getElementById('recaptcha-container');
-  if (!recaptchaContainer.hasChildNodes()) {
-    // If not rendered, then render it
-    appVerifier.render().then(widgetId => {
-      // save widgetId
-    });
-  }
+        // Create reCAPTCHA verifier
+        const appVerifier = new RecaptchaVerifier(auth, "verifyAndLoginBtn", {
+          size: "invisible",
+          callback: (response) => {
+            // reCAPTCHA solved, allow signInWithPhoneNumber.
+            onSignInSubmit();
+          },
+        });
+        // Check if reCAPTCHA has already been rendered in the container
+        const recaptchaContainer = document.getElementById(
+          "recaptcha-container"
+        );
+        if (!recaptchaContainer.hasChildNodes()) {
+          // If not rendered, then render it
+          appVerifier.render().then((widgetId) => {
+            // save widgetId
+          });
+        }
 
+        // Disable the button
+        sendOtpButton.disabled = true;
+        isButtonDisabled = true;
 
-      // Disable the button
-      sendOtpButton.disabled = true;
-      isButtonDisabled = true;
+        // Send OTP to the user's phone
+        signInWithPhoneNumber(auth, phoneNumber, appVerifier)
+          .then((result) => {
+            // OTP sent successfully, proceed to verification
+            // Save the 'confirmationResult' to use in the next step
+            confirmationResult = result;
+            // Set a timer to re-enable the button after 1 minute (60,000 milliseconds)
+            setTimeout(() => {
+              sendOtpButton.disabled = false;
+              isButtonDisabled = false;
+            }, 60000); // 1 minute
+          })
+          .catch((error) => {
+            console.error("Error sending OTP:", error);
+            // Handle error
 
-      // Send OTP to the user's phone
-      signInWithPhoneNumber(auth, phoneNumber, appVerifier)
-        .then((result) => {
-          // OTP sent successfully, proceed to verification
-          // Save the 'confirmationResult' to use in the next step
-          confirmationResult = result;
-          // Set a timer to re-enable the button after 1 minute (60,000 milliseconds)
-          setTimeout(() => {
+            // Re-enable the button in case of an error
             sendOtpButton.disabled = false;
             isButtonDisabled = false;
-          }, 60000); // 1 minute
-        })
-        .catch((error) => {
-          console.error("Error sending OTP:", error);
-          // Handle error
-
-          // Re-enable the button in case of an error
-          sendOtpButton.disabled = false;
-          isButtonDisabled = false;
-        });
+          });
+      }
     });
+  
 
     const otpInput = document.getElementById("otp");
+   
+    otpInput.value = "";
     const verifyAndLoginButton = document.getElementById("verifyAndLoginBtn");
 
-// Event listener for verifying OTP and showing user data modal
-verifyAndLoginButton.addEventListener("click", () => {
+
+  
+// Function to fetch user profile data from Firestore
+async function getUserProfile(uid) {
+  const db = getFirestore();
+  const userProfilesRef = collection(db, "userProfiles");
+
+  const userProfileQuery = query(userProfilesRef, where("uid", "==", uid));
+  
+  try {
+    const userProfileSnapshot = await getDocs(userProfileQuery);
+
+    if (!userProfileSnapshot.empty) {
+      // Return user profile data when found
+      return userProfileSnapshot.docs[0].data();
+    } else {
+      // Return null when no user profile is found
+      return null;
+    }
+
+  } catch (error) {
+    console.error("Error fetching user profile:", error);
+    throw error; 
+  }
+}
+
+// OTP verification
+ verifyAndLoginButton.addEventListener("click", async () => {
   const otp = otpInput.value;
 
-  // Use the confirmationResult from the previous step to verify the OTP
-  confirmationResult.confirm(otp)
-    .then((userCredential) => {
-      // User successfully authenticated, you can now access userCredential.user
-      user = userCredential.user;
-      console.log("User signed in:", user);
+  console.log("Starting OTP confirmation...");
+  const userCredential = await confirmationResult.confirm(otp);
+  console.log("OTP confirmed successfully.");
 
-      // Check if the user's profile data already exists in Firestore
-      const db = getFirestore(app);
-      const userProfilesRef = collection(db, "userProfiles");
-      const query = where("uid", "==", user.uid);
+  const user = userCredential.user;
 
-      getDocs(query).then((querySnapshot) => {
-          if (querySnapshot.size === 0) {
-            // User's profile data doesn't exist in Firestore, show the userdata modal
-            const modal = document.getElementById("modal");
-            modal.style.display = "none";
-            const userDataModal = document.getElementById("userdata");
-            userDataModal.style.display = "block";
-          } else {
-            // User's profile data already exists, you can redirect or perform other actions
-            console.log("User's profile data already exists in Firestore.");
-            // Redirect or perform other actions as needed
-          }
-        })
-        .catch((error) => {
-          console.error("Error checking profile data:", error);
-          // Handle error
-        });
-    })
-    .catch((error) => {
-      console.error("Error verifying OTP:", error);
-      // Handle error
-    });
+  try {
+    // Fetch user profile data
+    const userProfileData = await getUserProfile(user.uid);
+
+    if (userProfileData === null) {
+      // Show user profile modal
+      console.log("User profile not found, showing user profile modal.");
+      const modal = document.getElementById("modal");
+      modal.style.display = "none";
+      const userDataModal = document.getElementById("userdata");
+      userDataModal.style.display = "block";
+      const modalOverlay = document.getElementById("modalOverlay");
+      modalOverlay.style.display = "flex";
+    } else {
+      // User profile already exists, update UI
+      console.log("User profile found, updating UI.");
+      const modal = document.getElementById("modal");
+      modal.style.display = "none";
+      const userDataModal = document.getElementById("userdata");
+      userDataModal.style.display = "none";
+      const modalOverlay = document.getElementById("modalOverlay");
+      modalOverlay.style.display = "none";
+    }
+  } catch (error) {
+    console.error("Error fetching user profile:", error);
+    // Handle error
+    const modalOverlay = document.getElementById("modalOverlay");
+    modalOverlay.style.display = "none";
+  }
 });
 
 
 
+
+// Other Firebase logic...
+// Event listener for verifying OTP and showing user data modal
+// verifyAndLoginButton.addEventListener("click", () => {
+//   const otp = otpInput.value;
+
+//   // Use the confirmationResult from the previous step to verify the OTP
+//   confirmationResult.confirm(otp)
+//     .then((userCredential) => {
+//       // User successfully authenticated, you can now access userCredential.user
+//       user = userCredential.user;
+//       console.log("User signed in:", user);
+
+//       // Check if the user's profile data already exists in Firestore
+//       const db = getFirestore(app);
+//       const userProfilesRef = collection(db, "userProfiles");
+//       const userProfileQuery = query(userProfilesRef,where("uid", "==", user.uid));
+
+//       getDocs(query).then((querySnapshot) => {
+//           if (querySnapshot.size === 0) {
+//             // User's profile data doesn't exist in Firestore, show the userdata modal
+            
+//           } else {
+//             // User's profile data already exists, you can redirect or perform other actions
+//             console.log("User's profile data already exists in Firestore.");
+//             // Redirect or perform other actions as needed
+//           }
+//         })
+//         .catch((error) => {
+//           console.error("Error checking profile data:", error);
+//           // Handle error
+//         });
+//     })
+//     .catch((error) => {
+//       console.error("Error verifying OTP:", error);
+//       // Handle error
+//     });
+// });
+
+
+
     // Event listener for the "Save Profile" button inside the user data modal
+
 const saveProfileButton = document.getElementById("saveProfileBtn");
 saveProfileButton.addEventListener("click", () => {
+  console.log("Save Profile button clicked"); // Log that the button was clicked
+
   // Collect profile data from the form
   const firstName = document.getElementById("firstname").value;
   const lastName = document.getElementById("lastname").value;
@@ -154,6 +230,7 @@ saveProfileButton.addEventListener("click", () => {
   const state = document.getElementById("state").value;
 
   // Create a user profile object
+  console.log("Creating user profile object...");
   const userProfile = {
     uid: user.uid, // Include the UID from Firebase Authentication
     firstName,
@@ -170,9 +247,10 @@ saveProfileButton.addEventListener("click", () => {
   const userProfilesRef = collection(db, "userProfiles");
 
   // Add the user profile data to Firestore
+  console.log("Adding user profile to Firestore...");
   addDoc(userProfilesRef, userProfile)
     .then(() => {
-      // Profile data successfully saved
+      console.log("Profile data successfully saved"); // Log success
 
       // Close the user data modal
       const userDataModal = document.getElementById("userdata");
@@ -183,31 +261,35 @@ saveProfileButton.addEventListener("click", () => {
       modalOverlay.style.display = "none";
     })
     .catch((error) => {
-      console.error("Error saving profile data:", error);
+      console.error("Error saving profile data:", error); // Log error
       // Handle error
     });
 });
-// Assume you have a function to get the user's first name from Firestore
-function getFirstNameFromFirestore(uid) {
-  const db = getFirestore(app); // Assuming you've imported getFirestore
-  const userProfilesRef = collection(db, "userProfiles");
-  
-  // Query Firestore to get the user's profile data
-  const query = query(userProfilesRef, where("uid", "==", uid));
 
-  return getDocs(query)
-    .then((querySnapshot) => {
-      if (!querySnapshot.empty) {
-        const userProfile = querySnapshot.docs[0].data();
-        return userProfile.firstName;
-      } else {
-        return null; // User profile not found
-      }
-    })
-    .catch((error) => {
-      console.error("Error fetching first name:", error);
+// Assume you have a function to get the user's first name from Firestore
+async function getFirstNameFromFirestore(uid) {
+  const db = getFirestore(app);
+  const userProfilesRef = collection(db, "userProfiles");
+
+  // Declare query variable
+  let userProfileQuery;
+
+  // Initialize query
+  userProfileQuery = query(userProfilesRef, where("uid", "==", uid));
+
+  try {
+    const userProfileSnapshot = await getDocs(userProfileQuery);
+
+    if (!userProfileSnapshot.empty) {
+      const userProfile = userProfileSnapshot.docs[0].data();
+      return userProfile.firstName;
+    } else {
       return null;
-    });
+    }
+  } catch (error) {
+    console.error("Error fetching user profile", error);
+    return null;
+  }
 }
 
 
@@ -225,7 +307,7 @@ function updateUIForLoggedInUser(user) {
     <li><a class="dropdown-item" href="#">Track Your Order</a></li>
     <li><a class="dropdown-item" href="#">Order History</a></li>
     <li><hr class="dropdown-divider"></li>
-    <li><a class="dropdown-item" href="#">Logout</a></li>
+    <li><a class="dropdown-item" id="logoutBtn">Logout</a></li>
   `;
 
   // Hide the login/signup modal if it's displayed
@@ -240,6 +322,26 @@ function updateUIForLoggedOutUser() {
   accountMenu.innerHTML = `<li><button class="dropdown-item" id="loginBtn">Login/Signup</button></li>`;
 }
 
+
+
+
+  // Your JavaScript code here, including the event listener for "logoutBtn."
+  const logoutButton = document.getElementById("logoutBtn");
+  document.addEventListener("click", (event) => {
+    if (event.target && event.target.id === "logoutBtn") {
+      auth.signOut().then(() => {
+          // Sign-out successful.
+          // You can perform additional actions here, such as redirecting the user.
+        })
+        .catch((error) => {
+          // An error happened. Handle it here.
+          console.error("Error during sign-out:", error);
+        });
+    }
+  });
+
+
+// Event listener for the "Logout" button
 // Assuming you have a Firebase authentication state change listener
 auth.onAuthStateChanged((user) => {
   if (user) {
