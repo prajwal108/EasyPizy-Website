@@ -524,6 +524,7 @@ transition: background-color 0.3s ease;
   position: relative;
   padding-top: 10px;
   padding-bottom: 10px;
+  text-align: center;
 }
 
 .dropdown-menu li:last-child .dropdown-item {
@@ -2322,4 +2323,12 @@ right: -90px;
 }
  
   
+}
+
+#accountMenu{
+  cursor: pointer;
+}
+
+.navbar > div:nth-child(1) {
+  backdrop-filter: blur(50px);
 }

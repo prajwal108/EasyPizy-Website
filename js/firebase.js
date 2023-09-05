@@ -3,6 +3,7 @@
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-analytics.js";
   import { getAuth, RecaptchaVerifier, signInWithPhoneNumber,browserLocalPersistence } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js";
   import {getFirestore, collection, addDoc,query,where, getDocs } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js";
+  import { initializeAppCheck, ReCaptchaV3Provider } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app-check.js";
   
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
@@ -21,7 +22,6 @@
   };
 
   let confirmationResult;
-  let user=null;
 
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   
@@ -39,6 +39,10 @@
       // Handle errors
     });
 
+    const appCheck = initializeAppCheck(app, {
+      provider: new ReCaptchaV3Provider("6LcXifYnAAAAANWB4INPpx_rnQsunUqryz5cv6qR"),
+      isTokenAutoRefreshEnabled: true,
+    });
 
     const sendOtpButton = document.getElementById("sendOtpBtn");
     const phoneNumberInput = document.getElementById("phoneNumber");
@@ -61,10 +65,8 @@
           },
         });
         // Check if reCAPTCHA has already been rendered in the container
-        const recaptchaContainer = document.getElementById(
-          "recaptcha-container"
-        );
-        if (!recaptchaContainer.hasChildNodes()) {
+        const recaptchaContainer = document.getElementById("recaptcha-container");
+        if (recaptchaContainer.childElementCount>=0) {
           // If not rendered, then render it
           appVerifier.render().then((widgetId) => {
             // save widgetId
@@ -173,52 +175,19 @@ async function getUserProfile(uid) {
 
 
 
-
-// Other Firebase logic...
-// Event listener for verifying OTP and showing user data modal
-// verifyAndLoginButton.addEventListener("click", () => {
-//   const otp = otpInput.value;
-
-//   // Use the confirmationResult from the previous step to verify the OTP
-//   confirmationResult.confirm(otp)
-//     .then((userCredential) => {
-//       // User successfully authenticated, you can now access userCredential.user
-//       user = userCredential.user;
-//       console.log("User signed in:", user);
-
-//       // Check if the user's profile data already exists in Firestore
-//       const db = getFirestore(app);
-//       const userProfilesRef = collection(db, "userProfiles");
-//       const userProfileQuery = query(userProfilesRef,where("uid", "==", user.uid));
-
-//       getDocs(query).then((querySnapshot) => {
-//           if (querySnapshot.size === 0) {
-//             // User's profile data doesn't exist in Firestore, show the userdata modal
-            
-//           } else {
-//             // User's profile data already exists, you can redirect or perform other actions
-//             console.log("User's profile data already exists in Firestore.");
-//             // Redirect or perform other actions as needed
-//           }
-//         })
-//         .catch((error) => {
-//           console.error("Error checking profile data:", error);
-//           // Handle error
-//         });
-//     })
-//     .catch((error) => {
-//       console.error("Error verifying OTP:", error);
-//       // Handle error
-//     });
-// });
-
-
-
-    // Event listener for the "Save Profile" button inside the user data modal
-
+// Event listener for the "Save Profile" button
 const saveProfileButton = document.getElementById("saveProfileBtn");
-saveProfileButton.addEventListener("click", () => {
+saveProfileButton.addEventListener("click", async () => {
   console.log("Save Profile button clicked"); // Log that the button was clicked
+
+  // Check if a user is authenticated
+  const user = auth.currentUser; // Assuming you've defined 'auth' using getAuth(app)
+
+  if (!user) {
+    console.error("User is not authenticated");
+    // You might want to display an error message to the user or redirect them to the login page.
+    return;
+  }
 
   // Collect profile data from the form
   const firstName = document.getElementById("firstname").value;
@@ -246,24 +215,23 @@ saveProfileButton.addEventListener("click", () => {
   const db = getFirestore(app); // Assuming you've imported getFirestore
   const userProfilesRef = collection(db, "userProfiles");
 
-  // Add the user profile data to Firestore
-  console.log("Adding user profile to Firestore...");
-  addDoc(userProfilesRef, userProfile)
-    .then(() => {
-      console.log("Profile data successfully saved"); // Log success
+  try {
+    // Add the user profile data to Firestore
+    console.log("Adding user profile to Firestore...");
+    const docRef = await addDoc(userProfilesRef, userProfile);
+    console.log("Profile data successfully saved with ID:", docRef.id); // Log success
 
-      // Close the user data modal
-      const userDataModal = document.getElementById("userdata");
-      userDataModal.style.display = "none";
+    // Close the user data modal
+    const userDataModal = document.getElementById("userdata");
+    userDataModal.style.display = "none";
 
-      // Hide the modal overlay
-      const modalOverlay = document.getElementById("modalOverlay");
-      modalOverlay.style.display = "none";
-    })
-    .catch((error) => {
-      console.error("Error saving profile data:", error); // Log error
-      // Handle error
-    });
+    // Hide the modal overlay
+    const modalOverlay = document.getElementById("modalOverlay");
+    modalOverlay.style.display = "none";
+  } catch (error) {
+    console.error("Error saving profile data:", error); // Log error
+    // Handle error
+  }
 });
 
 // Assume you have a function to get the user's first name from Firestore
@@ -318,7 +286,7 @@ function updateUIForLoggedInUser(user) {
 // Function to update the UI when the user is logged out
 function updateUIForLoggedOutUser() {
   // Reset the account text and options
-  accountText.textContent = "Account";
+  accountText.textContent = "";
   accountMenu.innerHTML = `<li><button class="dropdown-item" id="loginBtn">Login/Signup</button></li>`;
 }
 
