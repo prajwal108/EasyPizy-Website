@@ -46,7 +46,7 @@
       // Optional argument. If true, the SDK automatically refreshes App Check
       // tokens as needed
     });
-    auth.useAppCheck(appCheck);
+    
 
     const sendOtpButton = document.getElementById("sendOtpBtn");
     const phoneNumberInput = document.getElementById("phoneNumber");
