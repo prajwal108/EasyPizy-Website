@@ -26,59 +26,26 @@ function sendToWhatsApp() {
     }
   });
 
-
-// Example JavaScript code
-const accountText = document.getElementById("accountText");
-const accountMenu = document.getElementById("accountMenu");
-
-// Check if the user is logged in or signed up
-const isLoggedIn = false; // Set this to true if the user is logged in
-const isSignedUp = false; // Set this to true if the user is signed up
-
-if (isLoggedIn || isSignedUp) {
-    // Update the account text and display additional options
-    accountText.textContent = ""; // Replace with the user's name
-    accountMenu.innerHTML = `
-        <li><a class="dropdown-item" href="#">Account Details</a></li>
-        <li><a class="dropdown-item" href="#">Track Your Order</a></li>
-        <li><a class="dropdown-item" href="#">Order History</a></li>
-        <li><a class="dropdown-item" href="#">Saved Items</a></li>
-        <li><hr class="dropdown-divider"></li>
-        <li><a class="dropdown-item" href="#">Logout</a></li>
-    `;
-}
-
-
-
-
-
 // Add this script before the closing </body> tag
 const modalOverlay = document.getElementById("modalOverlay");
 const modal = document.getElementById("modal");
 const closeModalBtn = document.getElementById("closeModal");
 const LoginBtn = document.getElementById("loginBtn");
 const LoginBtnS = document.getElementById("loginBtnS");
+const closeModalBtn1 = document.getElementById("closeModal1");
 
-// Show the modal when "Login/Signup" is clicked
-LoginBtn.addEventListener("click", () => {
-  modalOverlay.style.display = "flex";
-  modal.style.display = "block";
-
-});
-// Show the modal when "Login/Signup" is clicked
-LoginBtnS.addEventListener("click", () => {
-  modalOverlay.style.display = "flex";
-  modal.style.display = "block";
-});
-
-// Close the modal when the close button is clicked
-closeModalBtn.addEventListener("click", () => {
-  modalOverlay.style.display = "none";
-});
-
-// Close the modal if user clicks outside the modal content
-window.addEventListener("click", (event) => {
-  if (event.target === modalOverlay) {
+document.addEventListener("click", (event) => {
+  if (event.target && event.target.id === "loginBtn") {
+    // Show the modal when "Login/Signup" is clicked
+    modalOverlay.style.display = "flex";
+    modal.style.display = "block";
+  } else if (event.target && event.target.id === "loginBtnS") {
+    // Show the modal when "Login/Signup" is clicked (alternative)
+    modalOverlay.style.display = "flex";
+    modal.style.display = "block";
+  } else if (event.target && (event.target.id === "closeModal" ||event.target.id === "closeModal1")) {
+    // Close the modal when the close button is clicked
+    console.log("close");
     modalOverlay.style.display = "none";
   }
 });
