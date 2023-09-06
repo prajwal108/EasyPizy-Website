@@ -30,6 +30,7 @@
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
     const auth = getAuth(app);
+    
 
   // Set up local persistence
   auth.setPersistence(browserLocalPersistence).then(() => {
@@ -42,7 +43,10 @@
     const appCheck = initializeAppCheck(app, {
       provider: new ReCaptchaV3Provider("6LcXifYnAAAAANWB4INPpx_rnQsunUqryz5cv6qR"),
       isTokenAutoRefreshEnabled: true,
+      // Optional argument. If true, the SDK automatically refreshes App Check
+      // tokens as needed
     });
+    auth.useAppCheck(appCheck);
 
     const sendOtpButton = document.getElementById("sendOtpBtn");
     const phoneNumberInput = document.getElementById("phoneNumber");
@@ -156,6 +160,8 @@ async function getUserProfile(uid) {
       const modalOverlay = document.getElementById("modalOverlay");
       modalOverlay.style.display = "flex";
     } else {
+      // User is logged in
+      updateUIForLoggedInUser(user);
       // User profile already exists, update UI
       console.log("User profile found, updating UI.");
       const modal = document.getElementById("modal");

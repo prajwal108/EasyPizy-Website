@@ -50,12 +50,7 @@
   <body>
     <nav class="navbar navbar-expand-lg">
       <div class="container">
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav"
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
@@ -65,15 +60,12 @@
           <!-- <img src="images/logo.png" class="img-fluid logo-image"> -->
 
           <div class="d-flex flex-column">
-            <img
-              src="../images/LOGO-PNG.png"
-              alt="Logo"
-              class="img-fluid logo-image"
-            />
+            <img src="../images/LOGO-PNG.png" alt="Logo" class="img-fluid logo-image" >
             <!-- <strong class="logo-text">EasyPizy</strong> -->
             <!-- <small class="logo-slogan"></small> -->
           </div>
         </a>
+        
 
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav align-items-center ms-lg-5">
@@ -101,9 +93,7 @@
                 aria-labelledby="navbarLightDropdownMenuLink"
               >
                 <li>
-                  <a class="dropdown-item" href="../spice-Mix.html"
-                    >Spice Mix</a
-                  >
+                  <a class="dropdown-item" href="../spice-Mix.html">Spice Mix</a>
                 </li>
 
                 <li>
@@ -121,114 +111,148 @@
                 role="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
-                >Account</span
-              >
+                >Account</span>
               <ul
                 class="dropdown-menu dropdown-menu-light"
                 aria-labelledby="navbarLightDropdownMenuLink"
               >
                 <li>
-                  <button class="dropdown-item" id="loginBtnS">
-                    Login/Signup
-                  </button>
+                  <button class="dropdown-item" id="loginBtnS">Login/Signup</button>
                 </li>
               </ul>
             </li>
-
+            
             <li class="nav-item">
               <a class="nav-link" href="../contact.html">Contact</a>
             </li>
+            
           </ul>
         </div>
 
+         
+
         <div class="nav-item dropdown ms-lg-4" id="accountNavbar">
-          <button
-            class="btn accountDropdown dropdown-toggle"
-            type="button"
-            id="accountDropdown"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            <i class="bi bi-person me-2"></i>
-            <span id="accountText">Account</span>
-          </button>
-          <ul
-            class="dropdown-menu dropdown-menu-light"
-            aria-labelledby="dropdown-menu-light"
-            id="accountMenu"
-          >
-            <li>
-              <button class="dropdown-item" id="loginBtn">Login/Signup</button>
-            </li>
-          </ul>
+          <button class="btn accountDropdown dropdown-toggle" type="button" id="accountDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="bi bi-person me-2"></i><span id="accountText"></span></button>
+         <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="dropdown-menu-light" id="accountMenu">
+             <li><button class="dropdown-item" id="loginBtn">Login/Signup</button></li>
+         </ul>
         </div>
 
         <div class="d-flex">
           <a href="../cart.html" class="btn btn-cart ms-lg-4">
-            <i class="bi bi-cart-fill me-2"></i><span id="cart-count"></span
-          ></a>
-        </div>
+                <i class="bi bi-cart-fill me-2"></i><span id="cart-count"></span></a>
+         </div>
+
+
+
       </div>
     </nav>
     <!-- Add this inside your <body> tag -->
     <div class="modal-overlay" id="modalOverlay">
-      <div class="modal" id="modal">
-        <div class="modal-header">
-          <h3>Login / Signup</h3>
-          <button class="close-modal btn" id="closeModal">&times;</button>
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <h3>Login / Signup</h3>
+      <button class="close-modal btn" id="closeModal">&times;</button>
+    </div>
+    <div class="modal-content">
+      <!-- Your login and signup forms can go here -->
+      <!-- For simplicity, let's assume you have a login and signup form with IDs "loginForm" and "signupForm" -->
+      <form id="loginForm">
+    <h4>Get started</h4>
+    <p>Enter your phone number to receive an OTP:</p>
+    <div class="form-content">      
+      <div class="form-group">
+      <label for="phoneNumber">Phone Number:</label>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">+91 </span>
         </div>
-        <div class="modal-content">
-          <!-- Your login and signup forms can go here -->
-          <!-- For simplicity, let's assume you have a login and signup form with IDs "loginForm" and "signupForm" -->
-          <form id="loginForm">
-            <h4>Get started</h4>
-            <p>Enter your phone number to receive an OTP:</p>
-            <div class="form-content">
-              <div class="form-group">
-                <label for="phoneNumber">Phone Number:</label>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">+91 </span>
-                  </div>
-                  <input
-                    class="form-control"
-                    type="tel"
-                    id="phoneNumber"
-                    name="phoneNumber"
-                    pattern="[0-9]{10}"
-                    required
-                  />
-                </div>
-                <button class="btn custom-btn" type="button" id="sendOtpBtn">
-                  Send OTP
-                </button>
-              </div>
-              <!-- Add the reCAPTCHA container here -->
-              <div id="recaptcha-container"></div>
-
-              <div class="form-group">
-                <label for="otp">Enter OTP:</label>
-                <input
-                  class="form-control"
-                  type="text"
-                  id="otp"
-                  name="otp"
-                  required
-                />
-              </div>
-              <div class="form-group">
-                <button
-                  class="custom-btn btn"
-                  type="submit"
-                  id="verifyAndLoginBtn"
-                >
-                  Verify and Login
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
+        <input class="form-control" type="tel" id="phoneNumber" name="phoneNumber" pattern="[0-9]{10}" required>
       </div>
+      <button class="btn custom-btn" type="button" id="sendOtpBtn">Send OTP</button>
+    </div>
+    
+    <div class="form-group">
+      <label for="otp">Enter OTP:</label>
+      <input class="form-control" type="text" id="otp" name="otp" required>
+    </div>
+    <div class="form-group">
+      <button class="custom-btn btn" type="submit" id="verifyAndLoginBtn">Verify and Login</button>
+    </div>
+    <!-- Add the reCAPTCHA container here -->
+    <div class="form-group">
+      <div id="recaptcha-container"></div>
+    </div>
+    </div>
+      </form>
+    </div>
+  </div>
+  <div class="modal-1" id="userdata">
+    <div class="modal-header">
+      <h3>User Profile</h3>
+      <button class="close-modal btn" id="closeModal1">&times;</button>
+    </div>
+    <div class="modal-content-1">
+      <!-- Profile Information Form -->
+<form id="profileForm">
+  <!-- Name -->
+  <div class="form-group-1">
+    <div id="firstName" >
+    <label for="firstname">First Name:</label>
+    <input class="form-control" type="text" id="firstname" name="firstname" required>
+    </div>
+    <div id="lastName">
+    <label for="lastname">Last Name:</label>
+    <input class="form-control" type="text" id="lastname" name="lastname" required>
+    </div>
+  </div>
+
+
+  <!-- Email -->
+  <div class="form-group-1">
+    <div id="Email">
+      <label for="email">Email:</label>
+    <input class="form-control" type="email" id="email" name="email">
+    </div>
+    
+  <div id="MobileNumber">
+    <label for="mobileNumber">Mobile Number:</label>
+    <input class="form-control" type="tel" id="mobileNumber" name="mobileNumber" pattern="[0-9]{10}" required>
+  </div>
+  </div>
+
+  <!-- Full Address -->
+  <div class="form-group-1">
+    <div>
+    <label for="address">Address:</label>
+    <textarea class="form-control" id="address" name="address" rows="4" required></textarea>
+    </div>
+  </div>
+
+  <!-- Pincode -->
+  <div class="form-group-1">
+    <div id="Pincode">
+    <label for="pincode">Pincode:</label>
+    <input class="form-control" type="text" id="pincode" name="pincode" required>
+    </div>
+    <div id="State">
+    <label for="state">State:</label>
+    <input class="form-control" type="text" id="state" name="state" required>
+    </div>
+  </div>
+
+  <!-- Additional Fields (Add more as needed) -->
+  <!-- ... -->
+
+  <!-- Submit Button -->
+  <div class="form-group">
+    <button type="submit" class="btn custom-btn" id="saveProfileBtn">Save Profile</button>
+  </div>
+</form>
+
+    </div>   
+  </div>
     </div>
     <!-- ##### Single Product Details Area Start ##### -->
     <section class="single_product_details_area d-flex align-items-center">
@@ -1230,14 +1254,6 @@
       </div>
     </footer>
     <!-- ##### Footer Area End ##### -->
-
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
-    <!-- Include Firebase script first -->
-    <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-analytics.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js"></script>
 
     <!-- JAVASCRIPT FILES -->
     <script src="../js/firebase.js"></script>

@@ -446,6 +446,7 @@ nav[aria-label="breadcrumb"] {
   width: 100%;
   box-shadow: 0 0 7px #928f8f;
 transition: background-color 0.3s ease;
+top: 0;
 }
 
 .transparent {

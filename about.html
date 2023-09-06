@@ -141,9 +141,7 @@ Bootstrap 5 HTML CSS Template
 
         <div class="nav-item dropdown ms-lg-4" id="accountNavbar">
           <button class="btn accountDropdown dropdown-toggle" type="button" id="accountDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-        <i class="bi bi-person me-2"></i>
-        <span id="accountText">Account</span>
-         </button>
+        <i class="bi bi-person me-2"></i><span id="accountText"></span></button>
          <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="dropdown-menu-light" id="accountMenu">
              <li><button class="dropdown-item" id="loginBtn">Login/Signup</button></li>
          </ul>
@@ -183,9 +181,7 @@ Bootstrap 5 HTML CSS Template
       </div>
       <button class="btn custom-btn" type="button" id="sendOtpBtn">Send OTP</button>
     </div>
-    <!-- Add the reCAPTCHA container here -->
-      <div id="recaptcha-container"></div>
-
+    
     <div class="form-group">
       <label for="otp">Enter OTP:</label>
       <input class="form-control" type="text" id="otp" name="otp" required>
@@ -193,9 +189,78 @@ Bootstrap 5 HTML CSS Template
     <div class="form-group">
       <button class="custom-btn btn" type="submit" id="verifyAndLoginBtn">Verify and Login</button>
     </div>
+    <!-- Add the reCAPTCHA container here -->
+    <div class="form-group">
+      <div id="recaptcha-container"></div>
+    </div>
     </div>
       </form>
     </div>
+  </div>
+  <div class="modal-1" id="userdata">
+    <div class="modal-header">
+      <h3>User Profile</h3>
+      <button class="close-modal btn" id="closeModal1">&times;</button>
+    </div>
+    <div class="modal-content-1">
+      <!-- Profile Information Form -->
+<form id="profileForm">
+  <!-- Name -->
+  <div class="form-group-1">
+    <div id="firstName" >
+    <label for="firstname">First Name:</label>
+    <input class="form-control" type="text" id="firstname" name="firstname" required>
+    </div>
+    <div id="lastName">
+    <label for="lastname">Last Name:</label>
+    <input class="form-control" type="text" id="lastname" name="lastname" required>
+    </div>
+  </div>
+
+
+  <!-- Email -->
+  <div class="form-group-1">
+    <div id="Email">
+      <label for="email">Email:</label>
+    <input class="form-control" type="email" id="email" name="email">
+    </div>
+    
+  <div id="MobileNumber">
+    <label for="mobileNumber">Mobile Number:</label>
+    <input class="form-control" type="tel" id="mobileNumber" name="mobileNumber" pattern="[0-9]{10}" required>
+  </div>
+  </div>
+
+  <!-- Full Address -->
+  <div class="form-group-1">
+    <div>
+    <label for="address">Address:</label>
+    <textarea class="form-control" id="address" name="address" rows="4" required></textarea>
+    </div>
+  </div>
+
+  <!-- Pincode -->
+  <div class="form-group-1">
+    <div id="Pincode">
+    <label for="pincode">Pincode:</label>
+    <input class="form-control" type="text" id="pincode" name="pincode" required>
+    </div>
+    <div id="State">
+    <label for="state">State:</label>
+    <input class="form-control" type="text" id="state" name="state" required>
+    </div>
+  </div>
+
+  <!-- Additional Fields (Add more as needed) -->
+  <!-- ... -->
+
+  <!-- Submit Button -->
+  <div class="form-group">
+    <button type="submit" class="btn custom-btn" id="saveProfileBtn">Save Profile</button>
+  </div>
+</form>
+
+    </div>   
   </div>
     </div>
 
@@ -624,13 +689,7 @@ Bootstrap 5 HTML CSS Template
           <img src="images/logos/whatsapp-icon.png" alt="WhatsApp" >
         </a>
       </div>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     
-    <!-- Include Firebase script first -->
-<script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-analytics.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js"></script>
 
     <!-- JAVASCRIPT FILES -->  
     <script  src="js/firebase.js"></script>
