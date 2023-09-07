@@ -296,9 +296,6 @@ function updateUIForLoggedOutUser() {
   accountMenu.innerHTML = `<li><button class="dropdown-item" id="loginBtn">Login/Signup</button></li>`;
 }
 
-
-
-
   // Your JavaScript code here, including the event listener for "logoutBtn."
   const logoutButton = document.getElementById("logoutBtn");
   document.addEventListener("click", (event) => {

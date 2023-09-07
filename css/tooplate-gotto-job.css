@@ -544,7 +544,6 @@ top: 0;
   content: "\f282";
   display: inline-block;
   font-family: bootstrap-icons !important;
-  font-size: var(--copyright-font-size);
   font-style: normal;
   font-weight: normal !important;
   font-variant: normal;
@@ -1485,7 +1484,8 @@ top: 0;
     padding: 12px 20px;
   }
   #accountNavbar{
-    display: none;
+    display: flex;
+    font-size: 12px;
   }
   #accountNavDrop{
     display: block;
@@ -1496,11 +1496,25 @@ top: 0;
     height:100vh; 
     padding-bottom: 20px;
   }
+  a.btn:nth-child(1) {
+    font-size: 12px;
+  }
+  .navbar-toggler .navbar-toggler-icon::before, .navbar-toggler .navbar-toggler-icon{
+    width:  18px;
+  }
+  .navbar-toggler .navbar-toggler-icon::before, .navbar-toggler .navbar-toggler-icon::after{
+    width:  18px;
+  }
+  .navbar-toggler .navbar-toggler-icon {
+    font-size: 12px;
+  }
 
   .navbar-expand-lg .navbar-nav .nav-link {
     padding: 10px;
   }
-
+  .navbar-brand{
+    margin-right: 0rem;
+  }
   .navbar-expand-lg .navbar-nav .nav-link.custom-btn {
     margin-top: 10px;
   }
@@ -2194,7 +2208,7 @@ background-size: cover;
     border-bottom-right-radius: 1rem;
     padding: 4vh;
     color: rgb(65, 65, 65);
-    
+    height: max-content;
     position: sticky;
     top: 17%;
 }
@@ -2364,8 +2378,17 @@ flex-basis: 10%;
 .cross-col{
 flex-basis: 5%;
 }
+/* Default styles for larger screens */
+.cart-col-label {
+    display: none; /* Hide labels by default */
+}
 
 @media screen and (max-width: 700px) {
+  .cart-col-label {
+        display: block; /* Display labels on smaller screens */
+        font-weight: bold; /* Make labels bold for better visibility */
+        margin-bottom: 5px; /* Add some spacing below labels */
+    }
   .border-top > div:nth-child(1) > div:nth-child(2),.border-top > div:nth-child(1) > div:nth-child(4) {
   display: none;
 }
@@ -2420,6 +2443,9 @@ option.text-muted{
   .cart-col{
     grid-template-columns: 2fr 1.5fr 1.5fr;
   }
+  .logo-image{
+    width: 115px;
+  }
 }
 
 @media screen and (max-width: 360px) {
@@ -2432,4 +2458,9 @@ option.text-muted{
 }
 option.text-muted{
   text-align: center;
+}
+#freedeliveryline{
+  background-color: var(--primary-color);
+  color: white;
+  margin-bottom: 5px;
 }

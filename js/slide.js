@@ -31,16 +31,11 @@ const modalOverlay = document.getElementById("modalOverlay");
 const modal = document.getElementById("modal");
 const closeModalBtn = document.getElementById("closeModal");
 const LoginBtn = document.getElementById("loginBtn");
-const LoginBtnS = document.getElementById("loginBtnS");
 const closeModalBtn1 = document.getElementById("closeModal1");
 
 document.addEventListener("click", (event) => {
   if (event.target && event.target.id === "loginBtn") {
     // Show the modal when "Login/Signup" is clicked
-    modalOverlay.style.display = "flex";
-    modal.style.display = "block";
-  } else if (event.target && event.target.id === "loginBtnS") {
-    // Show the modal when "Login/Signup" is clicked (alternative)
     modalOverlay.style.display = "flex";
     modal.style.display = "block";
   } else if (event.target && (event.target.id === "closeModal" ||event.target.id === "closeModal1")) {
