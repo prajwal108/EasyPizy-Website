@@ -31,6 +31,7 @@
     const analytics = getAnalytics(app);
     const auth = getAuth(app);
     
+    
 
   // Set up local persistence
   auth.setPersistence(browserLocalPersistence).then(() => {
@@ -289,6 +290,52 @@ function updateUIForLoggedInUser(user) {
   modal.style.display = "none";
 }
 
+const admin = require("firebase-admin");
+const serviceAccount = require("../easypizy-in-firebase-adminsdk-1z2sn-ecb00a9042.json"); // Replace with your service account key file path
+const productData = require("../product-data/product-data.json"); // Replace with your JSON data file path
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL:
+    "https://easypizy-in-default-rtdb.asia-southeast1.firebasedatabase.app",
+});
+
+
+const firestore = admin.firestore();
+const collectionName = 'products'; // Replace with the name of your Firestore collection
+
+// Function to upload data to Firestore
+const uploadData = async () => {
+  try {
+    for (const product of productData) {
+      // Create a new document with a custom ID
+      await firestore.collection(collectionName).doc(product.id).set(product);
+      console.log(`Product '${product.name}' added to Firestore.`);
+    }
+    console.log('Firestore data upload complete.');
+  } catch (error) {
+    console.error('Error uploading data to Firestore:', error);
+  }
+};
+
+// Function to read data from Firestore
+const readData = async () => {
+  try {
+    const querySnapshot = await firestore.collection(collectionName).get();
+    querySnapshot.forEach((doc) => {
+      console.log('Product data:', doc.data());
+    });
+    console.log('Firestore data read complete.');
+  } catch (error) {
+    console.error('Error reading data from Firestore:', error);
+  }
+};
+
+// Call the uploadData and readData functions to upload and read data
+uploadData();
+readData();
+
+
 // Function to update the UI when the user is logged out
 function updateUIForLoggedOutUser() {
   // Reset the account text and options
@@ -323,3 +370,4 @@ auth.onAuthStateChanged((user) => {
     updateUIForLoggedOutUser();
   }
 });
+
