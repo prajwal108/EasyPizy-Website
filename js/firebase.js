@@ -290,9 +290,9 @@ function updateUIForLoggedInUser(user) {
   modal.style.display = "none";
 }
 
-const admin = require("firebase-admin");
-const serviceAccount = require("../easypizy-in-firebase-adminsdk-1z2sn-ecb00a9042.json"); // Replace with your service account key file path
-const productData = require("../product-data/product-data.json"); // Replace with your JSON data file path
+import admin from "firebase-admin";
+import serviceAccount from "../easypizy-in-firebase-adminsdk-1z2sn-ecb00a9042.json"; // Replace with your service account key file path
+import productData from "../product-data/product-data.json"; // Replace with your JSON data file path
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
