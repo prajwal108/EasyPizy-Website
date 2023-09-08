@@ -555,6 +555,7 @@ top: 0;
   position: relative;
   left: 2px;
   border: 0;
+  font-size: 0.7em;
 }
 
 @media screen and (min-width: 992px) {
