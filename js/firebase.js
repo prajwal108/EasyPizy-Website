@@ -328,3 +328,4 @@ auth.onAuthStateChanged((user) => {
   }
 });
 
+export default auth;

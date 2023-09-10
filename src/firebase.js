@@ -5,6 +5,7 @@
   import {getFirestore, collection, addDoc,query,where, getDocs } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js";
   import { initializeAppCheck, ReCaptchaV3Provider } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app-check.js";
   
+  
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -30,6 +31,7 @@
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
     const auth = getAuth(app);
+    
     
 
   // Set up local persistence
@@ -289,15 +291,14 @@ function updateUIForLoggedInUser(user) {
   modal.style.display = "none";
 }
 
+
+
 // Function to update the UI when the user is logged out
 function updateUIForLoggedOutUser() {
   // Reset the account text and options
   accountText.textContent = "";
   accountMenu.innerHTML = `<li><button class="dropdown-item" id="loginBtn">Login/Signup</button></li>`;
 }
-
-
-
 
   // Your JavaScript code here, including the event listener for "logoutBtn."
   const logoutButton = document.getElementById("logoutBtn");
@@ -326,3 +327,4 @@ auth.onAuthStateChanged((user) => {
     updateUIForLoggedOutUser();
   }
 });
+

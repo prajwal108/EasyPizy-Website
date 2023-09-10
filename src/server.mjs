@@ -1,19 +1,24 @@
-// Import the functions you need from the SDKs you need
-// Import firebase admin 
-const admin = require("firebase-admin");
-const serviceAccount = require("../easypizy-in-firebase-adminsdk-1z2sn-ecb00a9042.json");
+import { getDocs, collection, setDoc, getFirestore } from "firebase/firestore";
+import admin from "firebase-admin";
 
-admin.initializeApp({
+// Import the service account JSON file using 'fs' module (a built-in Node.js module)
+import * as fs from "fs";
+// Load the service account JSON file
+const serviceAccount = JSON.parse(
+  fs.readFileSync(
+    "../easypizy-in-firebase-adminsdk-1z2sn-ecb00a9042.json",
+    "utf-8"
+  )
+);
+
+const adminApp = admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL:
     "https://easypizy-in-default-rtdb.asia-southeast1.firebasedatabase.app",
 });
 
- const db = admin.firestore();
-const collectionName = "products"; // Replace with the name of your Firestore collection
-
-
-
+const db = getFirestore(adminApp);
+// Replace with the name of your Firestore collection
 
 const productsData = [
   {
@@ -207,20 +212,49 @@ const productsData = [
         discount: "30% off",
       },
     },
-  }
+  },
 ];
-
-
+let products = "products";
+// Function to upload data to Firestore
 // Function to upload data to Firestore
 const uploadData = async () => {
   try {
-    for (const product of productsData) {
-      // Use the addDoc method to add a document to the collection
-      const docRef = db.collection("collectionName").doc("product.name");
-      console.log(`Product added to Firestore with ID:`
+    const collectionRef = admin.firestore().collection(db, products);
+
+    const query = collectionRef;
+    // Fetch the existing product data from Firestore
+    const querySnapshot = await getDocs(query);
+    const existingProducts = querySnapshot.docs.map((doc) => doc.data());
+
+    // Filter out products that are not already in Firestore or have been updated
+    const productsToUpdate = productsData.filter((product) => {
+      // Check if the product is not already in Firestore or if it's updated
+      return (
+        !existingProducts.some(
+          (existingProduct) => existingProduct.name === product.name
+        ) ||
+        existingProducts.some(
+          (existingProduct) =>
+            existingProduct.name === product.name &&
+            existingProduct.someField !== product.someField
+        )
       );
+    });
+
+    // Upload the filtered products
+    for (const product of productsToUpdate) {
+      const docRef = admin
+        .firestore()
+        .collection(db, products)
+        .doc(product.name);
+      await setDoc(docRef, product);
+      console.log(`Product added/updated in Firestore with ID: ${docRef.id}`);
     }
+
     console.log("Products data upload complete.");
+
+    // After uploading, call the readData function to read the updated data
+    readData();
   } catch (error) {
     console.error("Error uploading data to Firestore DB:", error);
   }
@@ -229,7 +263,10 @@ const uploadData = async () => {
 // Function to read data from Firestore
 const readData = async () => {
   try {
-    const querySnapshot = await getDocs(collection(db, collectionName));
+    const collectionRef = admin.firestore().collection(db.products);
+
+    const query = collectionRef;
+    const querySnapshot = await getDocs(query);
     querySnapshot.forEach((doc) => {
       console.log("Product data:", doc.data());
     });
@@ -239,7 +276,5 @@ const readData = async () => {
   }
 };
 
-// Call the uploadData and readData functions to upload and read data
+// Call the uploadData function to check for updates and upload data
 uploadData();
-readData();
-
