@@ -2464,3 +2464,17 @@ option.text-muted{
   color: white;
   margin-bottom: 5px;
 }
+
+.save-icon{
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 15px;
+  font-size: 2em;
+  background-color: white;
+  border-radius: 5px;
+  cursor: pointer;
+
+}
+

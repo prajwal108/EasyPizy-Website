@@ -280,7 +280,7 @@ function updateUIForLoggedInUser(user) {
 
   accountMenu.innerHTML = `
     <li><a class="dropdown-item" href="#">Account Details</a></li>
-    <li><a class="dropdown-item" href="#">Track Your Order</a></li>
+    <li><a class="dropdown-item" href="#">Saved Items</a></li>
     <li><a class="dropdown-item" href="#">Order History</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><a class="dropdown-item" id="logoutBtn">Logout</a></li>

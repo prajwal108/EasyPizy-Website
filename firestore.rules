@@ -7,7 +7,7 @@ service cloud.firestore {
     }
     match /products/{document=**} {
           allow read: if true;
-           allow write: if request.auth.uid == "105556834439325763831";
+           allow write: if request.auth.uid == "arBPa90gHhMIHh6iKaUHeli4Gqk2";
     }
   }
 }

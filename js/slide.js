@@ -45,47 +45,6 @@ document.addEventListener("click", (event) => {
   }
 });
 
-window.addEventListener("load", () => {
-  const productCards = document.querySelectorAll(".product-item");
-
-  productCards.forEach((card) => {
-    const productId = card.getAttribute("data-product-id");
-    const sizeRadios = card.querySelectorAll("input[type='radio']");
-    const finalPrice = card.querySelector(".final-price");
-    const originalPrice = card.querySelector(".original-price");
-    const discountText = card.querySelector(".discount");
-
-    // Load selected size from local storage or use default value
-    const selectedSize ="250gm";
-    // Set radio buttons and prices based on the selected size
-    sizeRadios.forEach((radio) => {
-      radio.checked = radio.value === selectedSize;
-      radio.addEventListener("change", function () {
-        // Update local storage with the selected size
-        localStorage.setItem(`selectedSize_${productId}`, this.value);
-
-        // Simulated dynamic price and discount calculation
-        const selectedValue = this.value;
-        let price = 100; // Default price
-        let discount = 20; // Default discount percentage
-
-        if (selectedValue === "500gm") {
-          price = 200;
-          discount = 25;
-        } else if (selectedValue === "1000gm") {
-          price = 400;
-          discount = 30;
-        }
-
-        const finalPriceValue = price - (price * discount) / 100;
-        finalPrice.textContent = `₹${finalPriceValue}`;
-        originalPrice.textContent = `₹${price}`;
-        discountText.textContent = `${discount}% off`;
-      });
-    });
-  });
-
-});
 
 document.addEventListener("DOMContentLoaded", function () {
   const addToCartBtns = document.querySelectorAll(".add-to-cart-btn");
@@ -123,6 +82,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+
+
 
 
 
