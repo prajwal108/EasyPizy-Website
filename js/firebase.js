@@ -279,9 +279,9 @@ function updateUIForLoggedInUser(user) {
   });
 
   accountMenu.innerHTML = `
-    <li><a class="dropdown-item" href="#">Account Details</a></li>
-    <li><a class="dropdown-item" href="#">Saved Items</a></li>
-    <li><a class="dropdown-item" href="#">Order History</a></li>
+    <li><a class="dropdown-item" href="../Account-Menu/account-details.html">Account Details</a></li>
+    <li><a class="dropdown-item" href="../Account-Menu/saved-items.html">Saved Items</a></li>
+    <li><a class="dropdown-item" href="../Account-Menu/order-history.html">Order History</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><a class="dropdown-item" id="logoutBtn">Logout</a></li>
   `;

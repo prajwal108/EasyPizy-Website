@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>EasyPizy</title>
+        <link rel="icon" href="../images/title-icon.jpg">
+        <script type="module" src="../js/firebase.js"></script>
+        <script type="module" src="../js/server.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/graingert-wow/1.2.2/wow.min.js" integrity="sha512-W0pro5TDSuKuwBag9ERPMdNzd8E5z5p7BmWqMflUsGN+jW3JPrVvE5F5EJXIDk3vX9YYvJ+fZ55grIU9mHzvhw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+        <!-- CSS FILES -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+        <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100;300;400;600;700&display=swap" rel="stylesheet">
+
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+        <link href="../css/bootstrap-icons.css" rel="stylesheet">
+
+        <link href="../css/owl.carousel.min.css" rel="stylesheet">
+
+        <link href="../css/owl.theme.default.min.css" rel="stylesheet">
+
+        <link href="../css/tooplate-gotto-job.css" rel="stylesheet">
+        
+
+    </head>
+   
+<body class="product-listing-page" id="top">
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+                <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand d-flex align-items-center" href="../index.html">
+          <!-- <img src="images/logo.png" class="img-fluid logo-image"> -->
+
+          <div class="d-flex flex-column">
+            <img src="../images/LOGO-PNG.png" alt="Logo" class="img-fluid logo-image" >
+            <!-- <strong class="logo-text">EasyPizy</strong> -->
+            <!-- <small class="logo-slogan"></small> -->
+          </div>
+        </a>
+        
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav align-items-center ms-lg-5">
+            <li class="nav-item ms-lg-auto">
+              <a class="nav-link active" href="../index.html">Homepage</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="../about.html">About Us</a>
+            </li>
+
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="../products.html"
+                id="navbarLightDropdownMenuLink"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                >Products</a
+              >
+
+              <ul
+                class="dropdown-menu dropdown-menu-light"
+                aria-labelledby="navbarLightDropdownMenuLink"
+              >
+                <li>
+                  <a class="dropdown-item" href="../spice-Mix.html">Spice Mix</a>
+                </li>
+
+                <li>
+                  <a class="dropdown-item" href="../pure-spices.html"
+                    >Pure Spice</a
+                  >
+                </li>
+              </ul>
+            </li>
+            
+            
+            <li class="nav-item">
+              <a class="nav-link" href="../contact.html">Contact</a>
+            </li>
+            
+          </ul>
+        </div>
+
+         
+
+        <div class="nav-item dropdown ms-lg-4" id="accountNavbar">
+          <button class="btn accountDropdown dropdown-toggle" type="button" id="accountDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="bi bi-person me-2"></i><span id="accountText"></span></button>
+         <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="dropdown-menu-light" id="accountMenu">
+             <li><button class="dropdown-item" id="loginBtn">Login/Signup</button></li>
+         </ul>
+        </div>
+
+        <div class="d-flex">
+          <a href="../cart.html" class="btn btn-cart ms-lg-4">
+                <i class="bi bi-cart-fill me-2"></i><span id="cart-count"></span></a>
+         </div>
+
+
+
+      </div>
+    </nav>
+
+    <!-- Add this inside your <body> tag -->
+    <div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <h3>Login / Signup</h3>
+      <button class="close-modal btn" id="closeModal">&times;</button>
+    </div>
+    <div class="modal-content">
+      <!-- Your login and signup forms can go here -->
+      <!-- For simplicity, let's assume you have a login and signup form with IDs "loginForm" and "signupForm" -->
+      <form id="loginForm">
+    <h4>Get started</h4>
+    <p>Enter your phone number to receive an OTP:</p>
+    <div class="form-content">      
+      <div class="form-group">
+      <label for="phoneNumber">Phone Number:</label>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">+91 </span>
+        </div>
+        <input class="form-control" type="tel" id="phoneNumber" name="phoneNumber" pattern="[0-9]{10}" required>
+      </div>
+      <button class="btn custom-btn" type="button" id="sendOtpBtn">Send OTP</button>
+    </div>
+    
+    <div class="form-group">
+      <label for="otp">Enter OTP:</label>
+      <input class="form-control" type="text" id="otp" name="otp" required>
+    </div>
+    <div class="form-group">
+      <button class="custom-btn btn" type="submit" id="verifyAndLoginBtn">Verify and Login</button>
+    </div>
+    <!-- Add the reCAPTCHA container here -->
+    <div class="form-group">
+      <div id="recaptcha-container"></div>
+    </div>
+    </div>
+      </form>
+    </div>
+  </div>
+  <div class="modal-1" id="userdata">
+    <div class="modal-header">
+      <h3>User Profile</h3>
+      <button class="close-modal btn" id="closeModal1">&times;</button>
+    </div>
+    <div class="modal-content-1">
+      <!-- Profile Information Form -->
+<form id="profileForm">
+  <!-- Name -->
+  <div class="form-group-1">
+    <div id="firstName" >
+    <label for="firstname">First Name:</label>
+    <input class="form-control" type="text" id="firstname" name="firstname" required>
+    </div>
+    <div id="lastName">
+    <label for="lastname">Last Name:</label>
+    <input class="form-control" type="text" id="lastname" name="lastname" required>
+    </div>
+  </div>
+
+
+  <!-- Email -->
+  <div class="form-group-1">
+    <div id="Email">
+      <label for="email">Email:</label>
+    <input class="form-control" type="email" id="email" name="email">
+    </div>
+    
+  <div id="MobileNumber">
+    <label for="mobileNumber">Mobile Number:</label>
+    <input class="form-control" type="tel" id="mobileNumber" name="mobileNumber" pattern="[0-9]{10}" required>
+  </div>
+  </div>
+
+  <!-- Full Address -->
+  <div class="form-group-1">
+    <div>
+    <label for="address">Address:</label>
+    <textarea class="form-control" id="address" name="address" rows="4" required></textarea>
+    </div>
+  </div>
+
+  <!-- Pincode -->
+  <div class="form-group-1">
+    <div id="Pincode">
+    <label for="pincode">Pincode:</label>
+    <input class="form-control" type="text" id="pincode" name="pincode" required>
+    </div>
+    <div id="State">
+    <label for="state">State:</label>
+    <input class="form-control" type="text" id="state" name="state" required>
+    </div>
+  </div>
+
+  <!-- Additional Fields (Add more as needed) -->
+  <!-- ... -->
+
+  <!-- Submit Button -->
+  <div class="form-group">
+    <button type="submit" class="btn custom-btn" id="saveProfileBtn">Save Profile</button>
+  </div>
+</form>
+
+    </div>   
+  </div>
+    </div>
+
+    <main>
+         <header class="site-header">
+                <div class="section-overlay"></div>
+
+                <div class="container">
+                    <div class="row">
+                        
+                        <div class="col-lg-12 col-12 text-center">
+                            <h1 class="text-white wow animate__animated animate__bounceIn">Saved Items</h1>
+
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb justify-content-center">
+                                    <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+
+                                    <li class="breadcrumb-item active" aria-current="page">Saved Items</li>
+                                </ol>
+                            </nav>
+                        </div>
+
+                    </div>
+                </div>
+         </header>
+
+        <section class="product-section  section-padding">
+                <div class="container">
+                    <div class="row align-items-center">
+
+                        <div class="col-lg-6 col-12 mb-4">
+                            <h2 class="animate__animated animate__fadeInUp animate__faster">Saved Items</h2>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div id="savedItems">
+
+                        </div>  
+                    </div>
+                </div>
+        </section>
+
+
+    </main>
+
+    <footer class="site-footer">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-4 col-md-6 col-12 mb-3">
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="d-flex flex-column">
+                                <img class="img-fluid logo-image" src="../images\LOGO-PNG.png" alt="Logo">
+                            </div>
+                        </div>  
+
+                        <p class="mb-2">
+                            <i class="custom-icon bi-globe me-1"></i>
+
+                            <a href="#" class="site-footer-link">
+                                www.EasyPizy.com
+                            </a>
+                        </p>
+
+                        <p class="mb-2">
+                            <i class="custom-icon bi-telephone me-1"></i>
+
+                            <a href="tel:305-240-9671" class="site-footer-link">
+                                305-240-9671
+                            </a>
+                        </p>
+
+                        <p>
+                            <i class="custom-icon bi-envelope me-1"></i>
+
+                            <a href="mailto:info@yourgmail.com" class="site-footer-link">
+                                info@msail.co
+                            </a>
+                        </p>
+
+                    </div>
+
+                    <div class="col-lg-2 col-md-3 col-6 ms-lg-auto">
+                        <h6 class="site-footer-title">Company</h6>
+
+                        <ul class="footer-menu">
+                            <li class="footer-menu-item"><a href="#" class="footer-menu-link">About</a></li>
+
+                            <li class="footer-menu-item"><a href="#" class="footer-menu-link">Products</a></li>
+
+                            <li class="footer-menu-item"><a href="#" class="footer-menu-link">Blogs</a></li>
+
+                            <li class="footer-menu-item"><a href="#" class="footer-menu-link">Contact</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-4 col-md-8 col-12 mt-3 mt-lg-0">
+                            <h6 class="site-footer-title">WhatsApp Group</h6>
+            <p class="mb-2">For New Recepies: <br></p>
+            <a href="../products.html" class="custom-btn btn  wow animate__ animate__fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">Join Now</a>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="site-footer-bottom">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-4 col-12 d-flex align-items-center">
+                            <p class="copyright-text">Copyright © EasyPizy</p>
+                        </div>
+
+                        <div class="col-lg-5 col-12 mt-2 mt-lg-0">
+                            <ul class="social-icon">
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link bi-twitter"></a>
+                                </li>
+
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link bi-facebook"></a>
+                                </li>
+
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link bi-linkedin"></a>
+                                </li>
+
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link bi-instagram"></a>
+                                </li>
+
+                                <li class="social-icon-item">
+                                    <a href="#" class="social-icon-link bi-youtube"></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <a class="back-top-icon bi-arrow-up smoothscroll d-flex justify-content-center align-items-center" href="#top"></a>
+
+                    </div>
+                </div>
+            </div>
+    </footer>
+     <div id="whatsapp-button" class="wow animate__animated animate__tada  animate__duration-2s">
+      <a id="whatsapp-link" href="https://api.whatsapp.com/send?phone=9049058976&text=Hello%2C%20I%20want%20to%20know%20more%20about%20EasyPizy%20Products%21" target="_blank">
+          <img src="../images\logos\whatsapp-icon.png" alt="WhatsApp" >
+        </a>
+      </div>
+
+      
+
+   <!-- JAVASCRIPT FILES -->    
+        
+        <script src="../js/jquery.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script src="../js/owl.carousel.min.js"></script>
+        <script src="../js/counter.js"></script>
+        <script src="../js/custom.js"></script>
+        <script src="../js/slide.js"></script>
+        <script>
+      new WOW().init();
+    </script>
+</body>
+</html>

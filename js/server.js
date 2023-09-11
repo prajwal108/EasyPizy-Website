@@ -26,8 +26,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebas
      const productsData = [
        {name: "Kashmiri Chilli Powder",
          id: "kashmiri-chilli-powder",
-         link: "products/Kashmiri-Chilli-Powder.html",
-         image: "images/images(1).jpeg",
+         link: "../products/Kashmiri-Chilli-Powder.html",
+         image: "../images/images(1).jpeg",
          sizes: {
            "250gm": {
              label: "250gm",
@@ -58,8 +58,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebas
        {
          name: "Turmeric Powder",
          id: "turmeric-powder",
-         link: "products/Turmeric-Powder.html",
-         image: "images/images(1).jpeg",
+         link: "../products/Turmeric-Powder.html",
+         image: "../images/images(1).jpeg",
          sizes: {
            "250gm": {
              label: "250gm",
@@ -90,8 +90,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebas
        {
          name: "Dry Mango Powder",
          id: "dry-mango-powder",
-         link: "products/dry-mango-powder.html",
-         image: "images/images(1).jpeg",
+         link: "../products/dry-mango-powder.html",
+         image: "../images/images(1).jpeg",
          sizes: {
            "250gm": {
              label: "250gm",
@@ -122,8 +122,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebas
        {
          name: "Red Chilli Powder",
          id: "red-chilli-powder",
-         link: "products/red-chilli-powder.html",
-         image: "images/images(1).jpeg",
+         link: "../products/red-chilli-powder.html",
+         image: "../images/images(1).jpeg",
          sizes: {
            "250gm": {
              label: "250gm",
@@ -154,8 +154,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebas
        {
          name: "Dhanaa Powder",
          id: "coriander-powder",
-         link: "products/Dhanaa-powder.html",
-         image: "images/images(1).jpeg",
+         link: "../products/Dhanaa-powder.html",
+         image: "../images/images(1).jpeg",
          sizes: {
            "250gm": {
              label: "250gm",
@@ -186,8 +186,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebas
        {
          name: "Jeera Powder",
          id: "jeera-powder",
-         link: "products/Jeera-powder.html",
-         image: "images/images(1).jpeg",
+         link: "../products/Jeera-powder.html",
+         image: "../images/images(1).jpeg",
          sizes: {
            "250gm": {
              label: "250gm",
@@ -217,8 +217,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebas
        },
         {name: "Panner Tikka Masala",
   id: "paneer-tikka-masala",
-  link: "products/panner-tikka-masala.html",
-  image: "images/images(1).jpeg",
+  link: "../products/panner-tikka-masala.html",
+  image: "../images/images(1).jpeg",
   sizes: {
     "250gm": {
       label: "250gm",
@@ -248,8 +248,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebas
        },
   { name: "Chola Masala",
     id: "chola-masala",
-    link: "products/chola-masala.html",
-    image: "images/images(1).jpeg",
+    link: "../products/chola-masala.html",
+    image: "../images/images(1).jpeg",
     sizes: {
       "250gm": {
         label: "250gm",
@@ -279,8 +279,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebas
   },
   { name: "Misal Masala",
     id: "misal",
-    link: "products/misal-masala.html",
-    image: "images/images(1).jpeg",
+    link: "../products/misal-masala.html",
+    image: "../images/images(1).jpeg",
     sizes: {
       "250gm": {
         label: "250gm",
@@ -310,8 +310,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebas
   },
   { name: "Pulav Masala",
     id: "pulav",
-    link: "products/pulav-masala.html",
-    image: "images/images(1).jpeg",
+    link: "../products/pulav-masala.html",
+    image: "../images/images(1).jpeg",
     sizes: {
       "250gm": {
         label: "250gm",
@@ -341,8 +341,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebas
   },
   { name: "Garam Masala",
     id: "garam-masala",
-    link: "products/garam-masala.html",
-    image: "images/images(1).jpeg",
+    link: "../products/garam-masala.html",
+    image: "../images/images(1).jpeg",
     sizes: {
       "250gm": {
         label: "250gm",
@@ -372,8 +372,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebas
   },
   {name: "Kala Masala",
     id: "kala-masala",
-    link: "products/kala-masala.html",
-    image: "images/images(1).jpeg",
+    link: "../products/kala-masala.html",
+    image: "../images/images(1).jpeg",
     sizes: {
       "250gm": {
         label: "250gm",
@@ -403,8 +403,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebas
   },
   { name: "Paneer Butter Masala",
     id: "paneer-butter-masala",
-    link: "products/paneer-butter-masala.html",
-    image: "images/images(1).jpeg",
+    link: "../products/paneer-butter-masala.html",
+    image: "../images/images(1).jpeg",
     sizes: {
       "250gm": {
         label: "250gm",
@@ -434,8 +434,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebas
   },
   {name: "Kaju Curry Masala",
     id: "kaju-curry-masala",
-    link: "products/kaju-curry-masala.html",
-    image: "images/images(1).jpeg",
+    link: "../products/kaju-curry-masala.html",
+    image: "../images/images(1).jpeg",
     sizes: {
       "250gm": {
         label: "250gm",
@@ -465,8 +465,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebas
   },
   {name: "Biryani Masala",
     id: "biryani-masala",
-    link: "products/biryani-masala.html",
-    image: "images/images(1).jpeg",
+    link: "../products/biryani-masala.html",
+    image: "../images/images(1).jpeg",
     sizes: {
       "250gm": {
         label: "250gm",
@@ -496,8 +496,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebas
   },
   { name: "Kitchen King Masala",
   id: "kitchen-king-masala",
-  link: "products/kitchen-king-masala.html",
-  image: "images/images(1).jpeg",
+  link: "../products/kitchen-king-masala.html",
+  image: "../images/images(1).jpeg",
   sizes: {
     "250gm": {
       label: "250gm",
@@ -527,8 +527,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebas
   },
  {name: "Bengan Masala",
   id: "bengen-masala",
-  link: "products/bengan-masala.html",
-  image: "images/images(1).jpeg",
+  link: "../products/bengan-masala.html",
+  image: "../images/images(1).jpeg",
   sizes: {
     "250gm": {
       label: "250gm",
@@ -558,8 +558,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebas
 },
  {name: "Shahi Paneer Masala",
   id: "shahi-paneer-masala",
-  link: "products/shahi-paneer-masala.html",
-  image: "images/images(1).jpeg",
+  link: "../products/shahi-paneer-masala.html",
+  image: "../images/images(1).jpeg",
   sizes: {
     "250gm": {
       label: "250gm",
@@ -589,8 +589,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebas
 },
 { name: "Sabji Masala",
   id: "sabji-masala",
-  link: "products/sabji-masala.html",
-  image: "images/images(1).jpeg",
+  link: "../products/sabji-masala.html",
+  image: "../images/images(1).jpeg",
   sizes: {
     "250gm": {
       label: "250gm",
@@ -620,8 +620,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebas
 },
 {name: "Khichadi Masala",
   id: "khichadi-masala",
-  link: "products/khichadi-masala.html",
-  image: "images/images(1).jpeg",
+  link: "../products/khichadi-masala.html",
+  image: "../images/images(1).jpeg",
   sizes: {
     "250gm": {
       label: "250gm",
@@ -651,8 +651,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebas
 },
 {name: "Maratha Spicy Masala",
   id: "maratha-masala",
-  link: "products/Marath-spicy-masala.html",
-  image: "images/images(1).jpeg",
+  link: "../products/Marath-spicy-masala.html",
+  image: "../images/images(1).jpeg",
   sizes: {
     "250gm": {
       label: "250gm",
@@ -682,8 +682,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebas
 },
  {name: "Chaat Masala",
   id: "chaat-masala",
-  link: "products/chaat-masala.html",
-  image: "images/images(1).jpeg",
+  link: "../products/chaat-masala.html",
+  image: "../images/images(1).jpeg",
   sizes: {
     "250gm": {
       label: "250gm",
@@ -713,8 +713,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebas
 },
 {name: "Pav Bhaji Masala",
   id: "pav-bhaji-masala",
-  link: "products/pav-bhaji-masala.html",
-  image: "images/images(1).jpeg",
+  link: "../products/pav-bhaji-masala.html",
+  image: "../images/images(1).jpeg",
   sizes: {
     "250gm": {
       label: "250gm",
@@ -744,8 +744,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebas
 },
 {name: "Pani Puri Masala",
   id: "pani-puri-masala",
-  link: "products/pani-puri-masala.html",
-  image: "images/images(1).jpeg",
+  link: "../products/pani-puri-masala.html",
+  image: "../images/images(1).jpeg",
   sizes: {
     "250gm": {
       label: "250gm",
@@ -775,8 +775,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebas
 },
 {name: "Sambar Masala",
   id: "sambar-masala",
-  link: "products/sambar-masala.html",
-  image: "images/images(1).jpeg",
+  link: "../products/sambar-masala.html",
+  image: "../images/images(1).jpeg",
   sizes: {
     "250gm": {
       label: "250gm",
@@ -806,8 +806,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebas
 },
 {name: "Tandoori Tikka Masala",
   id: "tandoori-tikka-masala",
-  link: "products/tandoori-tikka-masala.html",
-  image: "images/images(1).jpeg",
+  link: "../products/tandoori-tikka-masala.html",
+  image: "../images/images(1).jpeg",
   sizes: {
     "250gm": {
       label: "250gm",
@@ -837,8 +837,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebas
 },
  { name: "Dal Tadka Masala",
   id: "dal-tadka-masala",
-  link: "products/dal-tadka-masala.html",
-  image: "images/images(1).jpeg",
+  link: "../products/dal-tadka-masala.html",
+  image: "../images/images(1).jpeg",
   sizes: {
     "250gm": {
       label: "250gm",
@@ -868,8 +868,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebas
 },
 {name: "Poha Masala",
   id: "poha-masala",
-  link: "products/poha-masala.html",
-  image: "images/images(1).jpeg",
+  link: "../products/poha-masala.html",
+  image: "../images/images(1).jpeg",
   sizes: {
     "250gm": {
       label: "250gm",
@@ -899,8 +899,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebas
 },
 {name: "Usal Masala",
   id: "usal-masala",
-  link: "products/usal-masala.html",
-  image: "images/images(1).jpeg",
+  link: "../products/usal-masala.html",
+  image: "../images/images(1).jpeg",
   sizes: {
     "250gm": {
       label: "250gm",
@@ -931,8 +931,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebas
 
 { name: "Goda Masala",
   id: "goda-masala",
-  link: "products/goda-masala.html",
-  image: "images/images(1).jpeg",
+  link: "../products/goda-masala.html",
+  image: "../images/images(1).jpeg",
   sizes: {
     "250gm": {
       label: "250gm",
