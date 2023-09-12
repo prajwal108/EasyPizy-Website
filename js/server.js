@@ -1128,40 +1128,17 @@ function generateSizeRadioButtons(sizes) {
 }
 
 
+// Get all elements with the class 'product-item' inside the 'product-section'.
+const productItems = document.querySelectorAll('.product-item');
 
+// Iterate through the product-item elements.
+productItems.forEach((productItem) => {
+    // Get the ID from the 'id' attribute of each product-item.
+    const productId = productItem.id;
+    // Call the updateAndSyncProductCard function with the productId.
+    updateAndSyncProductCard(productId);
+});
 
-// Example: Call the function to update and sync a product card
-updateAndSyncProductCard('kashmiri-chilli-powder');
-updateAndSyncProductCard('turmeric-powder');
-updateAndSyncProductCard('dry-mango-powder');
-updateAndSyncProductCard('red-chilli-powder');
-updateAndSyncProductCard('coriander-powder');
-updateAndSyncProductCard('jeera-powder');
-updateAndSyncProductCard("paneer-tikka-masala");
-updateAndSyncProductCard('chola-masala');
-updateAndSyncProductCard('misal');
-updateAndSyncProductCard('pulav');
-updateAndSyncProductCard('garam-masala');
-updateAndSyncProductCard('kala-masala');
-updateAndSyncProductCard('paneer-butter-masala');
-updateAndSyncProductCard('kaju-curry-masala');
-updateAndSyncProductCard('biryani-masala');
-updateAndSyncProductCard('kitchen-king-masala');
-updateAndSyncProductCard('bengen-masala');
-updateAndSyncProductCard('shahi-paneer-masala');
-updateAndSyncProductCard('sabji-masala');
-updateAndSyncProductCard('khichadi-masala');
-updateAndSyncProductCard('maratha-masala');
-updateAndSyncProductCard('chaat-masala');
-updateAndSyncProductCard('pav-bhaji-masala');
-updateAndSyncProductCard('pani-puri-masala');
-updateAndSyncProductCard('sambar-masala');
-updateAndSyncProductCard('tandoori-tikka-masala');
-updateAndSyncProductCard('dal-tadka-masala');
-updateAndSyncProductCard('poha-masala');
-updateAndSyncProductCard('usal-masala');
-updateAndSyncProductCard('goda-masala');
-
-    
+   
 
  
