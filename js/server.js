@@ -1119,8 +1119,8 @@ async function updateAndSyncProductCard(productId) {
       async function handleSaveButtonClick(productId, userUID) {
         try {
           // Assuming you have Firebase Firestore initialized and a reference to the saved products collection
-          const savedProductsRef = doc(db,`users/${userUID}/savedProducts`,productId);
-          const productDoc = await getDoc(savedProductsRef);
+        const savedProductsRef = doc(db,`users/${userUID}/savedProducts`,productId);
+        const productDoc = await getDoc(savedProductsRef);
 
           if (productDoc.exists()) {
             updateUIBasedOnSavedState(productId, userUID);
@@ -1139,12 +1139,17 @@ async function updateAndSyncProductCard(productId) {
               gravity: "top", // `top` or `bottom`
               position: "center", // `left`, `center` or `right`
               stopOnFocus: true, // Prevents dismissing of toast on hover
-              backgroundColor: " #ff6347",
-              onClick: function () {}, // Callback after click
+              style: {
+                background:
+                  "linear-gradient(107deg, rgb(255, 67, 5) 11.1%, rgb(245, 135, 0) 95.3%)",
+              },
+              // backgroundColor: " #ff6347",
+               // Callback after click
             }).showToast();
 
             // Remove the product from the saved products collection
             await deleteDoc(savedProductsRef);
+            
           } else {
             // Product is not saved, so you can save it.
             await setDoc(savedProductsRef, { saved: true });
@@ -1156,8 +1161,12 @@ async function updateAndSyncProductCard(productId) {
               gravity: "top", // `top` or `bottom`
               position: "center", // `left`, `center` or `right`
               stopOnFocus: true, // Prevents dismissing of toast on hover
-              backgroundColor:' #ff6347',             
-              onClick: function () {}, // Callback after click
+              style: {
+                background:
+                  "linear-gradient(107deg, rgb(255, 67, 5) 11.1%, rgb(245, 135, 0) 95.3%)",
+              },
+              // backgroundColor:' #ff6347',
+       // Callback after click
             }).showToast();
 
             // Toggle the save button class for the "Save" action.
@@ -1183,6 +1192,21 @@ async function updateAndSyncProductCard(productId) {
             handleSaveButtonClick(productId, userUID);
             // ...
           } else {
+            Toastify({
+              text: `Please login to save ${productData.name}`,
+              duration: 3000,
+              close: true,
+              gravity: "top", // `top` or `bottom`
+              position: "center", // `left`, `center` or `right`
+              stopOnFocus: true, // Prevents dismissing of toast on hover
+              style: {
+                background:
+                  "linear-gradient(107deg, rgb(255, 67, 5) 11.1%, rgb(245, 135, 0) 95.3%)",
+              },
+              // backgroundColor:' #ff6347',
+        // Callback after click
+            }).showToast();
+            
             console.log("user is not signed in");
             // User is signed out
           }
@@ -1239,6 +1263,7 @@ async function updateUIBasedOnSavedState(productId, userUID) {
     saveBtn.classList.add("bi-bookmark");
   }
 }
+
 const productItems = document.querySelectorAll(".product-item");
 // Iterate through the product-item elements.
 productItems.forEach((productItem) => {
@@ -1248,10 +1273,12 @@ productItems.forEach((productItem) => {
   updateAndSyncProductCard(productId);
   auth.onAuthStateChanged((user) => {
     if (user) {
-    const userUID = user.uid;
-  updateUIBasedOnSavedState(productId, userUID);
+      const userUID = user.uid;
+      updateUIBasedOnSavedState(productId, userUID);
     }
   });
 });
+
+
 
 
