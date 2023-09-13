@@ -145,6 +145,16 @@ async function getUserProfile(uid) {
   console.log("Starting OTP confirmation...");
   const userCredential = await confirmationResult.confirm(otp);
   console.log("OTP confirmed successfully.");
+  Toastify({
+    text: 'OTP confirmed successfully.',
+    duration: 3000,
+    close: true,
+    gravity: "top", // `top` or `bottom`
+    position: "center", // `left`, `center` or `right`
+    stopOnFocus: true, // Prevents dismissing of toast on hover
+    backgroundColor: " #ff6347",
+    onClick: function () {}, // Callback after click
+  }).showToast();
 
   const user = userCredential.user;
 
@@ -228,6 +238,16 @@ saveProfileButton.addEventListener("click", async () => {
     console.log("Adding user profile to Firestore...");
     const docRef = await addDoc(userProfilesRef, userProfile);
     console.log("Profile data successfully saved with ID:", docRef.id); // Log success
+    Toastify({
+      text: "Profile data successfully created",
+      duration: 3000,
+      close: true,
+      gravity: "top", // `top` or `bottom`
+      position: "center", // `left`, `center` or `right`
+      stopOnFocus: true, // Prevents dismissing of toast on hover
+      backgroundColor: " #ff6347",
+      onClick: function () {}, // Callback after click
+    }).showToast();
 
     // Close the user data modal
     const userDataModal = document.getElementById("userdata");
@@ -268,7 +288,6 @@ async function getFirstNameFromFirestore(uid) {
   }
 }
 
-
 // Function to update the UI when the user is logged in
 function updateUIForLoggedInUser(user) {
   // Update the account text and display additional options
@@ -293,6 +312,9 @@ function updateUIForLoggedInUser(user) {
 
 
 
+
+
+
 // Function to update the UI when the user is logged out
 function updateUIForLoggedOutUser() {
   // Reset the account text and options
@@ -306,6 +328,16 @@ function updateUIForLoggedOutUser() {
     if (event.target && event.target.id === "logoutBtn") {
       auth.signOut().then(() => {
           // Sign-out successful.
+          Toastify({
+            text: "Logout successful",
+            duration: 3000,
+            close: true,
+            gravity: "top", // `top` or `bottom`
+            position: "center", // `left`, `center` or `right`
+            stopOnFocus: true, // Prevents dismissing of toast on hover
+            backgroundColor: " #ff6347",
+            onClick: function () {}, // Callback after click
+          }).showToast();
           // You can perform additional actions here, such as redirecting the user.
         })
         .catch((error) => {
@@ -314,6 +346,7 @@ function updateUIForLoggedOutUser() {
         });
     }
   });
+
 
 
 // Event listener for the "Logout" button
@@ -328,4 +361,3 @@ auth.onAuthStateChanged((user) => {
   }
 });
 
-export default auth;

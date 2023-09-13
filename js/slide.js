@@ -24,7 +24,7 @@ function sendToWhatsApp() {
     } else {
       whatsappButton.style.display = "none"; // Hide the button if scrolled back above 100vh
     }
-  });
+  },{passive: true});
 
 // Add this script before the closing </body> tag
 const modalOverlay = document.getElementById("modalOverlay");
@@ -82,11 +82,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
-
-
-
-
-
 
   $(document).ready(function () {
     $(".product_thumbnail_slides").owlCarousel({

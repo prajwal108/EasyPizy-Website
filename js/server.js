@@ -1,5 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
-  import {getFirestore,collection,doc,setDoc,updateDoc,getDoc, addDoc, query, where,getDocs,} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js";
+  import {getFirestore,collection,doc,setDoc,updateDoc,getDoc,deleteDoc, addDoc, query, where,getDocs,} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js";
+import { getAuth,browserLocalPersistence, onAuthStateChanged  } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js";
 
     // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
@@ -18,9 +19,17 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebas
   };
 
 
+
   const app = initializeApp(firebaseConfig);
+ const auth = getAuth(app);
   // Set up local persistence
-    
+    // Set up local persistence
+  auth.setPersistence(browserLocalPersistence).then(() => {
+      // Local persistence enabled successfully
+    })
+    .catch((error) => {
+      // Handle errors
+    });
      const db = getFirestore(app);
 
      const productsData = [
@@ -1035,9 +1044,9 @@ async function updateAndSyncProductCard(productId) {
       // Construct the product card HTML based on the data from Firestore
       const productCardHTML = `
         <div class="product-thumb product-thumb-box">
-        <div class="save-btn">
-          <a class="save-icon bi bi-bookmark"></a>
-        </div>
+       
+          <a class="save-icon bi bi-bookmark" id="save-btn-${productId}"></a>
+        
           <div class="product-image-box-wrap">
             <a href="${productData.link}">
               <img src="${
@@ -1087,26 +1096,103 @@ async function updateAndSyncProductCard(productId) {
       productContainer.innerHTML = productCardHTML;
 
       // Assuming you already have size radio buttons selected as you mentioned before:
-     const sizeRadios = productContainer.querySelectorAll("input[type='radio']");
-     sizeRadios.forEach((radio) => {
-       radio.addEventListener("change", () => {
-         // Extract the productId from the radio button's name attribute
-         const productId = radio.getAttribute("name").replace("size-", "");
-         // Get the selected size value
-         const selectedSize = radio.value;
-         // Update prices and discount based on the selected size
-         document.getElementById(`final-price-${productId}`).textContent =
-           productData.sizes[selectedSize].finalPrice;
-         document.getElementById(`original-price-${productId}`).textContent =
-           productData.sizes[selectedSize].originalPrice;
-         document.getElementById(`discount-${productId}`).textContent =
-           productData.sizes[selectedSize].discount;
-       });
-     });
+      const sizeRadios = productContainer.querySelectorAll(
+        "input[type='radio']"
+      );
+      sizeRadios.forEach((radio) => {
+        radio.addEventListener("change", () => {
+          // Extract the productId from the radio button's name attribute
+          const productId = radio.getAttribute("name").replace("size-", "");
+          // Get the selected size value
+          const selectedSize = radio.value;
+          // Update prices and discount based on the selected size
+          document.getElementById(`final-price-${productId}`).textContent =
+            productData.sizes[selectedSize].finalPrice;
+          document.getElementById(`original-price-${productId}`).textContent =
+            productData.sizes[selectedSize].originalPrice;
+          document.getElementById(`discount-${productId}`).textContent =
+            productData.sizes[selectedSize].discount;
+        });
+      });
 
+      // Include the handleSaveButtonClick function
+      async function handleSaveButtonClick(productId, userUID) {
+        try {
+          // Assuming you have Firebase Firestore initialized and a reference to the saved products collection
+          const savedProductsRef = doc(
+            db,
+            `users/${userUID}/savedProducts`,
+            productId
+          );
 
+          const productDoc = await getDoc(savedProductsRef);
 
+          if (productDoc.exists()) {
+            // Product is already saved, so you can implement an "Unsave" action here.
+            console.log("Product is already saved.");
 
+            // Toggle the save button class for the "Unsave" action.
+            const saveBtn = document.getElementById(`save-btn-${productId}`);
+            saveBtn.classList.remove("bi-bookmark-fill");
+            saveBtn.classList.add("bi-bookmark");
+            console.log("Product unsaved successfully.");
+            Toastify({
+              text: `${productData.name} unsaved`,
+              duration: 3000,
+              close: true,
+              gravity: "top", // `top` or `bottom`
+              position: "center", // `left`, `center` or `right`
+              stopOnFocus: true, // Prevents dismissing of toast on hover
+              backgroundColor: " #ff6347",
+              onClick: function () {}, // Callback after click
+            }).showToast();
+
+            // Remove the product from the saved products collection
+            await deleteDoc(savedProductsRef);
+          } else {
+            // Product is not saved, so you can save it.
+            await setDoc(savedProductsRef, { saved: true });
+            console.log("Product saved successfully.");
+            Toastify({
+              text: `${productData.name} saved successfully`,
+              duration: 3000,
+              close: true,
+              gravity: "top", // `top` or `bottom`
+              position: "center", // `left`, `center` or `right`
+              stopOnFocus: true, // Prevents dismissing of toast on hover
+              backgroundColor:' #ff6347',             
+              onClick: function () {}, // Callback after click
+            }).showToast();
+
+            // Toggle the save button class for the "Save" action.
+            const saveBtn = document.getElementById(`save-btn-${productId}`);
+            saveBtn.classList.remove("bi-bookmark");
+            saveBtn.classList.add("bi-bookmark-fill");
+          }
+        } catch (error) {
+          console.error("Error checking/saving product:", error);
+        }
+      }
+
+      // Find the "Save" button within this specific productItem.
+      const saveButton = document.getElementById(`save-btn-${productId}`);
+      // Attach a click event listener to the "Save" button.
+      saveButton.addEventListener("click", () => {
+        auth.onAuthStateChanged((user) => {
+          if (user) {
+            // User is signed in, see docs for a list of available properties
+            // https://firebase.google.com/docs/reference/js/firebase.User
+
+            const userUID = user.uid;
+            console.log("user is signed in");
+            handleSaveButtonClick(productId, userUID);
+            // ...
+          } else {
+            console.log("user is not signed in");
+            // User is signed out
+          }
+        }); // Assuming userUID is defined
+      });
     } else {
       console.error(`Product with ID '${productId}' not found in Firestore.`);
     }
@@ -1126,19 +1212,14 @@ function generateSizeRadioButtons(sizes) {
 
   return sizeRadioButtons.join('');
 }
+ 
 
-
-// Get all elements with the class 'product-item' inside the 'product-section'.
-const productItems = document.querySelectorAll('.product-item');
-
+const productItems = document.querySelectorAll(".product-item");
 // Iterate through the product-item elements.
 productItems.forEach((productItem) => {
-    // Get the ID from the 'id' attribute of each product-item.
-    const productId = productItem.id;
-    // Call the updateAndSyncProductCard function with the productId.
-    updateAndSyncProductCard(productId);
+  // Get the ID from the 'id' attribute of each product-item.
+  const productId = productItem.id;
+  // Call the updateAndSyncProductCard function with the productId.
+  updateAndSyncProductCard(productId);
 });
 
-   
-
- 
