@@ -1119,15 +1119,11 @@ async function updateAndSyncProductCard(productId) {
       async function handleSaveButtonClick(productId, userUID) {
         try {
           // Assuming you have Firebase Firestore initialized and a reference to the saved products collection
-          const savedProductsRef = doc(
-            db,
-            `users/${userUID}/savedProducts`,
-            productId
-          );
-
+          const savedProductsRef = doc(db,`users/${userUID}/savedProducts`,productId);
           const productDoc = await getDoc(savedProductsRef);
 
           if (productDoc.exists()) {
+            updateUIBasedOnSavedState(productId, userUID);
             // Product is already saved, so you can implement an "Unsave" action here.
             console.log("Product is already saved.");
 
@@ -1154,7 +1150,7 @@ async function updateAndSyncProductCard(productId) {
             await setDoc(savedProductsRef, { saved: true });
             console.log("Product saved successfully.");
             Toastify({
-              text: `${productData.name} saved successfully`,
+              text: `${productData.name} saved`,
               duration: 3000,
               close: true,
               gravity: "top", // `top` or `bottom`
@@ -1182,7 +1178,6 @@ async function updateAndSyncProductCard(productId) {
           if (user) {
             // User is signed in, see docs for a list of available properties
             // https://firebase.google.com/docs/reference/js/firebase.User
-
             const userUID = user.uid;
             console.log("user is signed in");
             handleSaveButtonClick(productId, userUID);
@@ -1212,8 +1207,38 @@ function generateSizeRadioButtons(sizes) {
 
   return sizeRadioButtons.join('');
 }
- 
+ // Function to check if a product is saved for the current user
+async function isProductSaved(productId, userUID) {
+  try {
+    const savedProductsRef = doc(db, `users/${userUID}/savedProducts`, productId);
+    const productDoc = await getDoc(savedProductsRef);
 
+    if (productDoc.exists()) {
+      // Product is saved, return its data
+      return productDoc.data();
+    } else {
+      // Product is not saved
+      return null;
+    }
+  } catch (error) {
+    console.error("Error checking saved product:", error);
+    return null;
+  }
+}
+// Function to update the UI based on saved state
+async function updateUIBasedOnSavedState(productId, userUID) {
+  const isSaved = await isProductSaved(productId, userUID);
+  const saveBtn = document.getElementById(`save-btn-${productId}`);
+  if (isSaved) {
+    // Product is saved, show the "Unsave" state
+    saveBtn.classList.remove("bi-bookmark");
+    saveBtn.classList.add("bi-bookmark-fill");
+  } else {
+    // Product is not saved, show the "Save" state
+    saveBtn.classList.remove("bi-bookmark-fill");
+    saveBtn.classList.add("bi-bookmark");
+  }
+}
 const productItems = document.querySelectorAll(".product-item");
 // Iterate through the product-item elements.
 productItems.forEach((productItem) => {
@@ -1221,5 +1246,12 @@ productItems.forEach((productItem) => {
   const productId = productItem.id;
   // Call the updateAndSyncProductCard function with the productId.
   updateAndSyncProductCard(productId);
+  auth.onAuthStateChanged((user) => {
+    if (user) {
+    const userUID = user.uid;
+  updateUIBasedOnSavedState(productId, userUID);
+    }
+  });
 });
+
 
