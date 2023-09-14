@@ -1,6 +1,9 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
   import {getFirestore,collection,doc,setDoc,updateDoc,getDoc,deleteDoc, addDoc, query, where,getDocs,} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js";
 import { getAuth,browserLocalPersistence, onAuthStateChanged  } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js";
+import { getSavedItems } from "./savedItems.js";
+
+
 
     // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
@@ -17,8 +20,6 @@ import { getAuth,browserLocalPersistence, onAuthStateChanged  } from "https://ww
     appId: "1:860069269388:web:b44033d7d721143eebd0a9",
     measurementId: "G-SYY5K0GJ7H"
   };
-
-
 
   const app = initializeApp(firebaseConfig);
  const auth = getAuth(app);
@@ -1032,7 +1033,7 @@ import { getAuth,browserLocalPersistence, onAuthStateChanged  } from "https://ww
     // uploadDataToFirestore(productsData); 
 
     // Function to update and sync product card
-async function updateAndSyncProductCard(productId) {
+export async function updateAndSyncProductCard(productId) {
   try {
     // Assuming you already have Firestore initialized and a reference to the products collection
     const productRef = doc(db, 'products', productId);
@@ -1172,7 +1173,7 @@ async function updateAndSyncProductCard(productId) {
             // Toggle the save button class for the "Save" action.
             const saveBtn = document.getElementById(`save-btn-${productId}`);
             saveBtn.classList.remove("bi-bookmark");
-            saveBtn.classList.add("bi-bookmark-fill");
+            saveBtn.classList.add("bi-bookmark-fill"); 
           }
         } catch (error) {
           console.error("Error checking/saving product:", error);
@@ -1221,7 +1222,7 @@ async function updateAndSyncProductCard(productId) {
 }
 
 // Function to generate size selection radio buttons
-function generateSizeRadioButtons(sizes) {
+export function generateSizeRadioButtons(sizes) {
   const sizeRadioButtons = Object.keys(sizes).map((size) => `
     <label>
       <input type="radio" name="${sizes[size].name}" value="${size}" ${sizes[size].checked ? 'checked' : ''}>
@@ -1232,7 +1233,7 @@ function generateSizeRadioButtons(sizes) {
   return sizeRadioButtons.join('');
 }
  // Function to check if a product is saved for the current user
-async function isProductSaved(productId, userUID) {
+export async function isProductSaved(productId, userUID) {
   try {
     const savedProductsRef = doc(db, `users/${userUID}/savedProducts`, productId);
     const productDoc = await getDoc(savedProductsRef);
@@ -1250,7 +1251,7 @@ async function isProductSaved(productId, userUID) {
   }
 }
 // Function to update the UI based on saved state
-async function updateUIBasedOnSavedState(productId, userUID) {
+export async function updateUIBasedOnSavedState(productId, userUID) {
   const isSaved = await isProductSaved(productId, userUID);
   const saveBtn = document.getElementById(`save-btn-${productId}`);
   if (isSaved) {
@@ -1264,21 +1265,18 @@ async function updateUIBasedOnSavedState(productId, userUID) {
   }
 }
 
-const productItems = document.querySelectorAll(".product-item");
-// Iterate through the product-item elements.
-productItems.forEach((productItem) => {
+   const productItems = document.querySelectorAll(".product-item");
+   // Iterate through the product-item elements 
+
+    productItems.forEach((productItem) => {
   // Get the ID from the 'id' attribute of each product-item.
   const productId = productItem.id;
   // Call the updateAndSyncProductCard function with the productId.
   updateAndSyncProductCard(productId);
-  auth.onAuthStateChanged((user) => {
+  auth.onAuthStateChanged(async (user) => {
     if (user) {
       const userUID = user.uid;
       updateUIBasedOnSavedState(productId, userUID);
     }
-  });
-});
-
-
-
-
+    });
+    });
