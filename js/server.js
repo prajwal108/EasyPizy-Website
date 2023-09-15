@@ -1,7 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
   import {getFirestore,collection,doc,setDoc,updateDoc,getDoc,deleteDoc, addDoc, query, where,getDocs,} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js";
 import { getAuth,browserLocalPersistence, onAuthStateChanged  } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js";
-import { getSavedItems } from "./savedItems.js";
+
 
 
 
@@ -1265,18 +1265,28 @@ export async function updateUIBasedOnSavedState(productId, userUID) {
   }
 }
 
-   const productItems = document.querySelectorAll(".product-item");
-   // Iterate through the product-item elements 
+   
+// server.js
+export async function loadProducts() {
+  // API call to load products
+  const productItems = document.querySelectorAll(".product-item");
+  return productItems;
+}
+    const productItems = await loadProducts();
+  // Iterate through the product-item elements
+  productItems.forEach(async(productItem) => {
+    // Get the ID from the 'id' attribute of each product-item.
+    const productId = productItem.id;
+    // Call the updateAndSyncProductCard function with the productId.
+    await updateAndSyncProductCard(productId);
+    console.log(`Product card ${productId} updated and synced successfully.`);
+    auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        const userUID = user.uid;
+        await updateUIBasedOnSavedState(productId, userUID);
+      }
+    });
+  });
+  
+loadProducts();
 
-    productItems.forEach((productItem) => {
-  // Get the ID from the 'id' attribute of each product-item.
-  const productId = productItem.id;
-  // Call the updateAndSyncProductCard function with the productId.
-  updateAndSyncProductCard(productId);
-  auth.onAuthStateChanged(async (user) => {
-    if (user) {
-      const userUID = user.uid;
-      updateUIBasedOnSavedState(productId, userUID);
-    }
-    });
-    });

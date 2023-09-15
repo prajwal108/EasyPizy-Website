@@ -90,11 +90,15 @@ document.addEventListener("DOMContentLoaded", function () {
       autoplay: true, // Autoplay the carousel
       autoplayTimeout: 3000, // Autoplay every 'n' milliseconds
       autoplayHoverPause: true, // Pause the autoplay on hover
-      dots: false, // Show navigation dots
       nav: true, // Show navigation arrows
       navText: [
         '<i class="bi bi-arrow-left-circle-fill"></i>',
         '<i class="bi bi-arrow-right-circle-fill"></i>',
       ], // Customize navigation arrows
+      dots: true, // Show navigation dots
+      dotsEach: true, // Show navigation dots on each item
+      created: function () {
+        // carousel initialized
+      },
     });
   });
