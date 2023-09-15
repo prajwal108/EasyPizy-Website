@@ -230,7 +230,7 @@ import { getAuth,browserLocalPersistence, onAuthStateChanged  } from "https://ww
   link: "../products/panner-tikka-masala.html",
   image: "../images/images(1).jpeg",
   sizes: {
-    "250gm": {
+    "250": {
       label: "250gm",
       name: "size-paneer-tikka-masala",
       checked: true,
@@ -238,7 +238,7 @@ import { getAuth,browserLocalPersistence, onAuthStateChanged  } from "https://ww
       originalPrice: "₹100",
       discount: "20% off",
     },
-    "500gm": {
+    "500": {
       label: "500gm",
       name: "size-paneer-tikka-masala",
       checked: false,
@@ -246,7 +246,7 @@ import { getAuth,browserLocalPersistence, onAuthStateChanged  } from "https://ww
       originalPrice: "₹200",
       discount: "25% off",
     },
-    "1000gm": {
+    "1000": {
       label: "1000gm",
       name: "size-paneer-tikka-masala",
       checked: false,
@@ -261,7 +261,7 @@ import { getAuth,browserLocalPersistence, onAuthStateChanged  } from "https://ww
     link: "../products/chola-masala.html",
     image: "../images/images(1).jpeg",
     sizes: {
-      "250gm": {
+      "250": {
         label: "250gm",
         name: "size-chola-masala",
         checked: true,
@@ -269,7 +269,7 @@ import { getAuth,browserLocalPersistence, onAuthStateChanged  } from "https://ww
         originalPrice: "₹100",
         discount: "20% off",
       },
-      "500gm": {
+      "500": {
         label: "500gm",
         name: "size-chola-masala",
         checked: false,
@@ -277,7 +277,7 @@ import { getAuth,browserLocalPersistence, onAuthStateChanged  } from "https://ww
         originalPrice: "₹200",
         discount: "25% off",
       },
-      "1000gm": {
+      "1000": {
         label: "1000gm",
         name: "size-chola-masala",
         checked: false,
@@ -292,7 +292,7 @@ import { getAuth,browserLocalPersistence, onAuthStateChanged  } from "https://ww
     link: "../products/misal-masala.html",
     image: "../images/images(1).jpeg",
     sizes: {
-      "250gm": {
+      "250": {
         label: "250gm",
         name: "size-misal",
         checked: true,
@@ -300,7 +300,7 @@ import { getAuth,browserLocalPersistence, onAuthStateChanged  } from "https://ww
         originalPrice: "₹100",
         discount: "20% off",
       },
-      "500gm": {
+      "500": {
         label: "500gm",
         name: "size-misal",
         checked: false,
@@ -308,7 +308,7 @@ import { getAuth,browserLocalPersistence, onAuthStateChanged  } from "https://ww
         originalPrice: "₹200",
         discount: "25% off",
       },
-      "1000gm": {
+      "1000": {
         label: "1000gm",
         name: "size-misal",
         checked: false,
@@ -974,7 +974,6 @@ import { getAuth,browserLocalPersistence, onAuthStateChanged  } from "https://ww
 
      const products = "products";
 
-    
 
      const uploadDataToFirestore = async (productsData) => {
        try {
@@ -1223,7 +1222,11 @@ export async function updateAndSyncProductCard(productId) {
 
 // Function to generate size selection radio buttons
 export function generateSizeRadioButtons(sizes) {
-  const sizeRadioButtons = Object.keys(sizes).map((size) => `
+  const sortedSizes = Object.keys(sizes).sort((a, b) => {
+    return parseInt(a) - parseInt(b);
+  });
+   
+  const sizeRadioButtons = sortedSizes.map((size) => `
     <label>
       <input type="radio" name="${sizes[size].name}" value="${size}" ${sizes[size].checked ? 'checked' : ''}>
       <span>${size}</span>
@@ -1232,6 +1235,7 @@ export function generateSizeRadioButtons(sizes) {
 
   return sizeRadioButtons.join('');
 }
+
  // Function to check if a product is saved for the current user
 export async function isProductSaved(productId, userUID) {
   try {
