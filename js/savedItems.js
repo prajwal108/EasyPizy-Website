@@ -1,7 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
 import {getFirestore,collection,doc, setDoc, updateDoc, getDoc, deleteDoc, addDoc, query, where, getDocs,onSnapshot} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js";
 import { getAuth, browserLocalPersistence, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js";
-import {updateAndSyncProductCard, generateSizeRadioButtons, isProductSaved,
+import {updateAndSyncProductCard, isProductSaved,
   updateUIBasedOnSavedState} from "./server.js";
 
 
@@ -110,7 +110,7 @@ export async function setUpSnapshotListener(userUID) {
                   const productId = productItem.id;
 
                   console.log(productId);
-                 await updateAndSyncProductCard(productId);
+                 await updateAndSyncProductCard(productId,userUID);
                  
                     isProductSaved(productId, userUID),
                     updateUIBasedOnSavedState(productId, userUID);

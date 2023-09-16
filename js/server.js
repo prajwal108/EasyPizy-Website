@@ -230,7 +230,7 @@ import { getAuth,browserLocalPersistence, onAuthStateChanged  } from "https://ww
   link: "../products/panner-tikka-masala.html",
   image: "../images/images(1).jpeg",
   sizes: {
-    "250": {
+    "250gm": {
       label: "250gm",
       name: "size-paneer-tikka-masala",
       checked: true,
@@ -238,7 +238,7 @@ import { getAuth,browserLocalPersistence, onAuthStateChanged  } from "https://ww
       originalPrice: "₹100",
       discount: "20% off",
     },
-    "500": {
+    "500gm": {
       label: "500gm",
       name: "size-paneer-tikka-masala",
       checked: false,
@@ -246,7 +246,7 @@ import { getAuth,browserLocalPersistence, onAuthStateChanged  } from "https://ww
       originalPrice: "₹200",
       discount: "25% off",
     },
-    "1000": {
+    "1000gm": {
       label: "1000gm",
       name: "size-paneer-tikka-masala",
       checked: false,
@@ -261,7 +261,7 @@ import { getAuth,browserLocalPersistence, onAuthStateChanged  } from "https://ww
     link: "../products/chola-masala.html",
     image: "../images/images(1).jpeg",
     sizes: {
-      "250": {
+      "250gm": {
         label: "250gm",
         name: "size-chola-masala",
         checked: true,
@@ -269,7 +269,7 @@ import { getAuth,browserLocalPersistence, onAuthStateChanged  } from "https://ww
         originalPrice: "₹100",
         discount: "20% off",
       },
-      "500": {
+      "500gm": {
         label: "500gm",
         name: "size-chola-masala",
         checked: false,
@@ -277,7 +277,7 @@ import { getAuth,browserLocalPersistence, onAuthStateChanged  } from "https://ww
         originalPrice: "₹200",
         discount: "25% off",
       },
-      "1000": {
+      "1000gm": {
         label: "1000gm",
         name: "size-chola-masala",
         checked: false,
@@ -292,7 +292,7 @@ import { getAuth,browserLocalPersistence, onAuthStateChanged  } from "https://ww
     link: "../products/misal-masala.html",
     image: "../images/images(1).jpeg",
     sizes: {
-      "250": {
+      "250gm": {
         label: "250gm",
         name: "size-misal",
         checked: true,
@@ -300,7 +300,7 @@ import { getAuth,browserLocalPersistence, onAuthStateChanged  } from "https://ww
         originalPrice: "₹100",
         discount: "20% off",
       },
-      "500": {
+      "500gm": {
         label: "500gm",
         name: "size-misal",
         checked: false,
@@ -308,7 +308,7 @@ import { getAuth,browserLocalPersistence, onAuthStateChanged  } from "https://ww
         originalPrice: "₹200",
         discount: "25% off",
       },
-      "1000": {
+      "1000gm": {
         label: "1000gm",
         name: "size-misal",
         checked: false,
@@ -1032,7 +1032,7 @@ import { getAuth,browserLocalPersistence, onAuthStateChanged  } from "https://ww
     // uploadDataToFirestore(productsData); 
 
     // Function to update and sync product card
-export async function updateAndSyncProductCard(productId) {
+export async function updateAndSyncProductCard(productId,userUID) {
   try {
     // Assuming you already have Firestore initialized and a reference to the products collection
     const productRef = doc(db, 'products', productId);
@@ -1040,6 +1040,7 @@ export async function updateAndSyncProductCard(productId) {
 
     if (productSnapshot.exists()) {
       const productData = productSnapshot.data();
+      
 
       // Construct the product card HTML based on the data from Firestore
       const productCardHTML = `
@@ -1079,11 +1080,11 @@ export async function updateAndSyncProductCard(productId) {
                 </p>
               </div>
               <div class="add-to-cart-container">
-                <button class="custom-btn btn add-to-cart-btn">Add to Cart</button>
-                <div class="plus-minus-input">
-                  <button class="btn custom-btn minus-btn">-</button>
-                  <div class="custom-btn btn ms-auto inputBtn">1</div>
-                  <button class="btn custom-btn plus-btn">+</button>
+                <button class="custom-btn btn add-to-cart-btn" id="add-to-cart-${productId}">Add to Cart</button>
+                <div class="plus-minus-input" id="plus-minus-input-${productId}">
+                  <button id="minus-btn-${productId}" class="btn custom-btn minus-btn">-</button>
+                  <div id="input-btn-${productId}" class="custom-btn btn ms-auto inputBtn">1</div>
+                  <button id="plus-btn-${productId}" class="btn custom-btn plus-btn">+</button>
                 </div>
               </div>
             </div>
@@ -1099,8 +1100,9 @@ export async function updateAndSyncProductCard(productId) {
       const sizeRadios = productContainer.querySelectorAll(
         "input[type='radio']"
       );
+      
       sizeRadios.forEach((radio) => {
-        radio.addEventListener("change", () => {
+        radio.addEventListener("change", async () => {
           // Extract the productId from the radio button's name attribute
           const productId = radio.getAttribute("name").replace("size-", "");
           // Get the selected size value
@@ -1112,6 +1114,17 @@ export async function updateAndSyncProductCard(productId) {
             productData.sizes[selectedSize].originalPrice;
           document.getElementById(`discount-${productId}`).textContent =
             productData.sizes[selectedSize].discount;
+          // Update the Firestore quantity based on the new size
+          await syncQuantityUI(productId, selectedSize, userUID); 
+          await updateFirestoreQuantity(
+            quantity,
+            productId,
+            selectedSize,
+            userUID
+          );
+          
+        
+          console.log("Selected size changed to", selectedSize);
         });
       });
 
@@ -1119,8 +1132,12 @@ export async function updateAndSyncProductCard(productId) {
       async function handleSaveButtonClick(productId, userUID) {
         try {
           // Assuming you have Firebase Firestore initialized and a reference to the saved products collection
-        const savedProductsRef = doc(db,`users/${userUID}/savedProducts`,productId);
-        const productDoc = await getDoc(savedProductsRef);
+          const savedProductsRef = doc(
+            db,
+            `users/${userUID}/savedProducts`,
+            productId
+          );
+          const productDoc = await getDoc(savedProductsRef);
 
           if (productDoc.exists()) {
             updateUIBasedOnSavedState(productId, userUID);
@@ -1144,12 +1161,11 @@ export async function updateAndSyncProductCard(productId) {
                   "linear-gradient(107deg, rgb(255, 67, 5) 11.1%, rgb(245, 135, 0) 95.3%)",
               },
               // backgroundColor: " #ff6347",
-               // Callback after click
+              // Callback after click
             }).showToast();
 
             // Remove the product from the saved products collection
             await deleteDoc(savedProductsRef);
-            
           } else {
             // Product is not saved, so you can save it.
             await setDoc(savedProductsRef, { saved: true });
@@ -1166,13 +1182,13 @@ export async function updateAndSyncProductCard(productId) {
                   "linear-gradient(107deg, rgb(255, 67, 5) 11.1%, rgb(245, 135, 0) 95.3%)",
               },
               // backgroundColor:' #ff6347',
-       // Callback after click
+              // Callback after click
             }).showToast();
 
             // Toggle the save button class for the "Save" action.
             const saveBtn = document.getElementById(`save-btn-${productId}`);
             saveBtn.classList.remove("bi-bookmark");
-            saveBtn.classList.add("bi-bookmark-fill"); 
+            saveBtn.classList.add("bi-bookmark-fill");
           }
         } catch (error) {
           console.error("Error checking/saving product:", error);
@@ -1204,14 +1220,118 @@ export async function updateAndSyncProductCard(productId) {
                   "linear-gradient(107deg, rgb(255, 67, 5) 11.1%, rgb(245, 135, 0) 95.3%)",
               },
               // backgroundColor:' #ff6347',
-        // Callback after click
+              // Callback after click
             }).showToast();
-            
+
             console.log("user is not signed in");
             // User is signed out
           }
         }); // Assuming userUID is defined
       });
+
+      // Add event listeners for the plus and minus buttons
+      const minusButton = document.getElementById(`minus-btn-${productId}`);
+      const plusButton = document.getElementById(`plus-btn-${productId}`);
+      const inputBtn = document.getElementById(`input-btn-${productId}`);
+      const selectedSize = document.querySelector(`input[name="size-${productId}"]:checked`).value;
+      // Add an event listener to the "Add to Cart" button
+      const addToCartButton = document.getElementById(`add-to-cart-${productId}`
+      );
+      const quantityControls = document.getElementById(`plus-minus-input-${productId}`);
+
+      // Function to update the Firestore quantity
+      async function updateFirestoreQuantity(
+        newQuantity,
+        productId,
+        selectedSize
+      ) {
+        
+        try {
+          const cartItemRef = doc(db, "carts", userUID, "items",`${productId}-${selectedSize}`);
+          // Get cart item doc snapshot
+          const docSnapshot = await getDoc(cartItemRef);
+          
+          // Only update if document exists
+          
+          if (newQuantity === 0) {
+            await deleteDoc(cartItemRef);
+            addToCartButton.style.display = "block";
+            quantityControls.style.display = "none";
+          } 
+          else if (docSnapshot.exists())  {
+            
+            await updateDoc(cartItemRef, { quantity: newQuantity });
+            addToCartButton.style.display = "none";
+            quantityControls.style.display = "flex";
+            
+          }
+        } catch (error) {
+          console.error("Error updating product quantity:", error);
+        }
+      }
+
+     
+
+    
+
+      // Add an event listener to the "Add to Cart" button
+      addToCartButton.addEventListener("click", async () => {
+        addToCartButton.style.display = "none";
+        quantityControls.style.display = "flex";
+        // Get the selected size
+        const selectedSize = document.querySelector(
+          `input[name="size-${productId}"]:checked`
+        ).value;
+
+        // Get the product details based on the selected size
+        const selectedProductDetails = productData.sizes[selectedSize];
+        // Add the product to the user's cart in Firestore
+        const cartItemRef = doc(db,"carts", userUID,"items",`${productId}-${selectedSize}`);
+        await setDoc(cartItemRef, {
+          size: selectedSize,
+          quantity: 1,
+          price: selectedProductDetails.finalPrice,
+          name: productData.name, // Add the product name
+          image: productData.image, // Add the product image URL
+        })
+          .then(() => {
+            console.log("Product added to cart in Firestore.");
+          })
+          .catch((error) => {
+            console.error("Error adding product to cart in Firestore:", error);
+          });
+      });
+
+      let quantity = 1;
+
+      plusButton.addEventListener("click", async () => {
+        if (quantity < 6) {
+          ++quantity;
+          inputBtn.textContent = quantity;
+          await updateFirestoreQuantity(quantity, productId, selectedSize);
+          console.log("quantity updated");
+        }
+      });
+
+      minusButton.addEventListener("click", async () => {
+         const selectedSize = document.querySelector(
+           `input[name="size-${productId}"]:checked`
+         ).value;
+        if (quantity > 1) {
+          quantity--;
+          inputBtn.textContent = quantity;
+          await updateFirestoreQuantity(quantity, productId, selectedSize);
+          console.log("quantity updated");
+        } else {
+          addToCartButton.style.display = "block";
+          quantityControls.style.display = "none";
+          quantity = 0;
+          await updateFirestoreQuantity(quantity, productId, selectedSize);
+          console.log("quantity updated");
+        }
+      });
+
+      
     } else {
       console.error(`Product with ID '${productId}' not found in Firestore.`);
     }
@@ -1267,27 +1387,94 @@ export async function updateUIBasedOnSavedState(productId, userUID) {
     saveBtn.classList.remove("bi-bookmark-fill");
     saveBtn.classList.add("bi-bookmark");
   }
-}
+}   
 
-   
+ async function syncQuantityUI(productId, selectedSize, userUID) {
+   try {
+     const cartItemRef = doc(
+       db,
+       "carts",
+       userUID,
+       "items",
+       `${productId}-${selectedSize}`
+     );
+     const cartItemSnapshot = await getDoc(cartItemRef);
+
+     // Find the elements in the DOM
+     const quantityControls = document.getElementById(
+       `plus-minus-input-${productId}`
+     );
+     const addToCartButton = document.getElementById(
+       `add-to-cart-${productId}`
+     );
+     const inputBtn = document.getElementById(`input-btn-${productId}`);
+
+     if (cartItemSnapshot.exists()) {
+       const quantity = cartItemSnapshot.data().quantity;
+
+       // Check if the quantity is valid (greater than zero)
+       if (quantity > 0) {
+         addToCartButton.style.display = "none";
+         quantityControls.style.display = "flex";
+         inputBtn.textContent = quantity;
+       } else {
+         // Quantity is zero or negative, this is an invalid state, reset it
+         resetUIState();
+       }
+     } else {
+       // Cart item does not exist, reset the UI
+       resetUIState();
+     }
+   } catch (error) {
+     console.error("Error syncing quantity UI:", error);
+     // Handle the error gracefully, e.g., show a message to the user
+     // and reset the UI state.
+     resetUIState();
+   }
+
+   // Helper function to reset the UI to its default state
+   function resetUIState() {
+     const quantityControls = document.getElementById(
+       `plus-minus-input-${productId}`
+     );
+     const addToCartButton = document.getElementById(
+       `add-to-cart-${productId}`
+     );
+     const inputBtn = document.getElementById(`input-btn-${productId}`);
+
+     addToCartButton.style.display = "block";
+     quantityControls.style.display = "none";
+     let quantity = 1;
+     inputBtn.textContent = quantity;
+   }
+ }
+
+
 // server.js
 export async function loadProducts() {
   // API call to load products
   const productItems = document.querySelectorAll(".product-item");
   return productItems;
 }
+
     const productItems = await loadProducts();
   // Iterate through the product-item elements
   productItems.forEach(async(productItem) => {
     // Get the ID from the 'id' attribute of each product-item.
     const productId = productItem.id;
     // Call the updateAndSyncProductCard function with the productId.
-    await updateAndSyncProductCard(productId);
+    
     console.log(`Product card ${productId} updated and synced successfully.`);
     auth.onAuthStateChanged(async (user) => {
       if (user) {
         const userUID = user.uid;
+        await updateAndSyncProductCard(productId, userUID);
         await updateUIBasedOnSavedState(productId, userUID);
+
+        const selectedSize = productItem.querySelector("input[type='radio']:checked").value;
+        console.log(selectedSize);
+        await syncQuantityUI(productId, selectedSize, userUID);
+       
       }
     });
   });

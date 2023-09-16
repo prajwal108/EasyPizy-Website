@@ -186,7 +186,7 @@ $(document).ready(function () {
     autoplay: true,
     smartSpeed: 3000,
     slideBy: 1,
-    autoplayTimeout: 4000,
+    autoplayTimeout: 3000,
     autoplayHoverPause: true,
     items: 3,
     responsive: {
