@@ -1291,12 +1291,12 @@ export async function updateAndSyncProductCard(productId,userUID) {
         ).value;
 
         // Get the current quantity for the selected size (initially 1)
-        const currentQuantity = 1;
-        inputBtn.textContent = currentQuantity;
+        const quantity = 1;
+        inputBtn.textContent = quantity;
 
         // Update the Firestore quantity for the selected size
         await updateFirestoreQuantity(
-          currentQuantity,
+          quantity,
           productId,
           selectedSize,
           userUID
@@ -1376,6 +1376,91 @@ export async function updateAndSyncProductCard(productId,userUID) {
           console.log("quantity updated");
         }
       });
+
+       async function selectMaxQuantityRadioButton(productId, userUID) {
+         try {
+           // Find all radio buttons for the given product card
+           const sizeRadios = document.querySelectorAll(
+             `input[name="size-${productId}"]`
+           );
+
+           // Initialize variables to keep track of the maximum quantity and the corresponding radio button
+           let maxQuantity = 0;
+           let maxQuantityRadioButton = null;
+
+           // Iterate through the radio buttons
+           for (const radio of sizeRadios) {
+             // Extract the selected size from the radio button's value
+             const selectedSize = radio.value;
+
+             // Get the quantity for this size from Firestore or your data source
+             const quantity = await getQuantityFromDataSource(
+               productId,
+               selectedSize,
+               userUID
+             );
+
+             // Check if the quantity for this size is greater than the current maximum
+             if (quantity > maxQuantity) {
+               maxQuantity = quantity;
+               maxQuantityRadioButton = radio;
+             }
+           }
+
+           // Check if a radio button with the maximum quantity was found
+           if (maxQuantityRadioButton) {
+             // Programmatically select the radio button with the maximum quantity
+             maxQuantityRadioButton.checked = true;
+             await syncQuantityUI(productId, selectedSize, userUID);
+           }
+         } catch (error) {
+           console.error("Error selecting max quantity radio button:", error);
+         }
+       }
+
+       // Replace this function with your actual logic to retrieve quantity from your data source
+       async function getQuantityFromDataSource(
+         productId,
+         selectedSize,
+         userUID
+       ) {
+         try {
+           // Assuming you have Firebase Firestore initialized and a reference to your data collection
+           const cartItemRef = doc(
+             db,
+             "carts",
+             userUID,
+             "items",
+             `${productId}-${selectedSize}`
+           );
+
+           // Get the cart item document snapshot
+           const docSnapshot = await getDoc(cartItemRef);
+
+           // Check if the document exists
+           if (docSnapshot.exists()) {
+             const cartItemData = docSnapshot.data();
+
+             // Retrieve the quantity for the selected size from the document data
+             const quantity = cartItemData.quantity || 0;
+
+             return quantity;
+           } else {
+             // Document does not exist, return a default value (0)
+             return 0;
+           }
+         } catch (error) {
+           console.error("Error fetching quantity from data source:", error);
+           // Handle the error appropriately in your application
+           // You can return an error code or throw an exception if needed
+           throw error;
+         }
+       
+        }
+
+        await selectMaxQuantityRadioButton(productId, userUID);
+       
+      
     } else {
       console.error(`Product with ID '${productId}' not found in Firestore.`);
     }
@@ -1497,6 +1582,7 @@ export async function updateUIBasedOnSavedState(productId, userUID) {
  }
 
 
+
 // server.js
 export async function loadProducts() {
   // API call to load products
@@ -1524,6 +1610,7 @@ function generateGuestUserUID() {
     const productId = productItem.id;
         const userUID = user.uid;  
         await updateAndSyncProductCard(productId,userUID);
+        
         console.log(
           `Product card ${productId} updated and synced successfully.`
         );
@@ -1531,7 +1618,7 @@ function generateGuestUserUID() {
         const selectedSize = productItem.querySelector("input[type='radio']:checked").value;
         console.log(selectedSize);
         await syncQuantityUI(productId, selectedSize, userUID);
-
+        
         });
       }else if (guestUserUID){
 
