@@ -440,7 +440,7 @@ nav[aria-label="breadcrumb"] {
   background: var(--white-color);
   padding-top: 15px;
   padding-bottom: 15px;
-  height: 15vh;
+  height: 12vh;
   position: fixed;
   z-index: 100;
   width: 100%;
@@ -1486,7 +1486,7 @@ top: 0;
   }
   #accountNavbar{
     display: flex;
-    font-size: 12px;
+    font-size: 1em;
   }
   #accountNavDrop{
     display: block;
@@ -1498,7 +1498,7 @@ top: 0;
     padding-bottom: 20px;
   }
   a.btn:nth-child(1) {
-    font-size: 12px;
+    font-size: 14px;
   }
   .navbar-toggler .navbar-toggler-icon::before, .navbar-toggler .navbar-toggler-icon{
     width:  18px;
