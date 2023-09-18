@@ -1,6 +1,12 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
   import {getFirestore,collection,doc,setDoc,updateDoc,getDoc,deleteDoc, addDoc, query, where,getDocs,} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js";
-import { getAuth,browserLocalPersistence, onAuthStateChanged  } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js";
+import {
+  getAuth,
+  browserLocalPersistence,
+  onAuthStateChanged,
+  signInAnonymously,
+} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js";
+
 
 
 
@@ -1411,6 +1417,18 @@ export async function updateAndSyncProductCard(productId,userUID) {
            if (maxQuantityRadioButton) {
              // Programmatically select the radio button with the maximum quantity
              maxQuantityRadioButton.checked = true;
+             // Get the selected size value
+             const selectedSize = maxQuantityRadioButton.value;
+
+             // Update prices and discount based on the selected size
+             document.getElementById(`final-price-${productId}`).textContent =
+               productData.sizes[selectedSize].finalPrice;
+             document.getElementById(
+               `original-price-${productId}`
+             ).textContent = productData.sizes[selectedSize].originalPrice;
+             document.getElementById(`discount-${productId}`).textContent =
+               productData.sizes[selectedSize].discount;
+
              await syncQuantityUI(productId, selectedSize, userUID);
            }
          } catch (error) {
@@ -1468,6 +1486,376 @@ export async function updateAndSyncProductCard(productId,userUID) {
     console.error('Error updating product card:', error);
   }
 }
+
+ async function updateAndSyncGuestCart(productId, guestUserUID) {
+   try {
+     // Assuming you already have Firestore initialized and a reference to the products collection
+     const productRef = doc(db, "products", productId);
+     const productSnapshot = await getDoc(productRef);
+
+     if (productSnapshot.exists()) {
+       const productData = productSnapshot.data();
+
+       // Construct the product card HTML based on the data from Firestore
+       const productCardHTML = `
+        <div class="product-thumb product-thumb-box">
+       
+          <a class="save-icon bi bi-bookmark" id="save-btn-${productId}"></a>
+        
+          <div class="product-image-box-wrap">
+            <a href="${productData.link}">
+              <img src="${
+                productData.image
+              }" class="product-image img-fluid" alt="${productData.name}">
+            </a>
+          </div>
+          <div class="product-body">
+            <h4 class="product-title">
+              <a href="${productData.link}" class="product-title-link">${
+         productData.name
+       }</a>
+            </h4>
+            <div class="d-flex align-items-center border-top pt-3 product-info">
+              <div class="product-data">
+                <div class="size-checkboxes mb-0">
+                  ${generateSizeRadioButtons(productData.sizes)}
+                </div>
+                <p class="product-price">
+                  <i class="custom-icon bi-cash me-1"></i>
+                  <span class="final-price" id="final-price-${productId}">${
+         productData.sizes["250gm"].finalPrice
+       }</span>
+                  <span class="original-price" id="original-price-${productId}">${
+         productData.sizes["250gm"].originalPrice
+       }</span>
+                  <span class="discount" id="discount-${productId}">${
+         productData.sizes["250gm"].discount
+       }</span>
+                </p>
+              </div>
+              <div class="add-to-cart-container">
+                <button class="custom-btn btn add-to-cart-btn" id="add-to-cart-${productId}">Add to Cart</button>
+                <div class="plus-minus-input" id="plus-minus-input-${productId}">
+                  <button id="minus-btn-${productId}" class="btn custom-btn minus-btn">-</button>
+                  <div id="input-btn-${productId}" class="custom-btn btn ms-auto inputBtn">1</div>
+                  <button id="plus-btn-${productId}" class="btn custom-btn plus-btn">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+
+       // Update the corresponding HTML element with the new product card HTML
+       const productContainer = document.getElementById(productId);
+
+       productContainer.innerHTML = productCardHTML;
+
+       // Assuming you already have size radio buttons selected as you mentioned before:
+       const sizeRadios = productContainer.querySelectorAll(
+         "input[type='radio']"
+       );
+
+       sizeRadios.forEach((radio) => {
+         radio.addEventListener("change", async () => {
+           // Extract the productId from the radio button's name attribute
+           const productId = radio.getAttribute("name").replace("size-", "");
+           // Get the selected size value
+           const selectedSize = radio.value;
+           // Update prices and discount based on the selected size
+           document.getElementById(`final-price-${productId}`).textContent =
+             productData.sizes[selectedSize].finalPrice;
+           document.getElementById(`original-price-${productId}`).textContent =
+             productData.sizes[selectedSize].originalPrice;
+           document.getElementById(`discount-${productId}`).textContent =
+             productData.sizes[selectedSize].discount;
+           // Update the Firestore quantity based on the new size
+           await syncCartUI(productId, selectedSize, guestUserUID);
+
+           console.log("Selected size changed to", selectedSize);
+         });
+       });
+
+    
+     // Find the "Save" button within this specific productItem.
+       const saveButton = document.getElementById(`save-btn-${productId}`);
+       // Attach a click event listener to the "Save" button.
+       saveButton.addEventListener("click", () => {
+         auth.onAuthStateChanged((user) => {
+           
+             Toastify({
+               text: `Please login to save ${productData.name}`,
+               duration: 3000,
+               close: true,
+               gravity: "top", // `top` or `bottom`
+               position: "center", // `left`, `center` or `right`
+               stopOnFocus: true, // Prevents dismissing of toast on hover
+               style: {
+                 background:
+                   "linear-gradient(107deg, rgb(255, 67, 5) 11.1%, rgb(245, 135, 0) 95.3%)",
+               },
+               // backgroundColor:' #ff6347',
+               // Callback after click
+             }).showToast();
+
+             console.log("user is not signed in");
+             // User is signed out
+           
+         }); // Assuming userUID is defined
+       });
+
+       // Add event listeners for the plus and minus buttons
+       const minusButton = document.getElementById(`minus-btn-${productId}`);
+       const plusButton = document.getElementById(`plus-btn-${productId}`);
+       const inputBtn = document.getElementById(`input-btn-${productId}`);
+       // Add an event listener to the "Add to Cart" button
+       const addToCartButton = document.getElementById(
+         `add-to-cart-${productId}`
+       );
+       const quantityControls = document.getElementById(
+         `plus-minus-input-${productId}`
+       );
+       let quantity = 1;
+
+       // Function to update the Firestore quantity
+       async function updateFirestoreQuantity(
+         newQuantity,
+         productId,
+         selectedSize,
+         guestUserUID
+       ) {
+         try {
+           const cartItemRef = doc(
+             db,
+             "carts",
+             guestUserUID,
+             "items",
+             `${productId}-${selectedSize}`
+           );
+
+           // Get the cart item document snapshot
+           const docSnapshot = await getDoc(cartItemRef);
+
+           if (newQuantity === 0) {
+             // If the new quantity is 0, delete the document
+             await deleteDoc(cartItemRef);
+
+             // Update the UI to show the "Add to Cart" button and hide quantity controls
+             addToCartButton.style.display = "block";
+             quantityControls.style.display = "none";
+           } else if (docSnapshot.exists()) {
+             // If the document exists, update the quantity for the selected size
+             await setDoc(
+               cartItemRef,
+               { quantity: newQuantity },
+               { merge: true }
+             );
+
+             // Update the UI to hide the "Add to Cart" button and show quantity controls
+             addToCartButton.style.display = "none";
+             quantityControls.style.display = "flex";
+           }
+         } catch (error) {
+           console.error("Error updating product quantity:", error);
+         }
+       }
+
+       // Add an event listener to the "Add to Cart" button
+       addToCartButton.addEventListener("click", async () => {
+         addToCartButton.style.display = "none";
+         quantityControls.style.display = "flex";
+         // Get the selected size
+         const selectedSize = document.querySelector(
+           `input[name="size-${productId}"]:checked`
+         ).value;
+
+         // Get the current quantity for the selected size (initially 1)
+         const quantity = 1;
+         inputBtn.textContent = quantity;
+
+         // Update the Firestore quantity for the selected size
+         await updateFirestoreQuantity(
+           quantity,
+           productId,
+           selectedSize,
+           guestUserUID
+         );
+
+         // Get the product details based on the selected size
+         const selectedProductDetails = productData.sizes[selectedSize];
+
+         // Add the product to the user's cart in Firestore
+         const cartItemRef = doc(
+           db,
+           "carts",
+           guestUserUID,
+           "items",
+           `${productId}-${selectedSize}`
+         );
+         await setDoc(cartItemRef, {
+           size: selectedSize,
+           quantity: quantity,
+           price: selectedProductDetails.finalPrice,
+           name: productData.name, // Add the product name
+           image: productData.image, // Add the product image URL
+         })
+           .then(() => {
+             console.log("Product added to cart in Firestore.");
+           })
+           .catch((error) => {
+             console.error("Error adding product to cart in Firestore:", error);
+           });
+       });
+
+       minusButton.addEventListener("click", async () => {
+         if (quantity > 1) {
+           --quantity;
+           inputBtn.textContent = quantity;
+           const selectedSize = document.querySelector(
+             `input[name="size-${productId}"]:checked`
+           ).value;
+           console.log("selected size quanti", selectedSize, quantity);
+           await updateFirestoreQuantity(
+             quantity,
+             productId,
+             selectedSize,
+             guestUserUID
+           );
+           console.log("quantity updated");
+         } else {
+           addToCartButton.style.display = "block";
+           quantityControls.style.display = "none";
+           quantity = 0;
+           const selectedSize = document.querySelector(
+             `input[name="size-${productId}"]:checked`
+           ).value;
+           await updateFirestoreQuantity(
+             quantity,
+             productId,
+             selectedSize,
+             guestUserUID
+           );
+           console.log("quantity updated");
+         }
+       });
+
+       plusButton.addEventListener("click", async () => {
+         if (quantity < 6) {
+           ++quantity;
+           inputBtn.textContent = quantity;
+           const selectedSize = document.querySelector(
+             `input[name="size-${productId}"]:checked`
+           ).value;
+           await updateFirestoreQuantity(
+             quantity,
+             productId,
+             selectedSize,
+             guestUserUID
+           );
+           console.log("quantity updated");
+         }
+       });
+
+       async function selectMaxQuantityRadioButton(productId, guestUserUID) {
+         try {
+           // Find all radio buttons for the given product card
+           const sizeRadios = document.querySelectorAll(
+             `input[name="size-${productId}"]`
+           );
+
+           // Initialize variables to keep track of the maximum quantity and the corresponding radio button
+           let maxQuantity = 0;
+           let maxQuantityRadioButton = null;
+
+           // Iterate through the radio buttons
+           for (const radio of sizeRadios) {
+             // Extract the selected size from the radio button's value
+             const selectedSize = radio.value;
+
+             // Get the quantity for this size from Firestore or your data source
+             const quantity = await getQuantityFromDataSource(
+               productId,
+               selectedSize,
+               guestUserUID
+             );
+
+             // Check if the quantity for this size is greater than the current maximum
+             if (quantity > maxQuantity) {
+               maxQuantity = quantity;
+               maxQuantityRadioButton = radio;
+             }
+           }
+
+           // Check if a radio button with the maximum quantity was found
+           if (maxQuantityRadioButton) {
+             // Programmatically select the radio button with the maximum quantity
+             maxQuantityRadioButton.checked = true;
+             // Get the selected size value
+             const selectedSize = maxQuantityRadioButton.value;
+
+             // Update prices and discount based on the selected size
+             document.getElementById(`final-price-${productId}`).textContent =
+               productData.sizes[selectedSize].finalPrice;
+             document.getElementById(
+               `original-price-${productId}`
+             ).textContent = productData.sizes[selectedSize].originalPrice;
+             document.getElementById(`discount-${productId}`).textContent =
+               productData.sizes[selectedSize].discount;
+
+             await syncQuantityUI(productId, selectedSize, guestUserUID);
+           }
+         } catch (error) {
+           console.error("Error selecting max quantity radio button:", error);
+         }
+       }
+
+       // Replace this function with your actual logic to retrieve quantity from your data source
+       async function getQuantityFromDataSource(
+         productId,
+         selectedSize,
+         guestUserUID
+       ) {
+         try {
+           // Assuming you have Firebase Firestore initialized and a reference to your data collection
+           const cartItemRef = doc(
+             db,
+             "carts",
+             guestUserUID,
+             "items",
+             `${productId}-${selectedSize}`
+           );
+
+           // Get the cart item document snapshot
+           const docSnapshot = await getDoc(cartItemRef);
+
+           // Check if the document exists
+           if (docSnapshot.exists()) {
+             const cartItemData = docSnapshot.data();
+
+             // Retrieve the quantity for the selected size from the document data
+             const quantity = cartItemData.quantity || 0;
+
+             return quantity;
+           } else {
+             // Document does not exist, return a default value (0)
+             return 0;
+           }
+         } catch (error) {
+           console.error("Error fetching quantity from data source:", error);
+           // Handle the error appropriately in your application
+           // You can return an error code or throw an exception if needed
+           throw error;
+         }
+       }
+
+       await selectMaxQuantityRadioButton(productId, guestUserUID);
+     } else {
+       console.error(`Product with ID '${productId}' not found in Firestore.`);
+     }
+   } catch (error) {
+     console.error("Error updating product card:", error);
+   }
+ }
 
 // Function to generate size selection radio buttons
 export function generateSizeRadioButtons(sizes) {
@@ -1580,8 +1968,64 @@ export async function updateUIBasedOnSavedState(productId, userUID) {
      inputBtn.textContent = quantity;
    }
  }
+async function syncCartUI(productId, selectedSize, guestUserUID) {
+  try {
+    const cartItemRef = doc(
+      db,
+      "carts",
+      guestUserUID,
+      "items",
+      `${productId}-${selectedSize}`
+    );
+    const cartItemSnapshot = await getDoc(cartItemRef);
 
+    // Find the elements in the DOM
+    const quantityControls = document.getElementById(
+      `plus-minus-input-${productId}`
+    );
+    const addToCartButton = document.getElementById(`add-to-cart-${productId}`);
+    const inputBtn = document.getElementById(`input-btn-${productId}`);
 
+    if (cartItemSnapshot.exists()) {
+      const cartItemData = cartItemSnapshot.data();
+
+      // Get the quantity for the selected size
+      const quantity = cartItemData.quantity || 0;
+
+      // Check if the quantity is valid (greater than zero)
+      if (quantity > 0) {
+        addToCartButton.style.display = "none";
+        quantityControls.style.display = "flex";
+        inputBtn.textContent = quantity;
+      } else {
+        // Quantity is zero or negative, this is an invalid state, reset it
+        resetUIState();
+      }
+    } else {
+      // Cart item does not exist, reset the UI
+      resetUIState();
+    }
+  } catch (error) {
+    console.error("Error syncing quantity UI:", error);
+    // Handle the error gracefully, e.g., show a message to the user
+    // and reset the UI state.
+    resetUIState();
+  }
+
+  // Helper function to reset the UI to its default state
+  function resetUIState() {
+    const quantityControls = document.getElementById(
+      `plus-minus-input-${productId}`
+    );
+    const addToCartButton = document.getElementById(`add-to-cart-${productId}`);
+    const inputBtn = document.getElementById(`input-btn-${productId}`);
+
+    addToCartButton.style.display = "block";
+    quantityControls.style.display = "none";
+    let quantity = 1;
+    inputBtn.textContent = quantity;
+  }
+}
 
 // server.js
 export async function loadProducts() {
@@ -1589,8 +2033,7 @@ export async function loadProducts() {
   const productItems = document.querySelectorAll(".product-item");
   return productItems;
 }
-
-let guestUserUID = localStorage.getItem("guestUserUID");; // Initialize as null
+let guestUserUID = localStorage.getItem("guestUserUID"); // Initialize as null
 
 // Function to generate a unique guest user UID
 function generateGuestUserUID() {
@@ -1599,53 +2042,56 @@ function generateGuestUserUID() {
   return `${prefix}${randomPart}`;
 }
 
-    const productItems = await loadProducts();
-  
-    
-    
-    
-    auth.onAuthStateChanged(async (user) => {
-      if (user) {
-        productItems.forEach(async(productItem) => {
-    const productId = productItem.id;
-        const userUID = user.uid;  
-        await updateAndSyncProductCard(productId,userUID);
-        
-        console.log(
-          `Product card ${productId} updated and synced successfully.`
-        );
-        await updateUIBasedOnSavedState(productId, userUID);
-        const selectedSize = productItem.querySelector("input[type='radio']:checked").value;
-        console.log(selectedSize);
-        await syncQuantityUI(productId, selectedSize, userUID);
-        
-        });
-      }else if (guestUserUID){
+const productItems = await loadProducts();
 
-        console.log(guestUserUID);
-        productItems.forEach(async(productItem) => {
-    const productId = productItem.id;
-        await updateAndSyncProductCard(productId, guestUserUID);
-        const selectedSize = productItem.querySelector("input[type='radio']:checked").value;
-        console.log(selectedSize);
-        await syncQuantityUI(productId, selectedSize, guestUserUID);
-        });
-      }
-      else if(!guestUserUID){
-        const guestUserUID = generateGuestUserUID();
-        localStorage.setItem("guestUserUID", guestUserUID);
-        console.log(guestUserUID);
-        productItems.forEach(async(productItem) => {
-    const productId = productItem.id;
-        await updateAndSyncProductCard(productId, guestUserUID);
-        const selectedSize = productItem.querySelector("input[type='radio']:checked").value;
-        console.log(selectedSize);
-        await syncQuantityUI(productId, selectedSize, guestUserUID);
-        });
-    }
+auth.onAuthStateChanged(async (user) => {
+  if (user) {
+    // Handle authenticated user
+    productItems.forEach(async (productItem) => {
+      const productId = productItem.id;
+      const userUID = user.uid;
+      await updateAndSyncProductCard(productId, userUID);
+
+      console.log(`Product card ${productId} updated and synced successfully.`);
+
+      await updateUIBasedOnSavedState(productId, userUID);
+      const selectedSize = productItem.querySelector(
+        "input[type='radio']:checked"
+      ).value;
+      console.log(selectedSize);
+      await syncQuantityUI(productId, selectedSize, userUID);
     });
+  } else {
+    // Sign in the user anonymously
+    try {
+      const userCredential = await signInAnonymously(auth);
+      const guestUser = userCredential.user;
+      const guestUserUID = guestUser.uid;
 
-  
-  
+      // User signed in successfully
+      console.log("Guest user signed in anonymously:", guestUserUID);
+
+      const productItems = document.querySelectorAll(".product-item");
+
+      productItems.forEach(async (productItem) => {
+        const productId = productItem.id;
+        await updateAndSyncGuestCart(productId, guestUserUID);
+
+        // Wait for the "load" event to ensure that the DOM elements are ready
+        window.addEventListener("load", async () => {
+          const selectedSize = productItem.querySelector(
+            "input[type='radio']:checked"
+          ).value;
+          console.log(selectedSize);
+
+          await syncCartUI(productId, selectedSize, guestUserUID);
+        });
+      });
+    } catch (error) {
+      console.error("Error signing in as a guest:", error);
+    }
+  }
+});
+   
 loadProducts();
 

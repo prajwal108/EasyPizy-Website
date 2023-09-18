@@ -310,11 +310,6 @@ function updateUIForLoggedInUser(user) {
   modal.style.display = "none";
 }
 
-
-
-
-
-
 // Function to update the UI when the user is logged out
 function updateUIForLoggedOutUser() {
   // Reset the account text and options
@@ -348,13 +343,15 @@ function updateUIForLoggedOutUser() {
   });
 
 
-
 // Event listener for the "Logout" button
 // Assuming you have a Firebase authentication state change listener
 auth.onAuthStateChanged((user) => {
-  if (user) {
+  if (user && !user.isAnonymous) {
     // User is logged in
     updateUIForLoggedInUser(user);
+  } else if (user && user.isAnonymous) {
+    // User is logged in but is anonymous
+    updateUIForLoggedOutUser();
   } else {
     // User is logged out
     updateUIForLoggedOutUser();
