@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
-  import {getFirestore,collection,doc,setDoc,updateDoc,getDoc,deleteDoc, addDoc, query, where,getDocs,} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js";
+  import {getFirestore,collection,doc,setDoc,updateDoc,getDoc,deleteDoc, addDoc, query, where,getDocs,writeBatch} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js";
 import {
   getAuth,
   browserLocalPersistence,
@@ -37,6 +37,7 @@ import {
     .catch((error) => {
       // Handle errors
     });
+    
      const db = getFirestore(app);
 
      const productsData = [
@@ -1581,7 +1582,7 @@ export async function updateAndSyncProductCard(productId,userUID) {
        const saveButton = document.getElementById(`save-btn-${productId}`);
        // Attach a click event listener to the "Save" button.
        saveButton.addEventListener("click", () => {
-         auth.onAuthStateChanged((user) => {
+         
            
              Toastify({
                text: `Please login to save ${productData.name}`,
@@ -1602,7 +1603,7 @@ export async function updateAndSyncProductCard(productId,userUID) {
              // User is signed out
            
          }); // Assuming userUID is defined
-       });
+       
 
        // Add event listeners for the plus and minus buttons
        const minusButton = document.getElementById(`minus-btn-${productId}`);
@@ -2042,10 +2043,74 @@ function generateGuestUserUID() {
   return `${prefix}${randomPart}`;
 }
 
+ // Import your Firebase Firestore instance
+// async function convertGuestCartToUserCart(userUID, guestUserUID) {
+//   try {
+    
+
+//     const db = getFirestore(app);
+
+//     // Reference to the guest user's cart items
+//     const guestCartItemsRef = collection(db, "carts", guestUserUID, "items");
+
+//     // Reference to the user's cart items
+//     const userCartItemsRef = collection(db, "carts", userUID, "items");
+
+//     // Get all items from the guest cart
+//     const guestCartSnapshot = await getDocs(guestCartItemsRef);
+
+//     if (!guestCartSnapshot.empty) {
+//       // Batch write to add items from the guest cart to the user's cart
+//       const batch = writeBatch(db);
+
+//       guestCartSnapshot.forEach((doc) => {
+//         // Create a new document reference in the user's cart with the same ID
+//         const userCartItemRef = doc(userCartItemsRef, userUID);
+
+//         // Get the data from the guest cart item
+//         const guestCartItemData = doc.data();
+
+//         // Add the item to the user's cart
+//         batch.set(userCartItemRef, guestCartItemData);
+
+//         // Delete the item from the guest cart
+//         batch.delete(doc.ref);
+//       });
+
+//       // Commit the batch to Firestore
+//       await batch.commit();
+
+//       // After adding items to the user's cart and deleting from the guest cart,
+//       // you can now delete the entire guest cart document
+//       const guestCartDocRef = doc(db, "carts", guestUserUID);
+//       await deleteDoc(guestCartDocRef);
+
+//       console.log("Guest cart converted to user cart successfully.");
+//     } else {
+//       console.log("Guest cart is empty.");
+//     }
+//   } catch (error) {
+//     console.error("Error converting guest cart to user cart:", error);
+//   }
+// }
+
+
+
+// Usage: Call this function with the userUID and guestUserUID
+
+
 const productItems = await loadProducts();
 
 auth.onAuthStateChanged(async (user) => {
-  if (user) {
+  if (user && user.phoneNumber) {
+    // Usage:
+    (async () => {
+      const userUID = user.uid;
+      const guestUserUID = localStorage.getItem("guestUserUID");
+      console.log("guestUserUID is : ", guestUserUID);
+      
+      await convertGuestCartToUserCart(userUID, guestUserUID);
+    })();
     // Handle authenticated user
     productItems.forEach(async (productItem) => {
       const productId = productItem.id;
@@ -2067,6 +2132,7 @@ auth.onAuthStateChanged(async (user) => {
       const userCredential = await signInAnonymously(auth);
       const guestUser = userCredential.user;
       const guestUserUID = guestUser.uid;
+      localStorage.setItem("guestUserUID", guestUserUID);
 
       // User signed in successfully
       console.log("Guest user signed in anonymously:", guestUserUID);
