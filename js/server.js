@@ -8,9 +8,6 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js";
 
 
-
-
-
     // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -981,7 +978,6 @@ import {
 
      const products = "products";
 
-
      const uploadDataToFirestore = async (productsData) => {
        try {
          if (!productsData || !Array.isArray(productsData)) {
@@ -1013,7 +1009,6 @@ import {
          console.error("Error uploading data to Firestore:", error);
        }
      };
-
 
      const readDataFromFirestore = async () => {
        try {
@@ -2094,9 +2089,44 @@ function generateGuestUserUID() {
 //   }
 // }
 
+// Function to convert guest cart to user cart
+async function moveGuestCartToUserCart(guestUserUID, userUID) {
+  try {
+    const db = getFirestore(app);
+    const guestCartRef = collection(db, `carts/${guestUserUID}/items`);
+    const userCartRef = collection(db, `carts/${userUID}/items`);
+
+    const guestSnapshot = await getDocs(guestCartRef);
+
+    // Create a batch for deleting items from the guest cart
+    const deleteBatch = writeBatch(db);
+
+    guestSnapshot.forEach(async (doc) => {
+      const userCartItemData = doc.data();
+      console.log("user cart item data", userCartItemData);
+
+      // Add item to the user's cart
+      const userCartItemRef = await addDoc(userCartRef, {userCartItemData,
+        name: `${doc.id}-${userCartItemData.selectedSize}`, // Set the document name
+      });
+
+      // Delete item from the guest cart
+      deleteBatch.delete(doc.ref);
+    });
+    // Delete the entire guest cart
+    await deleteDoc(doc(db, `carts/${guestUserUID}`));
+
+    // Commit the deleteBatch to delete items from the guest cart
+    await deleteBatch.commit();
+
+    console.log("Guest cart moved successfully!");
+  } catch (error) {
+    console.error("Error moving guest cart items:", error);
+  }
+}
 
 
-// Usage: Call this function with the userUID and guestUserUID
+
 
 
 const productItems = await loadProducts();
@@ -2104,26 +2134,31 @@ const productItems = await loadProducts();
 auth.onAuthStateChanged(async (user) => {
   if (user && user.phoneNumber) {
     // Usage:
+
     (async () => {
       const userUID = user.uid;
       const guestUserUID = localStorage.getItem("guestUserUID");
-      console.log("guestUserUID is : ", guestUserUID);
-      
-      await convertGuestCartToUserCart(userUID, guestUserUID);
+      // Initialize Firebase app and Firestore
+      await moveGuestCartToUserCart(guestUserUID,userUID); 
     })();
+
+    // Get references to cart collections
+   
+   
+
     // Handle authenticated user
     productItems.forEach(async (productItem) => {
       const productId = productItem.id;
       const userUID = user.uid;
       await updateAndSyncProductCard(productId, userUID);
 
-      console.log(`Product card ${productId} updated and synced successfully.`);
+      // console.log(`Product card ${productId} updated and synced successfully.`);
 
       await updateUIBasedOnSavedState(productId, userUID);
       const selectedSize = productItem.querySelector(
         "input[type='radio']:checked"
       ).value;
-      console.log(selectedSize);
+      // console.log(selectedSize); 
       await syncQuantityUI(productId, selectedSize, userUID);
     });
   } else {

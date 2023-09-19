@@ -185,6 +185,7 @@ async function getUserProfile(uid) {
     }
   } catch (error) {
     console.error("Error fetching user profile:", error);
+    
     // Handle error
     const modalOverlay = document.getElementById("modalOverlay");
     modalOverlay.style.display = "none";
