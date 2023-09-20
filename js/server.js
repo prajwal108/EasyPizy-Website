@@ -2038,57 +2038,6 @@ function generateGuestUserUID() {
   return `${prefix}${randomPart}`;
 }
 
- // Import your Firebase Firestore instance
-// async function convertGuestCartToUserCart(userUID, guestUserUID) {
-//   try {
-    
-
-//     const db = getFirestore(app);
-
-//     // Reference to the guest user's cart items
-//     const guestCartItemsRef = collection(db, "carts", guestUserUID, "items");
-
-//     // Reference to the user's cart items
-//     const userCartItemsRef = collection(db, "carts", userUID, "items");
-
-//     // Get all items from the guest cart
-//     const guestCartSnapshot = await getDocs(guestCartItemsRef);
-
-//     if (!guestCartSnapshot.empty) {
-//       // Batch write to add items from the guest cart to the user's cart
-//       const batch = writeBatch(db);
-
-//       guestCartSnapshot.forEach((doc) => {
-//         // Create a new document reference in the user's cart with the same ID
-//         const userCartItemRef = doc(userCartItemsRef, userUID);
-
-//         // Get the data from the guest cart item
-//         const guestCartItemData = doc.data();
-
-//         // Add the item to the user's cart
-//         batch.set(userCartItemRef, guestCartItemData);
-
-//         // Delete the item from the guest cart
-//         batch.delete(doc.ref);
-//       });
-
-//       // Commit the batch to Firestore
-//       await batch.commit();
-
-//       // After adding items to the user's cart and deleting from the guest cart,
-//       // you can now delete the entire guest cart document
-//       const guestCartDocRef = doc(db, "carts", guestUserUID);
-//       await deleteDoc(guestCartDocRef);
-
-//       console.log("Guest cart converted to user cart successfully.");
-//     } else {
-//       console.log("Guest cart is empty.");
-//     }
-//   } catch (error) {
-//     console.error("Error converting guest cart to user cart:", error);
-//   }
-// }
-
 // Function to convert guest cart to user cart
 async function moveGuestCartToUserCart(guestUserUID, userUID) {
   try {
@@ -2101,18 +2050,19 @@ async function moveGuestCartToUserCart(guestUserUID, userUID) {
     // Create a batch for deleting items from the guest cart
     const deleteBatch = writeBatch(db);
 
-    guestSnapshot.forEach(async (doc) => {
-      const userCartItemData = doc.data();
-      console.log("user cart item data", userCartItemData);
+    guestSnapshot.forEach(async (snapshot) => {
+      const docId = snapshot.id;
+      const userCartItemRef = doc(userCartRef, docId);
+
+      const userCartItemData = snapshot.data();
 
       // Add item to the user's cart
-      const userCartItemRef = await addDoc(userCartRef, {userCartItemData,
-        name: `${doc.id}-${userCartItemData.selectedSize}`, // Set the document name
-      });
+      await setDoc(userCartItemRef, userCartItemData);
 
       // Delete item from the guest cart
-      deleteBatch.delete(doc.ref);
+      deleteBatch.delete(snapshot.ref);
     });
+
     // Delete the entire guest cart
     await deleteDoc(doc(db, `carts/${guestUserUID}`));
 
@@ -2124,10 +2074,6 @@ async function moveGuestCartToUserCart(guestUserUID, userUID) {
     console.error("Error moving guest cart items:", error);
   }
 }
-
-
-
-
 
 const productItems = await loadProducts();
 
