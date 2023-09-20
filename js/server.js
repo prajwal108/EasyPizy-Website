@@ -2163,4 +2163,3 @@ auth.onAuthStateChanged(async (user) => {
 });
    
 loadProducts();
-
