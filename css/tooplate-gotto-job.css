@@ -2483,3 +2483,21 @@ option.text-muted{
 
 }
 
+#youtubeSection{
+background-image: url("../images/2.jpg"); 
+background-position: center; 
+background-size:contain;
+background-attachment: fixed; 
+height: 100vh; 
+display: flex; 
+align-items: center;
+}
+
+.modalOverlay{
+  display: flex;
+align-items: center;
+justify-content: center;
+width: 100vw;
+height: 100vh;
+backdrop-filter: blur(5px);
+}
