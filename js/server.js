@@ -2073,7 +2073,7 @@ async function moveGuestCartToUserCart(guestUserUID, userUID) {
 }
 
 // Function to update the cart count in real-time based on the number of items
-function updateCartCount(userUID) {
+async function updateCartCount(userUID) {
   const cartRef = collection(db, `carts/${userUID}/items`);
 
   // Listen for changes in the Firestore cart collection
@@ -2096,6 +2096,161 @@ function updateCartCount(userUID) {
   });
 }
 
+
+
+// Function to delete an item from the cart
+async function deleteCartItem(cartItemId, userUID) {
+  const cartItemRef = doc(db, `carts/${userUID}/items/${cartItemId}`);
+
+  try {
+    await deleteDoc(cartItemRef);
+    console.log("Item deleted successfully");
+    
+  } catch (error) {
+    console.error("Error deleting item:", error);
+  }
+}
+
+
+// Function to update quantity in the database
+async function updateQuantityInDatabase(cartItemId, newQuantity, userUID) {
+  const cartItemRef = doc(db, `carts/${userUID}/items/${cartItemId}`);
+
+  try {
+    const itemData = (await getDoc(cartItemRef)).data();
+    const itemPrice = itemData.price;
+    await updateDoc(cartItemRef, {
+      quantity: parseInt(newQuantity),
+      total: parseInt(newQuantity) * parseInt(itemPrice.match(/\d+/)[0]),
+    });
+    console.log("Quantity updated successfully");
+  } catch (error) {
+    console.error("Error updating quantity:", error);
+  }
+}
+
+async function updateCartItems(userUID) {
+  const cartContainer = document.getElementById("cart-container");
+
+  // Clear the existing cart items
+  cartContainer.innerHTML = "";
+  const cartRef = collection(db, `carts/${userUID}/items`);
+
+  // Listen for changes in the Firestore cart collection
+  onSnapshot(cartRef, async (snapshot) => {
+    // Loop through the documents in the collection
+    cartContainer.innerHTML = "";
+    snapshot.forEach(async(snap) => {
+      cartContainer.innerHTML = "";
+      const itemData = await snap.data();
+      console.log(itemData);
+      const cartItemId = snap.id;
+      const price = itemData.price;
+      
+
+      // Create a new cart item row
+      const cartItemRow = document.createElement("div");
+      cartItemRow.classList.add("row", "border-bottom");
+      cartItemRow.style.padding = "10px";
+
+      const cartItemMainRow = document.createElement("div");
+      cartItemMainRow.classList.add(
+        "row",
+        "main",
+        "align-items-center",
+        "cart-col"
+      );
+
+      // Create individual columns for each cart item property
+      const productCol = document.createElement("div");
+      productCol.classList.add("col", "product-col", "cart-col-option");
+      productCol.innerHTML = `<div>${itemData.name}</div>`;
+
+      const sizeCol = document.createElement("div");
+      sizeCol.classList.add("col", "size-col", "cart-col-option");
+      sizeCol.innerHTML = `
+                <span class="cart-col-label">Size (gm)</span>
+                <span>${itemData.size}</span>
+            `;
+
+      const priceCol = document.createElement("div");
+      priceCol.classList.add("col", "price-col", "cart-col-option");
+      priceCol.innerHTML = `<span><span class="cart-price">${itemData.price}</span></span>`;
+
+      const quantityCol = document.createElement("div");
+      quantityCol.classList.add("col", "quantity-col", "cart-col-option");
+      quantityCol.innerHTML = `
+                <span class="cart-col-label">Qty</span>
+                <select>
+                    <option class="text-muted" value="1" ${
+                      itemData.quantity === 1 ? "selected" : ""
+                    }>1</option>
+                    <option class="text-muted" value="2" ${
+                      itemData.quantity === 2 ? "selected" : ""
+                    }>2</option>
+                    <option class="text-muted" value="3" ${
+                      itemData.quantity === 3 ? "selected" : ""
+                    }>3</option>
+                    <option class="text-muted" value="4" ${
+                      itemData.quantity === 4 ? "selected" : ""
+                    }>4</option>
+                    <option class="text-muted" value="5" ${
+                      itemData.quantity === 5 ? "selected" : ""
+                    }>5</option>
+                    <option class="text-muted" value="6" ${
+                      itemData.quantity === 6 ? "selected" : ""
+                    }>6</option>
+                </select>
+            `;
+      quantityCol.addEventListener("change", (e) => {
+        const newQuantity = parseInt(e.target.value);
+        // Update the quantity in the database
+        updateQuantityInDatabase(cartItemId, newQuantity, userUID);
+        // Recalculate and update the total
+        const newTotal = newQuantity * parseInt(price.match(/\d+/)[0]);
+        totalCol.innerHTML = `<div>₹ <span class="cart-total-price">${itemData.total}</span></div>`;
+      });
+
+      const totalCol = document.createElement("div");
+      totalCol.classList.add("col", "total-col", "cart-col-option");
+      totalCol.innerHTML = `<div>₹ <span class="cart-total-price">${itemData.total}</span></div>`;
+
+      const crossCol = document.createElement("div");
+      crossCol.classList.add(
+        "bi",
+        "bi-x",
+        "col",
+        "cross-col",
+        "cart-col-option"
+      );
+      crossCol.innerHTML = ` `;
+
+      // Append each column to the cart item row
+      cartItemRow.appendChild(cartItemMainRow);
+      cartItemRow.appendChild(productCol);
+      cartItemRow.appendChild(sizeCol);
+      cartItemRow.appendChild(priceCol);
+      cartItemRow.appendChild(quantityCol);
+      cartItemRow.appendChild(totalCol);
+      cartItemRow.appendChild(crossCol);
+
+      // Append the cart item row to the cart container
+      cartContainer.appendChild(cartItemRow);
+
+      
+      // Attach a click event listener to the delete button
+      // Attach a click event listener to the delete button
+      crossCol.addEventListener("click", async (e) => {
+        e.preventDefault(); // Prevent the default link behavior
+        const cartItemIdToDelete = cartItemId; // Use the already defined cartItemId
+        // Call the deleteCartItem function to delete the item
+        await deleteCartItem(cartItemIdToDelete, userUID);
+      });
+      await updateQuantityInDatabase(cartItemId, itemData.quantity, userUID);
+    });
+  });
+
+}
 
 const productItems = await loadProducts();
 
@@ -2125,8 +2280,10 @@ auth.onAuthStateChanged(async (user) => {
       await syncQuantityUI(productId, selectedSize, userUID);
       
     });
+
     const userUID = user.uid;
-     updateCartCount(userUID);    
+     await updateCartCount(userUID); 
+     await updateCartItems(userUID);   
   } else {
     // Sign in the user anonymously
     try {
@@ -2155,11 +2312,13 @@ auth.onAuthStateChanged(async (user) => {
         });
       });
 
-      updateCartCount(guestUserUID);
+      await updateCartCount(guestUserUID);
+      await updateCartItems(guestUserUID);
     } catch (error) {
       console.error("Error signing in as a guest:", error);
     }
   }
 });
    
-loadProducts();
+await loadProducts();
+
