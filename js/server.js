@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
-  import {getFirestore,collection,doc,setDoc,updateDoc,getDoc,deleteDoc, addDoc, query, where,getDocs,writeBatch} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js";
+  import {getFirestore,collection,doc,setDoc,updateDoc,getDoc,deleteDoc, addDoc, query, where,getDocs,writeBatch,onSnapshot} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js";
 import {
   getAuth,
   browserLocalPersistence,
@@ -1122,7 +1122,6 @@ export async function updateAndSyncProductCard(productId,userUID) {
           // Update the Firestore quantity based on the new size
           await syncQuantityUI(productId, selectedSize, userUID);
 
-          console.log("Selected size changed to", selectedSize);
         });
       });
 
@@ -1567,8 +1566,6 @@ export async function updateAndSyncProductCard(productId,userUID) {
              productData.sizes[selectedSize].discount;
            // Update the Firestore quantity based on the new size
            await syncCartUI(productId, selectedSize, guestUserUID);
-
-           console.log("Selected size changed to", selectedSize);
          });
        });
 
@@ -2075,22 +2072,42 @@ async function moveGuestCartToUserCart(guestUserUID, userUID) {
   }
 }
 
+// Function to update the cart count in real-time based on the number of items
+function updateCartCount(userUID) {
+  const cartRef = collection(db, `carts/${userUID}/items`);
+
+  // Listen for changes in the Firestore cart collection
+  onSnapshot(cartRef, (snapshot) => {
+    let totalItems = 0;
+
+    // Calculate the total number of items in the cart
+    snapshot.forEach((doc) => {
+      const cartItemData = doc.data();
+      const quantity = cartItemData.quantity || 0;
+      totalItems += quantity > 0 ? 1 : 0; // Count items with a quantity greater than 0
+    });
+
+    // Update the cart count in the DOM
+    const cartCountElement = document.getElementById("cart-count");
+    cartCountElement.textContent = totalItems;
+
+    // Show or hide the cart count based on the total items
+    cartCountElement.style.display = totalItems > 0 ? "inline" : "none";
+  });
+}
+
+
 const productItems = await loadProducts();
 
 auth.onAuthStateChanged(async (user) => {
   if (user && user.phoneNumber) {
     // Usage:
-
     (async () => {
       const userUID = user.uid;
       const guestUserUID = localStorage.getItem("guestUserUID");
       // Initialize Firebase app and Firestore
       await moveGuestCartToUserCart(guestUserUID,userUID); 
     })();
-
-    // Get references to cart collections
-   
-   
 
     // Handle authenticated user
     productItems.forEach(async (productItem) => {
@@ -2106,7 +2123,10 @@ auth.onAuthStateChanged(async (user) => {
       ).value;
       // console.log(selectedSize); 
       await syncQuantityUI(productId, selectedSize, userUID);
+      
     });
+    const userUID = user.uid;
+     updateCartCount(userUID);    
   } else {
     // Sign in the user anonymously
     try {
@@ -2134,6 +2154,8 @@ auth.onAuthStateChanged(async (user) => {
           await syncCartUI(productId, selectedSize, guestUserUID);
         });
       });
+
+      updateCartCount(guestUserUID);
     } catch (error) {
       console.error("Error signing in as a guest:", error);
     }
