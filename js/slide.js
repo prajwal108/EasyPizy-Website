@@ -13,9 +13,10 @@ function sendToWhatsApp() {
   // Open WhatsApp link in a new tab
   window.open(whatsappURL, "_blank");
 }
-
+const whatsappButton = document.getElementById("whatsapp-button");
+if(whatsappButton){
   window.addEventListener("scroll", function() {
-    const whatsappButton = document.getElementById("whatsapp-button");
+    
     const windowHeight = window.innerHeight;
     const scrollY = window.scrollY || window.pageYOffset;
 
@@ -25,6 +26,7 @@ function sendToWhatsApp() {
       whatsappButton.style.display = "none"; // Hide the button if scrolled back above 100vh
     }
   },{passive: true});
+}
 
 // Add this script before the closing </body> tag
 const modalOverlay = document.getElementById("modalOverlay");

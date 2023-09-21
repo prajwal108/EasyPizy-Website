@@ -44,27 +44,27 @@ import {
          image: "../images/images(1).jpeg",
          sizes: {
            "250gm": {
-             label: "250gm",
+             label: "250 gm",
              name: "size-kashmiri-chilli-powder",
              checked: true,
-             finalPrice: "₹80",
-             originalPrice: "₹100",
+             finalPrice: "₹ 80",
+             originalPrice: "₹ 100",
              discount: "20% off",
            },
            "500gm": {
-             label: "500gm",
+             label: "500 gm",
              name: "size-kashmiri-chilli-powder",
              checked: false,
-             finalPrice: "₹150",
-             originalPrice: "₹200",
+             finalPrice: "₹ 150",
+             originalPrice: "₹ 200",
              discount: "25% off",
            },
            "1000gm": {
-             label: "1000gm",
+             label: "1000 gm",
              name: "size-kashmiri-chilli-powder",
              checked: false,
-             finalPrice: "₹240",
-             originalPrice: "₹400",
+             finalPrice: "₹ 240",
+             originalPrice: "₹ 400",
              discount: "30% off",
            },
          },
@@ -76,27 +76,27 @@ import {
          image: "../images/images(1).jpeg",
          sizes: {
            "250gm": {
-             label: "250gm",
+             label: "250 gm",
              name: "size-turmeric-powder",
              checked: true,
-             finalPrice: "₹80",
-             originalPrice: "₹100",
+             finalPrice: "₹ 80",
+             originalPrice: "₹ 100",
              discount: "20% off",
            },
            "500gm": {
-             label: "500gm",
+             label: "500 gm",
              name: "size-turmeric-powder",
              checked: false,
-             finalPrice: "₹150",
-             originalPrice: "₹200",
+             finalPrice: "₹ 150",
+             originalPrice: "₹ 200",
              discount: "25% off",
            },
            "1000gm": {
-             label: "1000gm",
+             label: "1000 gm",
              name: "size-turmeric-powder",
              checked: false,
-             finalPrice: "₹240",
-             originalPrice: "₹400",
+             finalPrice: "₹ 240",
+             originalPrice: "₹ 400",
              discount: "30% off",
            },
          },
@@ -108,27 +108,27 @@ import {
          image: "../images/images(1).jpeg",
          sizes: {
            "250gm": {
-             label: "250gm",
+             label: "250 gm",
              name: "size-dry-mango-powder",
              checked: true,
-             finalPrice: "₹80",
-             originalPrice: "₹100",
+             finalPrice: "₹ 80",
+             originalPrice: "₹ 100",
              discount: "20% off",
            },
            "500gm": {
-             label: "500gm",
+             label: "500 gm",
              name: "size-dry-mango-powder",
              checked: false,
-             finalPrice: "₹150",
-             originalPrice: "₹200",
+             finalPrice: "₹ 150",
+             originalPrice: "₹ 200",
              discount: "25% off",
            },
            "1000gm": {
-             label: "1000gm",
+             label: "1000 gm",
              name: "size-dry-mango-powder",
              checked: false,
-             finalPrice: "₹240",
-             originalPrice: "₹400",
+             finalPrice: "₹ 240",
+             originalPrice: "₹ 400",
              discount: "30% off",
            },
          },
@@ -140,27 +140,27 @@ import {
          image: "../images/images(1).jpeg",
          sizes: {
            "250gm": {
-             label: "250gm",
+             label: "250 gm",
              name: "size-red-chilli-powder",
              checked: true,
-             finalPrice: "₹80",
-             originalPrice: "₹100",
+             finalPrice: "₹ 80",
+             originalPrice: "₹ 100",
              discount: "20% off",
            },
            "500gm": {
-             label: "500gm",
+             label: "500 gm",
              name: "size-red-chilli-powder",
              checked: false,
-             finalPrice: "₹150",
-             originalPrice: "₹200",
+             finalPrice: "₹ 150",
+             originalPrice: "₹ 200",
              discount: "25% off",
            },
            "1000gm": {
-             label: "1000gm",
+             label: "1000 gm",
              name: "size-red-chilli-powder",
              checked: false,
-             finalPrice: "₹240",
-             originalPrice: "₹400",
+             finalPrice: "₹ 240",
+             originalPrice: "₹ 400",
              discount: "30% off",
            },
          },
@@ -172,27 +172,27 @@ import {
          image: "../images/images(1).jpeg",
          sizes: {
            "250gm": {
-             label: "250gm",
+             label: "250 gm",
              name: "size-coriander-powder",
              checked: true,
-             finalPrice: "₹80",
-             originalPrice: "₹100",
+             finalPrice: "₹ 80",
+             originalPrice: "₹ 100",
              discount: "20% off",
            },
            "500gm": {
-             label: "500gm",
+             label: "500 gm",
              name: "size-coriander-powder",
              checked: false,
-             finalPrice: "₹150",
-             originalPrice: "₹200",
+             finalPrice: "₹ 150",
+             originalPrice: "₹ 200",
              discount: "25% off",
            },
            "1000gm": {
-             label: "1000gm",
+             label: "1000 gm",
              name: "size-coriander-powder",
              checked: false,
-             finalPrice: "₹240",
-             originalPrice: "₹400",
+             finalPrice: "₹ 240",
+             originalPrice: "₹ 400",
              discount: "30% off",
            },
          },
@@ -204,27 +204,27 @@ import {
          image: "../images/images(1).jpeg",
          sizes: {
            "250gm": {
-             label: "250gm",
+             label: "250 gm",
              name: "size-jeera-powder",
              checked: true,
-             finalPrice: "₹80",
-             originalPrice: "₹100",
+             finalPrice: "₹ 80",
+             originalPrice: "₹ 100",
              discount: "20% off",
            },
            "500gm": {
-             label: "500gm",
+             label: "500 gm",
              name: "size-jeera-powder",
              checked: false,
-             finalPrice: "₹150",
-             originalPrice: "₹200",
+             finalPrice: "₹ 150",
+             originalPrice: "₹ 200",
              discount: "25% off",
            },
            "1000gm": {
-             label: "1000gm",
+             label: "1000 gm",
              name: "size-jeera-powder",
              checked: false,
-             finalPrice: "₹240",
-             originalPrice: "₹400",
+             finalPrice: "₹ 240",
+             originalPrice: "₹ 400",
              discount: "30% off",
            },
          },
@@ -235,27 +235,27 @@ import {
   image: "../images/images(1).jpeg",
   sizes: {
     "250gm": {
-      label: "250gm",
+      label: "250 gm",
       name: "size-paneer-tikka-masala",
       checked: true,
-      finalPrice: "₹80",
-      originalPrice: "₹100",
+      finalPrice: "₹ 80",
+      originalPrice: "₹ 100",
       discount: "20% off",
     },
     "500gm": {
-      label: "500gm",
+      label: "500 gm",
       name: "size-paneer-tikka-masala",
       checked: false,
-      finalPrice: "₹150",
-      originalPrice: "₹200",
+      finalPrice: "₹ 150",
+      originalPrice: "₹ 200",
       discount: "25% off",
     },
     "1000gm": {
-      label: "1000gm",
+      label: "1000 gm",
       name: "size-paneer-tikka-masala",
       checked: false,
-      finalPrice: "₹240",
-      originalPrice: "₹400",
+      finalPrice: "₹ 240",
+      originalPrice: "₹ 400",
       discount: "30% off",
     },
   },
@@ -266,27 +266,27 @@ import {
     image: "../images/images(1).jpeg",
     sizes: {
       "250gm": {
-        label: "250gm",
+        label: "250 gm",
         name: "size-chola-masala",
         checked: true,
-        finalPrice: "₹80",
-        originalPrice: "₹100",
+        finalPrice: "₹ 80",
+        originalPrice: "₹ 100",
         discount: "20% off",
       },
       "500gm": {
-        label: "500gm",
+        label: "500 gm",
         name: "size-chola-masala",
         checked: false,
-        finalPrice: "₹150",
-        originalPrice: "₹200",
+        finalPrice: "₹ 150",
+        originalPrice: "₹ 200",
         discount: "25% off",
       },
       "1000gm": {
-        label: "1000gm",
+        label: "1000 gm",
         name: "size-chola-masala",
         checked: false,
-        finalPrice: "₹240",
-        originalPrice: "₹400",
+        finalPrice: "₹ 240",
+        originalPrice: "₹ 400",
         discount: "30% off",
       },
     },
@@ -297,27 +297,27 @@ import {
     image: "../images/images(1).jpeg",
     sizes: {
       "250gm": {
-        label: "250gm",
+        label: "250 gm",
         name: "size-misal",
         checked: true,
-        finalPrice: "₹80",
-        originalPrice: "₹100",
+        finalPrice: "₹ 80",
+        originalPrice: "₹ 100",
         discount: "20% off",
       },
       "500gm": {
-        label: "500gm",
+        label: "500 gm",
         name: "size-misal",
         checked: false,
-        finalPrice: "₹150",
-        originalPrice: "₹200",
+        finalPrice: "₹ 150",
+        originalPrice: "₹ 200",
         discount: "25% off",
       },
       "1000gm": {
-        label: "1000gm",
+        label: "1000 gm",
         name: "size-misal",
         checked: false,
-        finalPrice: "₹240",
-        originalPrice: "₹400",
+        finalPrice: "₹ 240",
+        originalPrice: "₹ 400",
         discount: "30% off",
       },
     },
@@ -328,27 +328,27 @@ import {
     image: "../images/images(1).jpeg",
     sizes: {
       "250gm": {
-        label: "250gm",
+        label: "250 gm",
         name: "size-pulav",
         checked: true,
-        finalPrice: "₹80",
-        originalPrice: "₹100",
+        finalPrice: "₹ 80",
+        originalPrice: "₹ 100",
         discount: "20% off",
       },
       "500gm": {
-        label: "500gm",
+        label: "500 gm",
         name: "size-pulav",
         checked: false,
-        finalPrice: "₹150",
-        originalPrice: "₹200",
+        finalPrice: "₹ 150",
+        originalPrice: "₹ 200",
         discount: "25% off",
       },
       "1000gm": {
-        label: "1000gm",
+        label: "1000 gm",
         name: "size-pulav",
         checked: false,
-        finalPrice: "₹240",
-        originalPrice: "₹400",
+        finalPrice: "₹ 240",
+        originalPrice: "₹ 400",
         discount: "30% off",
       },
     },
@@ -359,27 +359,27 @@ import {
     image: "../images/images(1).jpeg",
     sizes: {
       "250gm": {
-        label: "250gm",
+        label: "250 gm",
         name: "size-garam-masala",
         checked: true,
-        finalPrice: "₹80",
-        originalPrice: "₹100",
+        finalPrice: "₹ 80",
+        originalPrice: "₹ 100",
         discount: "20% off",
       },
       "500gm": {
-        label: "500gm",
+        label: "500 gm",
         name: "size-garam-masala",
         checked: false,
-        finalPrice: "₹150",
-        originalPrice: "₹200",
+        finalPrice: "₹ 150",
+        originalPrice: "₹ 200",
         discount: "25% off",
       },
       "1000gm": {
-        label: "1000gm",
+        label: "1000 gm",
         name: "size-garam-masala",
         checked: false,
-        finalPrice: "₹240",
-        originalPrice: "₹400",
+        finalPrice: "₹ 240",
+        originalPrice: "₹ 400",
         discount: "30% off",
       },
     },
@@ -390,27 +390,27 @@ import {
     image: "../images/images(1).jpeg",
     sizes: {
       "250gm": {
-        label: "250gm",
+        label: "250 gm",
         name: "size-kala-masala",
         checked: true,
-        finalPrice: "₹80",
-        originalPrice: "₹100",
+        finalPrice: "₹ 80",
+        originalPrice: "₹ 100",
         discount: "20% off",
       },
       "500gm": {
-        label: "500gm",
+        label: "500 gm",
         name: "size-kala-masala",
         checked: false,
-        finalPrice: "₹150",
-        originalPrice: "₹200",
+        finalPrice: "₹ 150",
+        originalPrice: "₹ 200",
         discount: "25% off",
       },
       "1000gm": {
-        label: "1000gm",
+        label: "1000 gm",
         name: "size-kala-masala",
         checked: false,
-        finalPrice: "₹240",
-        originalPrice: "₹400",
+        finalPrice: "₹ 240",
+        originalPrice: "₹ 400",
         discount: "30% off",
       },
     },
@@ -421,27 +421,27 @@ import {
     image: "../images/images(1).jpeg",
     sizes: {
       "250gm": {
-        label: "250gm",
+        label: "250 gm",
         name: "size-paneer-butter-masala",
         checked: true,
-        finalPrice: "₹80",
-        originalPrice: "₹100",
+        finalPrice: "₹ 80",
+        originalPrice: "₹ 100",
         discount: "20% off",
       },
       "500gm": {
-        label: "500gm",
+        label: "500 gm",
         name: "size-paneer-butter-masala",
         checked: false,
-        finalPrice: "₹150",
-        originalPrice: "₹200",
+        finalPrice: "₹ 150",
+        originalPrice: "₹ 200",
         discount: "25% off",
       },
       "1000gm": {
-        label: "1000gm",
+        label: "1000 gm",
         name: "size-paneer-butter-masala",
         checked: false,
-        finalPrice: "₹240",
-        originalPrice: "₹400",
+        finalPrice: "₹ 240",
+        originalPrice: "₹ 400",
         discount: "30% off",
       },
     },
@@ -452,27 +452,27 @@ import {
     image: "../images/images(1).jpeg",
     sizes: {
       "250gm": {
-        label: "250gm",
+        label: "250 gm",
         name: "size-kaju-curry-masala",
         checked: true,
-        finalPrice: "₹80",
-        originalPrice: "₹100",
+        finalPrice: "₹ 80",
+        originalPrice: "₹ 100",
         discount: "20% off",
       },
       "500gm": {
-        label: "500gm",
+        label: "500 gm",
         name: "size-kaju-curry-masala",
         checked: false,
-        finalPrice: "₹150",
-        originalPrice: "₹200",
+        finalPrice: "₹ 150",
+        originalPrice: "₹ 200",
         discount: "25% off",
       },
       "1000gm": {
-        label: "1000gm",
+        label: "1000 gm",
         name: "size-kaju-curry-masala",
         checked: false,
-        finalPrice: "₹240",
-        originalPrice: "₹400",
+        finalPrice: "₹ 240",
+        originalPrice: "₹ 400",
         discount: "30% off",
       },
     },
@@ -483,27 +483,27 @@ import {
     image: "../images/images(1).jpeg",
     sizes: {
       "250gm": {
-        label: "250gm",
+        label: "250 gm",
         name: "size-biryani-masala",
         checked: true,
-        finalPrice: "₹80",
-        originalPrice: "₹100",
+        finalPrice: "₹ 80",
+        originalPrice: "₹ 100",
         discount: "20% off",
       },
       "500gm": {
-        label: "500gm",
+        label: "500 gm",
         name: "size-biryani-masala",
         checked: false,
-        finalPrice: "₹150",
-        originalPrice: "₹200",
+        finalPrice: "₹ 150",
+        originalPrice: "₹ 200",
         discount: "25% off",
       },
       "1000gm": {
-        label: "1000gm",
+        label: "1000 gm",
         name: "size-biryani-masala",
         checked: false,
-        finalPrice: "₹240",
-        originalPrice: "₹400",
+        finalPrice: "₹ 240",
+        originalPrice: "₹ 400",
         discount: "30% off",
       },
     },
@@ -514,27 +514,27 @@ import {
   image: "../images/images(1).jpeg",
   sizes: {
     "250gm": {
-      label: "250gm",
+      label: "250 gm",
       name: "size-kitchen-king-masala",
       checked: true,
-      finalPrice: "₹80",
-      originalPrice: "₹100",
+      finalPrice: "₹ 80",
+      originalPrice: "₹ 100",
       discount: "20% off",
     },
     "500gm": {
-      label: "500gm",
+      label: "500 gm",
       name: "size-kitchen-king-masala",
       checked: false,
-      finalPrice: "₹150",
-      originalPrice: "₹200",
+      finalPrice: "₹ 150",
+      originalPrice: "₹ 200",
       discount: "25% off",
     },
     "1000gm": {
-      label: "1000gm",
+      label: "1000 gm",
       name: "size-kitchen-king-masala",
       checked: false,
-      finalPrice: "₹240",
-      originalPrice: "₹400",
+      finalPrice: "₹ 240",
+      originalPrice: "₹ 400",
       discount: "30% off",
     },
   },
@@ -545,27 +545,27 @@ import {
   image: "../images/images(1).jpeg",
   sizes: {
     "250gm": {
-      label: "250gm",
+      label: "250 gm",
       name: "size-bengen-masala",
       checked: true,
-      finalPrice: "₹80",
-      originalPrice: "₹100",
+      finalPrice: "₹ 80",
+      originalPrice: "₹ 100",
       discount: "20% off",
     },
     "500gm": {
-      label: "500gm",
+      label: "500 gm",
       name: "size-bengen-masala",
       checked: false,
-      finalPrice: "₹150",
-      originalPrice: "₹200",
+      finalPrice: "₹ 150",
+      originalPrice: "₹ 200",
       discount: "25% off",
     },
     "1000gm": {
-      label: "1000gm",
+      label: "1000 gm",
       name: "size-bengen-masala",
       checked: false,
-      finalPrice: "₹240",
-      originalPrice: "₹400",
+      finalPrice: "₹ 240",
+      originalPrice: "₹ 400",
       discount: "30% off",
     },
   },
@@ -576,27 +576,27 @@ import {
   image: "../images/images(1).jpeg",
   sizes: {
     "250gm": {
-      label: "250gm",
+      label: "250 gm",
       name: "size-shahi-paneer-masala",
       checked: true,
-      finalPrice: "₹80",
-      originalPrice: "₹100",
+      finalPrice: "₹ 80",
+      originalPrice: "₹ 100",
       discount: "20% off",
     },
     "500gm": {
-      label: "500gm",
+      label: "500 gm",
       name: "size-shahi-paneer-masala",
       checked: false,
-      finalPrice: "₹150",
-      originalPrice: "₹200",
+      finalPrice: "₹ 150",
+      originalPrice: "₹ 200",
       discount: "25% off",
     },
     "1000gm": {
-      label: "1000gm",
+      label: "1000 gm",
       name: "size-shahi-paneer-masala",
       checked: false,
-      finalPrice: "₹240",
-      originalPrice: "₹400",
+      finalPrice: "₹ 240",
+      originalPrice: "₹ 400",
       discount: "30% off",
     },
   },
@@ -607,27 +607,27 @@ import {
   image: "../images/images(1).jpeg",
   sizes: {
     "250gm": {
-      label: "250gm",
+      label: "250 gm",
       name: "size-sabji-masala",
       checked: true,
-      finalPrice: "₹80",
-      originalPrice: "₹100",
+      finalPrice: "₹ 80",
+      originalPrice: "₹ 100",
       discount: "20% off",
     },
     "500gm": {
-      label: "500gm",
+      label: "500 gm",
       name: "size-sabji-masala",
       checked: false,
-      finalPrice: "₹150",
-      originalPrice: "₹200",
+      finalPrice: "₹ 150",
+      originalPrice: "₹ 200",
       discount: "25% off",
     },
     "1000gm": {
-      label: "1000gm",
+      label: "1000 gm",
       name: "size-sabji-masala",
       checked: false,
-      finalPrice: "₹240",
-      originalPrice: "₹400",
+      finalPrice: "₹ 240",
+      originalPrice: "₹ 400",
       discount: "30% off",
     },
   },
@@ -638,27 +638,27 @@ import {
   image: "../images/images(1).jpeg",
   sizes: {
     "250gm": {
-      label: "250gm",
+      label: "250 gm",
       name: "size-khichadi-masala",
       checked: true,
-      finalPrice: "₹80",
-      originalPrice: "₹100",
+      finalPrice: "₹ 80",
+      originalPrice: "₹ 100",
       discount: "20% off",
     },
     "500gm": {
-      label: "500gm",
+      label: "500 gm",
       name: "size-khichadi-masala",
       checked: false,
-      finalPrice: "₹150",
-      originalPrice: "₹200",
+      finalPrice: "₹ 150",
+      originalPrice: "₹ 200",
       discount: "25% off",
     },
     "1000gm": {
-      label: "1000gm",
+      label: "1000 gm",
       name: "size-khichadi-masala",
       checked: false,
-      finalPrice: "₹240",
-      originalPrice: "₹400",
+      finalPrice: "₹ 240",
+      originalPrice: "₹ 400",
       discount: "30% off",
     },
   },
@@ -669,27 +669,27 @@ import {
   image: "../images/images(1).jpeg",
   sizes: {
     "250gm": {
-      label: "250gm",
+      label: "250 gm",
       name: "size-maratha-masala",
       checked: true,
-      finalPrice: "₹80",
-      originalPrice: "₹100",
+      finalPrice: "₹ 80",
+      originalPrice: "₹ 100",
       discount: "20% off",
     },
     "500gm": {
-      label: "500gm",
+      label: "500 gm",
       name: "size-maratha-masala",
       checked: false,
-      finalPrice: "₹150",
-      originalPrice: "₹200",
+      finalPrice: "₹ 150",
+      originalPrice: "₹ 200",
       discount: "25% off",
     },
     "1000gm": {
-      label: "1000gm",
+      label: "1000 gm",
       name: "size-maratha-masala",
       checked: false,
-      finalPrice: "₹240",
-      originalPrice: "₹400",
+      finalPrice: "₹ 240",
+      originalPrice: "₹ 400",
       discount: "30% off",
     },
   },
@@ -700,27 +700,27 @@ import {
   image: "../images/images(1).jpeg",
   sizes: {
     "250gm": {
-      label: "250gm",
+      label: "250 gm",
       name: "size-chaat-masala",
       checked: true,
-      finalPrice: "₹80",
-      originalPrice: "₹100",
+      finalPrice: "₹ 80",
+      originalPrice: "₹ 100",
       discount: "20% off",
     },
     "500gm": {
-      label: "500gm",
+      label: "500 gm",
       name: "size-chaat-masala",
       checked: false,
-      finalPrice: "₹150",
-      originalPrice: "₹200",
+      finalPrice: "₹ 150",
+      originalPrice: "₹ 200",
       discount: "25% off",
     },
     "1000gm": {
-      label: "1000gm",
+      label: "1000 gm",
       name: "size-chaat-masala",
       checked: false,
-      finalPrice: "₹240",
-      originalPrice: "₹400",
+      finalPrice: "₹ 240",
+      originalPrice: "₹ 400",
       discount: "30% off",
     },
   },
@@ -731,27 +731,27 @@ import {
   image: "../images/images(1).jpeg",
   sizes: {
     "250gm": {
-      label: "250gm",
+      label: "250 gm",
       name: "size-pav-bhaji-masala",
       checked: true,
-      finalPrice: "₹80",
-      originalPrice: "₹100",
+      finalPrice: "₹ 80",
+      originalPrice: "₹ 100",
       discount: "20% off",
     },
     "500gm": {
-      label: "500gm",
+      label: "500 gm",
       name: "size-pav-bhaji-masala",
       checked: false,
-      finalPrice: "₹150",
-      originalPrice: "₹200",
+      finalPrice: "₹ 150",
+      originalPrice: "₹ 200",
       discount: "25% off",
     },
     "1000gm": {
-      label: "1000gm",
+      label: "1000 gm",
       name: "size-pav-bhaji-masala",
       checked: false,
-      finalPrice: "₹240",
-      originalPrice: "₹400",
+      finalPrice: "₹ 240",
+      originalPrice: "₹ 400",
       discount: "30% off",
     },
   },
@@ -762,27 +762,27 @@ import {
   image: "../images/images(1).jpeg",
   sizes: {
     "250gm": {
-      label: "250gm",
+      label: "250 gm",
       name: "size-pani-puri-masala",
       checked: true,
-      finalPrice: "₹80",
-      originalPrice: "₹100",
+      finalPrice: "₹ 80",
+      originalPrice: "₹ 100",
       discount: "20% off",
     },
     "500gm": {
-      label: "500gm",
+      label: "500 gm",
       name: "size-pani-puri-masala",
       checked: false,
-      finalPrice: "₹150",
-      originalPrice: "₹200",
+      finalPrice: "₹ 150",
+      originalPrice: "₹ 200",
       discount: "25% off",
     },
     "1000gm": {
-      label: "1000gm",
+      label: "1000 gm",
       name: "size-pani-puri-masala",
       checked: false,
-      finalPrice: "₹240",
-      originalPrice: "₹400",
+      finalPrice: "₹ 240",
+      originalPrice: "₹ 400",
       discount: "30% off",
     },
   },
@@ -793,27 +793,27 @@ import {
   image: "../images/images(1).jpeg",
   sizes: {
     "250gm": {
-      label: "250gm",
+      label: "250 gm",
       name: "size-sambar-masala",
       checked: true,
-      finalPrice: "₹80",
-      originalPrice: "₹100",
+      finalPrice: "₹ 80",
+      originalPrice: "₹ 100",
       discount: "20% off",
     },
     "500gm": {
-      label: "500gm",
+      label: "500 gm",
       name: "size-sambar-masala",
       checked: false,
-      finalPrice: "₹150",
-      originalPrice: "₹200",
+      finalPrice: "₹ 150",
+      originalPrice: "₹ 200",
       discount: "25% off",
     },
     "1000gm": {
-      label: "1000gm",
+      label: "1000 gm",
       name: "size-sambar-masala",
       checked: false,
-      finalPrice: "₹240",
-      originalPrice: "₹400",
+      finalPrice: "₹ 240",
+      originalPrice: "₹ 400",
       discount: "30% off",
     },
   },
@@ -824,27 +824,27 @@ import {
   image: "../images/images(1).jpeg",
   sizes: {
     "250gm": {
-      label: "250gm",
+      label: "250 gm",
       name: "size-tandoori-tikka-masala",
       checked: true,
-      finalPrice: "₹80",
-      originalPrice: "₹100",
+      finalPrice: "₹ 80",
+      originalPrice: "₹ 100",
       discount: "20% off",
     },
     "500gm": {
-      label: "500gm",
+      label: "500 gm",
       name: "size-tandoori-tikka-masala",
       checked: false,
-      finalPrice: "₹150",
-      originalPrice: "₹200",
+      finalPrice: "₹ 150",
+      originalPrice: "₹ 200",
       discount: "25% off",
     },
     "1000gm": {
-      label: "1000gm",
+      label: "1000 gm",
       name: "size-tandoori-tikka-masala",
       checked: false,
-      finalPrice: "₹240",
-      originalPrice: "₹400",
+      finalPrice: "₹ 240",
+      originalPrice: "₹ 400",
       discount: "30% off",
     },
   },
@@ -855,27 +855,27 @@ import {
   image: "../images/images(1).jpeg",
   sizes: {
     "250gm": {
-      label: "250gm",
+      label: "250 gm",
       name: "size-dal-tadka-masala",
       checked: true,
-      finalPrice: "₹80",
-      originalPrice: "₹100",
+      finalPrice: "₹ 80",
+      originalPrice: "₹ 100",
       discount: "20% off",
     },
     "500gm": {
-      label: "500gm",
+      label: "500 gm",
       name: "size-dal-tadka-masala",
       checked: false,
-      finalPrice: "₹150",
-      originalPrice: "₹200",
+      finalPrice: "₹ 150",
+      originalPrice: "₹ 200",
       discount: "25% off",
     },
     "1000gm": {
-      label: "1000gm",
+      label: "1000 gm",
       name: "size-dal-tadka-masala",
       checked: false,
-      finalPrice: "₹240",
-      originalPrice: "₹400",
+      finalPrice: "₹ 240",
+      originalPrice: "₹ 400",
       discount: "30% off",
     },
   },
@@ -886,27 +886,27 @@ import {
   image: "../images/images(1).jpeg",
   sizes: {
     "250gm": {
-      label: "250gm",
+      label: "250 gm",
       name: "size-poha-masala",
       checked: true,
-      finalPrice: "₹80",
-      originalPrice: "₹100",
+      finalPrice: "₹ 80",
+      originalPrice: "₹ 100",
       discount: "20% off",
     },
     "500gm": {
-      label: "500gm",
+      label: "500 gm",
       name: "size-poha-masala",
       checked: false,
-      finalPrice: "₹150",
-      originalPrice: "₹200",
+      finalPrice: "₹ 150",
+      originalPrice: "₹ 200",
       discount: "25% off",
     },
     "1000gm": {
-      label: "1000gm",
+      label: "1000 gm",
       name: "size-poha-masala",
       checked: false,
-      finalPrice: "₹240",
-      originalPrice: "₹400",
+      finalPrice: "₹ 240",
+      originalPrice: "₹ 400",
       discount: "30% off",
     },
   },
@@ -917,27 +917,27 @@ import {
   image: "../images/images(1).jpeg",
   sizes: {
     "250gm": {
-      label: "250gm",
+      label: "250 gm",
       name: "size-usal-masala",
       checked: true,
-      finalPrice: "₹80",
-      originalPrice: "₹100",
+      finalPrice: "₹ 80",
+      originalPrice: "₹ 100",
       discount: "20% off",
     },
     "500gm": {
-      label: "500gm",
+      label: "500 gm",
       name: "size-usal-masala",
       checked: false,
-      finalPrice: "₹150",
-      originalPrice: "₹200",
+      finalPrice: "₹ 150",
+      originalPrice: "₹ 200",
       discount: "25% off",
     },
     "1000gm": {
-      label: "1000gm",
+      label: "1000 gm",
       name: "size-usal-masala",
       checked: false,
-      finalPrice: "₹240",
-      originalPrice: "₹400",
+      finalPrice: "₹ 240",
+      originalPrice: "₹ 400",
       discount: "30% off",
     },
   },
@@ -949,27 +949,27 @@ import {
   image: "../images/images(1).jpeg",
   sizes: {
     "250gm": {
-      label: "250gm",
+      label: "250 gm",
       name: "size-goda-masala",
       checked: true,
-      finalPrice: "₹80",
-      originalPrice: "₹100",
+      finalPrice: "₹ 80",
+      originalPrice: "₹ 100",
       discount: "20% off",
     },
     "500gm": {
-      label: "500gm",
+      label: "500 gm",
       name: "size-goda-masala",
       checked: false,
-      finalPrice: "₹150",
-      originalPrice: "₹200",
+      finalPrice: "₹ 150",
+      originalPrice: "₹ 200",
       discount: "25% off",
     },
     "1000gm": {
-      label: "1000gm",
+      label: "1000 gm",
       name: "size-goda-masala",
       checked: false,
-      finalPrice: "₹240",
-      originalPrice: "₹400",
+      finalPrice: "₹ 240",
+      originalPrice: "₹ 400",
       discount: "30% off",
     },
   },
@@ -1031,7 +1031,7 @@ import {
        }
      };
 
-    // uploadDataToFirestore(productsData); 
+    // await uploadDataToFirestore(productsData); 
 
     // Initialize the guest user UID
 
@@ -2065,8 +2065,6 @@ async function moveGuestCartToUserCart(guestUserUID, userUID) {
 
     // Commit the deleteBatch to delete items from the guest cart
     await deleteBatch.commit();
-
-    console.log("Guest cart moved successfully!");
   } catch (error) {
     console.error("Error moving guest cart items:", error);
   }
@@ -2096,8 +2094,6 @@ async function updateCartCount(userUID) {
   });
 }
 
-
-
 // Function to delete an item from the cart
 async function deleteCartItem(cartItemId, userUID) {
   const cartItemRef = doc(db, `carts/${userUID}/items/${cartItemId}`);
@@ -2105,10 +2101,24 @@ async function deleteCartItem(cartItemId, userUID) {
   try {
     await deleteDoc(cartItemRef);
     console.log("Item deleted successfully");
+    const subtotal = getCurrentSubtotal();
+    await updateSummary(subtotal);
     
   } catch (error) {
     console.error("Error deleting item:", error);
   }
+}
+
+function getCurrentSubtotal() {
+  const cartItems = document.querySelectorAll(".cart-total-price");
+  let subtotal = 0;
+
+  cartItems.forEach((item) => {
+    const itemTotal = parseInt(item.textContent);
+    subtotal += itemTotal;
+  });
+
+  return subtotal;
 }
 
 
@@ -2123,10 +2133,39 @@ async function updateQuantityInDatabase(cartItemId, newQuantity, userUID) {
       quantity: parseInt(newQuantity),
       total: parseInt(newQuantity) * parseInt(itemPrice.match(/\d+/)[0]),
     });
-    console.log("Quantity updated successfully");
+    
   } catch (error) {
     console.error("Error updating quantity:", error);
   }
+}
+
+async function updateSummary(subtotal) {
+  const subtotalElement = document.getElementById("cart-subtotal-price");
+  const finalTotalElement = document.querySelector("#cart-final-total-price");
+  const freedeliverylineElement = document.querySelector("#freedeliveryline");
+  const shippingSelect = document.querySelector("#shipping-select");
+  let delCost;
+
+  if(subtotal === 0){
+    delCost = 0;
+  }
+  else if (subtotal < 500) {
+    freedeliverylineElement.style.display = "block";
+    shippingSelect.value = "standard";
+    shippingSelect.querySelector('option[value="standard"]').disabled = false;
+    shippingSelect.querySelector('option[value="free"]').disabled = true; 
+    delCost = 40;
+  } else {
+    freedeliverylineElement.style.display = "none";
+    shippingSelect.value = "free";
+    delCost = 0;
+    // Disable the "Standard Delivery" option
+    shippingSelect.querySelector('option[value="standard"]').disabled = true;
+    shippingSelect.querySelector('option[value="free"]').disabled = false;
+  }
+  subtotalElement.textContent = `${subtotal}`;
+  const finalTotal = subtotal + delCost;
+  finalTotalElement.textContent = `${finalTotal}`;
 }
 
 async function updateCartItems(userUID) {
@@ -2140,13 +2179,14 @@ async function updateCartItems(userUID) {
   onSnapshot(cartRef, async (snapshot) => {
     // Loop through the documents in the collection
     cartContainer.innerHTML = "";
-    snapshot.forEach(async(snap) => {
+    let subtotal = 0;
+
+    snapshot.forEach(async (snap) => {
       cartContainer.innerHTML = "";
       const itemData = await snap.data();
-      console.log(itemData);
       const cartItemId = snap.id;
       const price = itemData.price;
-      
+      subtotal += itemData.total;
 
       // Create a new cart item row
       const cartItemRow = document.createElement("div");
@@ -2169,7 +2209,7 @@ async function updateCartItems(userUID) {
       const sizeCol = document.createElement("div");
       sizeCol.classList.add("col", "size-col", "cart-col-option");
       sizeCol.innerHTML = `
-                <span class="cart-col-label">Size (gm)</span>
+                <span class="cart-col-label">Size</span>
                 <span>${itemData.size}</span>
             `;
 
@@ -2227,17 +2267,16 @@ async function updateCartItems(userUID) {
 
       // Append each column to the cart item row
       cartItemRow.appendChild(cartItemMainRow);
-      cartItemRow.appendChild(productCol);
-      cartItemRow.appendChild(sizeCol);
-      cartItemRow.appendChild(priceCol);
-      cartItemRow.appendChild(quantityCol);
-      cartItemRow.appendChild(totalCol);
-      cartItemRow.appendChild(crossCol);
+      cartItemMainRow.appendChild(productCol);
+      cartItemMainRow.appendChild(sizeCol);
+      cartItemMainRow.appendChild(priceCol);
+      cartItemMainRow.appendChild(quantityCol);
+      cartItemMainRow.appendChild(totalCol);
+      cartItemMainRow.appendChild(crossCol);
 
       // Append the cart item row to the cart container
       cartContainer.appendChild(cartItemRow);
 
-      
       // Attach a click event listener to the delete button
       // Attach a click event listener to the delete button
       crossCol.addEventListener("click", async (e) => {
@@ -2247,9 +2286,10 @@ async function updateCartItems(userUID) {
         await deleteCartItem(cartItemIdToDelete, userUID);
       });
       await updateQuantityInDatabase(cartItemId, itemData.quantity, userUID);
+      await updateSummary(subtotal);
     });
-  });
-
+     
+  });       
 }
 
 const productItems = await loadProducts();
@@ -2283,10 +2323,15 @@ auth.onAuthStateChanged(async (user) => {
 
     const userUID = user.uid;
      await updateCartCount(userUID); 
-     await updateCartItems(userUID);   
+     const cartContainer = document.getElementById("cart-container");
+     if (cartContainer) {
+       await updateCartItems(userUID);
+     }   
   } else {
     // Sign in the user anonymously
     try {
+      const guestUserUID = localStorage.getItem("guestUserUID");
+      if (!guestUserUID) {
       const userCredential = await signInAnonymously(auth);
       const guestUser = userCredential.user;
       const guestUserUID = guestUser.uid;
@@ -2294,7 +2339,7 @@ auth.onAuthStateChanged(async (user) => {
 
       // User signed in successfully
       console.log("Guest user signed in anonymously:", guestUserUID);
-
+      }
       const productItems = document.querySelectorAll(".product-item");
 
       productItems.forEach(async (productItem) => {
@@ -2313,7 +2358,10 @@ auth.onAuthStateChanged(async (user) => {
       });
 
       await updateCartCount(guestUserUID);
+      const cartContainer = document.getElementById("cart-container");
+      if (cartContainer) {
       await updateCartItems(guestUserUID);
+      }
     } catch (error) {
       console.error("Error signing in as a guest:", error);
     }
