@@ -257,7 +257,7 @@
                                 <span>Product</span>
                             </div>
                             <div class="col size-col cart-col-option">
-                                <span>Size</span>
+                                <span>Size (gm)</span>
                             </div>
                             <div class="col price-col cart-col-option">
                               <span>Price</span>
@@ -273,7 +273,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="cart-container" class="cart-container row main align-items-center">
+                    <div id="cart-container" class="cart-container row main align-items-center cart-col">
 
                     </div>
 
@@ -286,7 +286,7 @@
                     <div><h3><b>Summary</b></h3></div>
                     <hr>
                     <div class="row">
-                        <div class="col" style="padding-left:0;">TOTAL AMOUNT</div>
+                        <div class="col">SUBTOTAL AMOUNT</div>
                         <div class="col text-right"><span>₹ <span id="cart-subtotal-price"></span></span></div>
                     </div>
                     <hr>
@@ -294,15 +294,15 @@
                         <span><H6>SHIPPING</H6></span>
                         <div id="freedeliveryline">Unlock Free Delivery on Orders Totaling Rs. 500 or more</div>
                         <select id="shipping-select">
-                          <option class="text-muted" value="standard" id="standard">
-                            Standard-Delivery- <span>₹ <span id="standard-delivery">40</span></span>
+                          <option class="text-muted" value="standard">
+                            Standard-Delivery- <span>₹ <span id="delivery">40 </span></span>
                           </option>
-                          <option class="text-muted" value="free" id="free" disabled>Free-Delivery</option>
+                          <option class="text-muted" value="free" disabled>Free-Delivery</option>
                         </select>
                     </form>
                     <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
                         <div class="col ">FINAL AMOUNT</div>
-                        <div class="col text-right"><span>₹ <span id="cart-final-total-price">0</span></span></div>
+                        <div class="col text-right"><span>₹ <span id="cart-final-total-price"></span></span></div>
                     </div>
                     <button class="btn custom-btn">CHECKOUT</button>
                 </div>

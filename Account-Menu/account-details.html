@@ -1,39 +1,48 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="utf-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1" >
 
-        <meta name="description" content="">
-        <meta name="author" content="">
+    <meta name="description" content="" >
+    <meta name="author" content="" >
 
-        <title>EasyPizy</title>
-        <link rel="icon" href="../images/title-icon.jpg">
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-        
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/graingert-wow/1.2.2/wow.min.js" integrity="sha512-W0pro5TDSuKuwBag9ERPMdNzd8E5z5p7BmWqMflUsGN+jW3JPrVvE5F5EJXIDk3vX9YYvJ+fZ55grIU9mHzvhw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-        <!-- CSS FILES -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>EasyPizy</title>
+    <link rel="icon" href="../images/title-icon.jpg" >
 
-        <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100;300;400;600;700&display=swap" rel="stylesheet">
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/graingert-wow/1.2.2/wow.min.js"
+      integrity="sha512-W0pro5TDSuKuwBag9ERPMdNzd8E5z5p7BmWqMflUsGN+jW3JPrVvE5F5EJXIDk3vX9YYvJ+fZ55grIU9mHzvhw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet"    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
-        <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <!-- CSS FILES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" >
 
-        <link href="../css/bootstrap-icons.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin >
 
-        <link href="../css/owl.carousel.min.css" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100;300;400;600;700&display=swap"
+      rel="stylesheet"
+    >
 
-        <link href="../css/owl.theme.default.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet" >
 
-        <link href="../css/tooplate-gotto-job.css" rel="stylesheet">
-        
+    <link href="../css/bootstrap-icons.css" rel="stylesheet" >
 
-    </head>
-   
-<body class="product-listing-page" id="top">
+    <link href="../css/owl.carousel.min.css" rel="stylesheet" >
+
+    <link href="../css/owl.theme.default.min.css" rel="stylesheet" >
+
+    <link href="../css/tooplate-gotto-job.css" rel="stylesheet" >
+
+    <link rel="stylesheet" href="../css/animate.css" >
+  </head>
+
+  <body id="top">
     <nav class="navbar navbar-expand-lg">
       <div class="container">
                 <button
@@ -48,7 +57,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <a class="navbar-brand d-flex align-items-center" href="../index.html">
-          <!-- <img src="images/logo.png" class="img-fluid logo-image"> -->
+          <!-- <img src="../images/logo.png" class="img-fluid logo-image"> -->
 
           <div class="d-flex flex-column">
             <img src="../images/LOGO-PNG.png" alt="Logo" class="img-fluid logo-image" >
@@ -94,7 +103,6 @@
                 </li>
               </ul>
             </li>
-            
             
             <li class="nav-item">
               <a class="nav-link" href="../contact.html">Contact</a>
@@ -230,188 +238,237 @@
   </div>
     </div>
 
-    <main>
-         <header class="site-header">
-                <div class="section-overlay"></div>
 
-                <div class="container">
-                    <div class="row">
-                        
-                        <div class="col-lg-12 col-12 text-center">
-                            <h1 class="text-white wow animate__animated animate__bounceIn">Pure Spices</h1>
+    <main id="cart-div">
 
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb justify-content-center">
-                                    <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
-
-                                    <li class="breadcrumb-item active" aria-current="page">Pure Spices</li>
-                                </ol>
-                            </nav>
-                        </div>
-
+         <section id="modalOverlay" class="userAccountModal">
+          <section class="whitebg">
+            <section id="user-info">
+            <div class="container mt-5">
+              <div class="mb-3 user-title">
+                <h1>User Information</h1>
+               
+            <!-- Edit button -->
+            
+                 <!-- Animated Edit button using an <img> element -->
+            <button class="edit-info-button bi bi-pencil-fill" id="edit-user-info">   
+            </button>
+              </div>
+                
+                <form id="user-info-form">
+                    <!-- User's name -->
+                    <div class="mb-3">
+                        <label for="user-name" class="form-label">Name:</label>
+                        <input type="text" id="user-name" name="user-name" class="form-control" required readonly>
                     </div>
-                </div>
-         </header>
-
-        <section class="product-section  section-padding">
-                <div class="container">
-                    <div class="row align-items-center">
-
-                        <div class="col-lg-6 col-12 mb-4">
-                            <h2 class="animate__animated animate__fadeInUp animate__faster">Pure Spices</h2>
-                        </div>
-
-                        <div class="clearfix"></div>
-
-                        <div class="col-lg-4 col-md-6 col-12 product-item product-item wow animate__animated animate__fadeInUp " data-wow-delay="0.1s" id="kashmiri-chilli-powder">      
-                                                                   
-                        </div>
-
-                        <div class="col-lg-4 col-md-6 col-12 product-item product-item wow animate__animated animate__fadeInUp" data-wow-delay="0.2s" id="turmeric-powder">
-                            
-                        </div>
-
-                        <div class="col-lg-4 col-md-6 col-12 product-item product-item wow animate__animated animate__fadeInUp" data-wow-delay="0.3s" id="dry-mango-powder">
-                            
-                        </div>
-
-                        <div class="col-lg-4 col-md-6 col-12 product-item product-item wow animate__animated animate__fadeInUp" id="red-chilli-powder" data-wow-delay="0.4s">
-                            
-                        </div>
-
-                        <div class="col-lg-4 col-md-6 col-12 product-item product-item wow animate__animated animate__fadeInUp" id="coriander-powder" data-wow-delay="0.5s">
-                            
-                        </div>
-
-                        <div class="col-lg-4 col-md-6 col-12 product-item product-item wow animate__animated animate__fadeInUp" id="jeera-powder" data-wow-delay="0.6s">
-                            
-                        </div>
-
-                        
+                    <!-- Email address -->
+                    <div class="mb-3">
+                        <label for="user-email" class="form-label">Email Address:</label>
+                        <input type="email" id="user-email" name="user-email" class="form-control" readonly>
                     </div>
-                </div>
+                 <!-- Primary contact number -->
+<div class="mb-3">
+    <label for="user-phone" class="form-label">Primary Contact Number:</label>
+    <div class="input-group-2">
+        <span class="input-group-text">+91</span>
+        <input type="tel" id="user-phone" name="user-phone" class="form-control" readonly required>
+    </div>
+</div>
+
+<!-- Secondary contact number -->
+<div class="mb-3">
+    <label for="user-secondary-phone" class="form-label">Secondary Contact Number:</label>
+    <div class="input-group-2">
+        <span class="input-group-text">+91</span>
+        <input type="tel" id="user-secondary-phone" name="user-secondary-phone" class="form-control" readonly>
+    </div>
+</div>
+
+
+                    
+                    <!-- Submit button for user information changes -->
+                    <div class="btn-div">
+                        <button type="submit" class="btn btn-primary submit-btnA" id="save-user-info">Save Changes</button>
+                    </div>
+                    
+                </form>
+            </div>
+           </section>
+        <section id="address-book" class="section-padding">
+            <div class="container mt-5">
+              <div class="mb-3 user-title">
+                <h1>Address Book</h1>
+               
+            <!-- Edit button -->
+            
+                 <!-- Animated Edit button using an <img> element -->
+            <button id="edit-address" class="edit-info-button bi bi-pencil-fill">   
+            </button>
+              </div>
+                
+                 <!-- Display saved addresses here -->
+                <ul class="list-group mt-3">
+                    <!-- Example address item (replace with dynamic content) -->
+                    <li class="list-group-item">
+                        <span class="badge ">Home</span>
+                        123 Main Street, City, Country
+                        <button class="btn btn-sm btn-danger bi-trash-fill float-end"></button>
+                    </li>
+                </ul>
+                <form id="address-form">
+                    <!-- Address label -->
+                    <div class="mb-3">
+                        <label for="address-label" class="form-label">Address Label (e.g., Home, Office):</label>
+                        <input type="text" id="address-label" name="address-label" class="form-control">
+                    </div>
+                    <!-- Address details -->
+                    <div class="mb-3">
+                        <label for="address-details" class="form-label">Address Details:</label>
+                        <textarea id="address-details" name="address-details" class="form-control" rows="3"></textarea>
+                    </div>
+                    <!-- Pincode -->
+                    <div class="mb-3">
+                        <label for="address-pincode" class="form-label">Pincode:</label>
+                        <input type="text" id="address-pincode" name="address-pincode" class="form-control">
+                    </div>
+                    <!-- State -->
+                    <div class="mb-3">
+                        <label for="address-state" class="form-label">State:</label>
+                        <input type="text" id="address-state" name="address-state" class="form-control">
+                    </div>
+
+                    <!-- Submit button for adding address -->
+                    <div class="btn-div">
+                        <button type="submit" class="btn btn-primary submit-btnA" id="save-address">Add Address</button>
+                    </div>
+                    
+                </form>
+               
+            </div>
         </section>
 
-
+          </section>
+       
+          
+         </section>
     </main>
 
     <footer class="site-footer">
-            <div class="container">
-                <div class="row">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-6 col-12 mb-3">
+            <div class="d-flex align-items-center mb-4">
+              <div class="d-flex flex-column">
+                <img class="img-fluid logo-image" src="../images/LOGO-PNG.png" alt="Logo">
+              </div>
+            </div>
 
-                    <div class="col-lg-4 col-md-6 col-12 mb-3">
-                        <div class="d-flex align-items-center mb-4">
-                            <div class="d-flex flex-column">
-                                <img class="img-fluid logo-image" src="../images\LOGO-PNG.png" alt="Logo">
-                            </div>
-                        </div>  
+            <p class="mb-2">
+              <i class="custom-icon bi-globe me-1"></i>
 
-                        <p class="mb-2">
-                            <i class="custom-icon bi-globe me-1"></i>
+              <a href="../#" class="site-footer-link"> www.EasyPizy.com </a>
+            </p>
 
-                            <a href="#" class="site-footer-link">
-                                www.EasyPizy.com
-                            </a>
-                        </p>
+            <p class="mb-2">
+              <i class="custom-icon bi-telephone me-1"></i>
 
-                        <p class="mb-2">
-                            <i class="custom-icon bi-telephone me-1"></i>
+              <a href="../tel:305-240-9671" class="site-footer-link">
+                305-240-9671
+              </a>
+            </p>
 
-                            <a href="tel:305-240-9671" class="site-footer-link">
-                                305-240-9671
-                            </a>
-                        </p>
+            <p>
+              <i class="custom-icon bi-envelope me-1"></i>
 
-                        <p>
-                            <i class="custom-icon bi-envelope me-1"></i>
+              <a href="../mailto:info@yourgmail.com" class="site-footer-link">
+                info@msail.co
+              </a>
+            </p>
+          </div>
 
-                            <a href="mailto:info@yourgmail.com" class="site-footer-link">
-                                info@msail.co
-                            </a>
-                        </p>
+          <div class="col-lg-2 col-md-3 col-6 ms-lg-auto">
+            <h6 class="site-footer-title">Company</h6>
 
-                    </div>
+            <ul class="footer-menu">
+              <li class="footer-menu-item">
+                <a href="../#" class="footer-menu-link">About</a>
+              </li>
 
-                    <div class="col-lg-2 col-md-3 col-6 ms-lg-auto">
-                        <h6 class="site-footer-title">Company</h6>
+              <li class="footer-menu-item">
+                <a href="../#" class="footer-menu-link">Products</a>
+              </li>
 
-                        <ul class="footer-menu">
-                            <li class="footer-menu-item"><a href="#" class="footer-menu-link">About</a></li>
+              <li class="footer-menu-item">
+                <a href="../#" class="footer-menu-link">Blogs</a>
+              </li>
 
-                            <li class="footer-menu-item"><a href="#" class="footer-menu-link">Products</a></li>
+              <li class="footer-menu-item">
+                <a href="../#" class="footer-menu-link">Contact</a>
+              </li>
+            </ul>
+          </div>
 
-                            <li class="footer-menu-item"><a href="#" class="footer-menu-link">Blogs</a></li>
-
-                            <li class="footer-menu-item"><a href="#" class="footer-menu-link">Contact</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-lg-4 col-md-8 col-12 mt-3 mt-lg-0">
-                            <h6 class="site-footer-title">WhatsApp Group</h6>
+          <div class="col-lg-4 col-md-8 col-12 mt-3 mt-lg-0">
+            <h6 class="site-footer-title">WhatsApp Group</h6>
             <p class="mb-2">For New Recepies: <br></p>
             <a href="../products.html" class="custom-btn btn  wow animate__ animate__fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">Join Now</a>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="site-footer-bottom">
-                <div class="container">
-                    <div class="row">
-
-                        <div class="col-lg-4 col-12 d-flex align-items-center">
-                            <p class="copyright-text">Copyright © EasyPizy</p>
-                        </div>
-
-                        <div class="col-lg-5 col-12 mt-2 mt-lg-0">
-                            <ul class="social-icon">
-                                <li class="social-icon-item">
-                                    <a href="#" class="social-icon-link bi-twitter"></a>
-                                </li>
-
-                                <li class="social-icon-item">
-                                    <a href="#" class="social-icon-link bi-facebook"></a>
-                                </li>
-
-                                <li class="social-icon-item">
-                                    <a href="#" class="social-icon-link bi-linkedin"></a>
-                                </li>
-
-                                <li class="social-icon-item">
-                                    <a href="#" class="social-icon-link bi-instagram"></a>
-                                </li>
-
-                                <li class="social-icon-item">
-                                    <a href="#" class="social-icon-link bi-youtube"></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <a class="back-top-icon bi-arrow-up smoothscroll d-flex justify-content-center align-items-center" href="#top"></a>
-
-                    </div>
-                </div>
-            </div>
-    </footer>
-     <div id="whatsapp-button" class="wow animate__animated animate__tada  animate__duration-2s">
-      <a id="whatsapp-link" href="https://api.whatsapp.com/send?phone=9049058976&text=Hello%2C%20I%20want%20to%20know%20more%20about%20EasyPizy%20Products%21" target="_blank">
-          <img src="../images\logos\whatsapp-icon.png" alt="WhatsApp" >
-        </a>
+          </div>
+        </div>
       </div>
 
-      
+      <div class="site-footer-bottom">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-4 col-12 d-flex align-items-center">
+              <p class="copyright-text">Copyright © EasyPizy</p>
+            </div>
 
-   <!-- JAVASCRIPT FILES -->    
-        <script type="module" src="../js/firebase.js"></script>
-        <script type="module" src="../js/server.js"></script>
-        <script src="../js/jquery.min.js"></script>
-        <script src="../js/bootstrap.min.js"></script>
-        <script src="../js/owl.carousel.min.js"></script>
-        <script src="../js/counter.js"></script>
-        <script src="../js/custom.js"></script>
-        <script src="../js/slide.js"></script>
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-        <script>
+            <div class="col-lg-5 col-12 mt-2 mt-lg-0">
+              <ul class="social-icon">
+                <li class="social-icon-item">
+                  <a href="../#" class="social-icon-link bi-twitter"></a>
+                </li>
+
+                <li class="social-icon-item">
+                  <a href="../#" class="social-icon-link bi-facebook"></a>
+                </li>
+
+                <li class="social-icon-item">
+                  <a href="../#" class="social-icon-link bi-linkedin"></a>
+                </li>
+
+                <li class="social-icon-item">
+                  <a href="../#" class="social-icon-link bi-instagram"></a>
+                </li>
+
+                <li class="social-icon-item">
+                  <a href="../#" class="social-icon-link bi-youtube"></a>
+                </li>
+              </ul>
+            </div>
+            <a
+              class="back-top-icon bi-arrow-up smoothscroll d-flex justify-content-center align-items-center"
+              href="../#top"
+            ></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    
+
+    <!-- JAVASCRIPT FILES -->  
+    <script type="module" src="../js/firebase.js"></script>
+    <script type="module" src="../js/server.js"></script>
+    <script src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="../js/slide.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/owl.carousel.min.js"></script>
+    <script src="../js/counter.js"></script>
+    <script src="../js/custom.js"></script>
+    <script>
       new WOW().init();
-    </script>
-</body>
+    </script>    
+  </body>
 </html>

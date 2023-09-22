@@ -2121,7 +2121,6 @@ function getCurrentSubtotal() {
   return subtotal;
 }
 
-
 // Function to update quantity in the database
 async function updateQuantityInDatabase(cartItemId, newQuantity, userUID) {
   const cartItemRef = doc(db, `carts/${userUID}/items/${cartItemId}`);
