@@ -2679,3 +2679,10 @@ color: var(--p-color);
     margin-top: 30%;
   }
 }
+
+p.amount-text{
+  text-align: end;
+}
+div.card-footer{
+  text-align: end;
+}

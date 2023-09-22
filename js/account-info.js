@@ -325,7 +325,6 @@ const addressList = document.getElementById("address-list");
     const user = auth.currentUser;
     if (user) {
       return user.uid;
-      console.log("useruid is",user.uid);
     } else {
       // Handle the case where the user is not authenticated
       return null; // or some other value or throw an error

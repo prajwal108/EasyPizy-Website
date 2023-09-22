@@ -255,57 +255,11 @@
         <section class=" section-padding">
           <div class="container mt-5">
         <h1 class="mb-4">Order History</h1>
-        
-        <!-- Order Card Start -->
-        <div class="card mb-4">
-            <div class="card-header">
-                <h5 class="card-title">Order #12345</h5>
-            </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-6">
-                        <h6 class="card-subtitle mb-2 text-muted">Order Date: January 15, 2023</h6>
-                        <p class="card-text">Status: Delivered</p>
-                    </div>
-                    <div class="col-md-6 text-md-right">
-                        <p class="card-text">Total Amount: $50.00</p>
-                    </div>
-                </div>
-                <hr>
-                <h6 class="card-subtitle mb-2 text-muted">Items in this Order:</h6>
-                <ul class="list-group">
-                    <li class="list-group-item">Product A x 2 - $20.00</li>
-                    <li class="list-group-item">Product B x 3 - $30.00</li>
-                </ul>
-            </div>
-            <div class="card-footer">
-                <!-- Repeat Order and Download Invoice buttons -->
-                <button class="btn btn-primary mr-2">Repeat Order</button>
-                <button class="btn btn-secondary">Download Invoice</button>
-            </div>
-        </div>
-        <!-- Order Card End -->
+        <div id="order-card-container">
 
-        <!-- Order Card Start (Another Order) -->
-        <div class="card mb-4">
-            <div class="card-header">
-                <h5 class="card-title">Order #67890</h5>
-            </div>
-            <div class="card-body">
-                <!-- Content for the second order card goes here -->
-            </div>
-            <div class="card-footer">
-                <!-- Repeat Order and Download Invoice buttons -->
-                <button class="btn btn-primary mr-2">Repeat Order</button>
-                <button class="btn btn-secondary">Download Invoice</button>
-            </div>
-        </div>
-        <!-- Order Card End (Another Order) -->
-        
-        <!-- Add more order cards here for each order in the history -->
 
-    </div>
-                
+        </div>
+      </div>  
         </section>
 
 
@@ -419,6 +373,7 @@
    <!-- JAVASCRIPT FILES -->    
         <script type="module" src="../js/firebase.js"></script>
         <script type="module" src="../js/server.js"></script>
+        <script type="module" src="../js/orders.js"></script>
         <script src="../js/jquery.min.js"></script>
         <script src="../js/bootstrap.min.js"></script>
         <script src="../js/owl.carousel.min.js"></script>
