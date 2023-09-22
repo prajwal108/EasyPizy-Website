@@ -2165,6 +2165,13 @@ async function updateSummary(subtotal) {
   subtotalElement.textContent = `${subtotal}`;
   const finalTotal = subtotal + delCost;
   finalTotalElement.textContent = `${finalTotal}`;
+  if(finalTotal> 0){
+    const payBtn = document.getElementById("checkoutBtn");
+    checkoutBtn.disabled = false;
+  }else{
+    const payBtn = document.getElementById("checkoutBtn");
+    checkoutBtn.disabled = true;
+  }
 }
 
 async function updateCartItems(userUID) {

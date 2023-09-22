@@ -295,57 +295,49 @@
             </div>
            </section>
         <section id="address-book" class="section-padding">
-            <div class="container mt-5">
-              <div class="mb-3 user-title">
-                <h1>Address Book</h1>
-               
-            <!-- Edit button -->
-            
-                 <!-- Animated Edit button using an <img> element -->
-            <button id="edit-address" class="edit-info-button bi bi-pencil-fill">   
-            </button>
-              </div>
-                
-                 <!-- Display saved addresses here -->
-                <ul class="list-group mt-3">
-                    <!-- Example address item (replace with dynamic content) -->
-                    <li class="list-group-item">
-                        <span class="badge ">Home</span>
-                        123 Main Street, City, Country
-                        <button class="btn btn-sm btn-danger bi-trash-fill float-end"></button>
-                    </li>
-                </ul>
-                <form id="address-form">
-                    <!-- Address label -->
-                    <div class="mb-3">
-                        <label for="address-label" class="form-label">Address Label (e.g., Home, Office):</label>
-                        <input type="text" id="address-label" name="address-label" class="form-control">
-                    </div>
-                    <!-- Address details -->
-                    <div class="mb-3">
-                        <label for="address-details" class="form-label">Address Details:</label>
-                        <textarea id="address-details" name="address-details" class="form-control" rows="3"></textarea>
-                    </div>
-                    <!-- Pincode -->
-                    <div class="mb-3">
-                        <label for="address-pincode" class="form-label">Pincode:</label>
-                        <input type="text" id="address-pincode" name="address-pincode" class="form-control">
-                    </div>
-                    <!-- State -->
-                    <div class="mb-3">
-                        <label for="address-state" class="form-label">State:</label>
-                        <input type="text" id="address-state" name="address-state" class="form-control">
-                    </div>
+  <div class="container mt-5">
+    <div class="mb-3 user-title">
+      <h1>Address Book</h1>
+      <!-- Edit button -->
+      <button id="edit-address" class="edit-info-button bi bi-pencil-fill"></button>
+    </div>
 
-                    <!-- Submit button for adding address -->
-                    <div class="btn-div">
-                        <button type="submit" class="btn btn-primary submit-btnA" id="save-address">Add Address</button>
-                    </div>
-                    
-                </form>
-               
-            </div>
-        </section>
+    <!-- Display saved addresses here -->
+    <ul class="list-group mt-3" id="address-list">
+      <!-- Addresses will be dynamically added here -->
+    </ul>
+
+    <!-- Address form -->
+    <form id="address-form">
+      <!-- Address label -->
+      <div class="mb-3">
+        <label for="address-label" class="form-label">Address Label (e.g., Home, Office):</label>
+        <input type="text" id="address-label" name="address-label" class="form-control" required>
+      </div>
+      <!-- Address details -->
+      <div class="mb-3">
+        <label for="address-details" class="form-label">Address Details:</label>
+        <textarea id="address-details" name="address-details" class="form-control" rows="3" required></textarea>
+      </div>
+      <!-- Pincode -->
+      <div class="mb-3">
+        <label for="address-pincode" class="form-label">Pincode:</label>
+        <input type="text" id="address-pincode" name="address-pincode" class="form-control" required>
+      </div>
+      <!-- State -->
+      <div class="mb-3">
+        <label for="address-state" class="form-label">State:</label>
+        <input type="text" id="address-state" name="address-state" class="form-control" required>
+      </div>
+
+      <!-- Submit button for adding address -->
+      <div class="btn-div">
+        <button type="submit" class="btn btn-primary submit-btnA" id="save-address">Add Address</button>
+      </div>
+    </form>
+  </div>
+</section>
+
 
           </section>
        

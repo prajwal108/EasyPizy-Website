@@ -1837,9 +1837,9 @@ color: var(--white-color);
 
 .modal-content {
   background-color: white;
-  width: 65%;
-  height: 67%;
-  top: 56%;
+  width: 73%;
+  height: 73%;
+  top: 59%;
   padding: 20px;
   text-align: left;
   justify-content: flex-start;
@@ -1864,7 +1864,7 @@ color: var(--white-color);
     position: relative;
   top: -7px;
   font-size: 2.2rem;
-  right: -306px;
+  right: -275px;
   color: var(--primary-color);
 }
 .form-group{
@@ -2233,7 +2233,7 @@ background-size: cover;
 
 #cart-div > section {
   z-index: 9;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(3px);
   width: 100%;
   min-height: 100vh;
   align-items: center;
@@ -2268,6 +2268,9 @@ justify-content: center;
   -moz-appearance: none;
   appearance: none;
   border-radius: 0.25rem;
+  font-weight: 590;
+font-size: 1.1rem;
+line-height: 1.5;
 }
 select {
   word-wrap: normal;
@@ -2353,7 +2356,8 @@ div.form-group:nth-child(5) {
 top: -8px;
 right: -90px;
 }
- 
+
+
   
 }
 
@@ -2583,6 +2587,9 @@ align-items: center;
 .btn-div{
   text-align: center;
   margin-top: 10px;
+  justify-content: center;
+align-items: center;
+display: flex;
 }
 .badge{
   background-color: var(--primary-color);
@@ -2647,13 +2654,28 @@ background-color: white;
 
 .list-group-item {
   border-radius: 10px;
+  margin-bottom: 20px;
 }
 
-input {
+input.form-control {
   cursor: pointer;
+  font-weight: 562;
+line-height: 1.5;
+font-size: 1.1rem;
+}
+
+span#cart-count{
+  display: none;
 }
 
 span#cart-count:hover{
 background-color: var(--secondary-color);
 color: var(--p-color);
+}
+
+@media screen and (max-width: 991px){
+  .whitebg{
+    width: 90vw;
+    margin-top: 30%;
+  }
 }
