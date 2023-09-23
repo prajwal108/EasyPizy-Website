@@ -191,12 +191,12 @@
 width: 100%;
 }
 
-#addToCart {
+.addToCart {
   width: 90%;
   margin-right: 11px;
 }
 
-#buyNowBtn1 {
+.buyNowBtn1 {
   width: 90%;
 }
 .bi-cash {
@@ -226,7 +226,11 @@ span.original-price-1 {
   text-decoration: line-through;
 }
 
-
+.cart-form .select-box .product-info .product-data{
+  position: relative;
+  top: -3%;
+  right: 27%;
+}
 @media screen and (max-width: 908px) {
   .product-btn {
 padding-bottom: 25%;
@@ -238,7 +242,7 @@ padding-bottom: 25%;
 }
 }
 
-#flipAddCartBtn {
+.flipAddCartBtn {
   display: flex;
   margin-right: 11px;
   flex-direction: row-reverse;
@@ -246,24 +250,24 @@ padding-bottom: 25%;
 }
 
 
-#flipAddCartBtn {
+.flipAddCartBtn {
   display: none;
 }
 
 
-#plusBtn {
+.plusBtn {
   width: 100%;
   border-radius: 0px 30px 30px 0px;
   border-left: 1px solid whitesmoke;
 }
 
 
-#inputBtn {
+.inputBtn {
   width: 130%;
   border-radius: 0 0 0 0px;
   height: 100%;
 }
-#minusBtn {
+.minusBtn {
   width: 100%;
   border-radius: 30px 0% 0% 30px;
   border-right: 1px solid whitesmoke;
@@ -445,7 +449,7 @@ font-size: 12px;
 .media-body >p{
   font-size: 1.1em;
 }
-#checkoutBtn {
+.checkoutBtn {
   width: 90%;
   display: none;
   text-align: center;
