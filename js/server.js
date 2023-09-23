@@ -2307,6 +2307,8 @@ async function updateCartItems(userUID) {
   });       
 }
 
+
+
 const productItems = await loadProducts();
 
 auth.onAuthStateChanged(async (user) => {
