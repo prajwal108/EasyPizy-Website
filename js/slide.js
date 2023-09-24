@@ -48,6 +48,8 @@ document.addEventListener("click", (event) => {
 });
 
 
+
+
 document.addEventListener("DOMContentLoaded", function () {
   const addToCartBtns = document.querySelectorAll(".add-to-cart-btn");
   const plusBtns = document.querySelectorAll(".plus-btn");
