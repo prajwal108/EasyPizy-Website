@@ -460,7 +460,7 @@ top: 0;
 
 .logo-image {
   display: block;
-  width: 130px;
+  width: 150px;
   margin-right: 15px;
 }
 
@@ -2365,9 +2365,7 @@ right: -90px;
   cursor: pointer;
 }
 
-.navbar > div:nth-child(1) {
-  backdrop-filter: blur(50px);
-}
+
 
 .close-select-icon{
   color: red;
@@ -2411,7 +2409,7 @@ flex-basis: 5%;
   
  .cart-col {
     display: grid;
-    grid-template-columns: 3fr 1fr 1fr; /* Create 3 equal-width columns */
+    grid-template-columns: 2fr;
     grid-template-rows: auto auto; /* Two rows, with auto sizing */
     gap: 10px; /* Add some spacing between columns */
 }
@@ -2452,9 +2450,7 @@ option.text-muted{
   .card-1{
     font-size: 1.2em;
   }
-  .cart-col{
-    grid-template-columns: 2fr 1.5fr 1.5fr;
-  }
+
   .logo-image{
     width: 115px;
   }
@@ -2465,7 +2461,7 @@ option.text-muted{
     font-size: 1.1em;
   }
   .cart-col{
-    grid-template-columns: 1.3fr 1fr 1fr;
+    grid-template-columns: 2fr;
   }
 }
 option.text-muted{
@@ -2678,6 +2674,10 @@ color: var(--p-color);
     width: 90vw;
     margin-top: 30%;
   }
+  .custom-text-block p.text-white{
+  font-size: small;
+  
+}
 }
 
 p.amount-text{
@@ -2686,3 +2686,4 @@ p.amount-text{
 div.card-footer{
   text-align: end;
 }
+
