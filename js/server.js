@@ -2118,7 +2118,7 @@ async function deleteCartItem(cartItemId, userUID) {
   }
 }
 
-function getCurrentSubtotal() {
+async function getCurrentSubtotal() {
   const cartItems = document.querySelectorAll(".cart-total-price");
   let subtotal = 0;
 
@@ -2743,6 +2743,93 @@ Try our ${
 }
 
 
+await loadProducts();
+
+async function createTemporaryCart(userUID) {
+  const db = getFirestore(app);
+  const tempCartRef = doc(db, `tempCarts/${userUID}`);
+
+  try {
+    // Get the user's cart data from the "carts" collection
+    const userCartRef = collection(db, `carts/${userUID}/items`);
+
+    const userCartSnapshot = await getDocs(userCartRef);
+
+    if (userCartSnapshot.empty) {
+      console.error("User cart data does not exist.");
+      return;
+    }
+
+    const userCartData = {};
+
+    // Loop through the documents in the snapshot to retrieve cart items
+    userCartSnapshot.forEach((doc) => {
+      const itemId = doc.id;
+      const itemData = doc.data();
+      userCartData[itemId] = itemData;
+    });
+
+    if (!userCartData || Object.keys(userCartData).length === 0) {
+      console.error("User cart data is empty or missing.");
+      return;
+    }
+
+    // Calculate subtotal
+    let subtotal = 0;
+    for (const itemId in userCartData) {
+      const item = userCartData[itemId];
+      subtotal += item.total ;
+    }
+
+    // Calculate delivery charge
+    let deliveryCharge = subtotal < 500 ? 40 : 0;
+
+    // Calculate final amount
+    const finalAmount = subtotal + deliveryCharge;
+
+    // Create the temporary cart document
+    await setDoc(tempCartRef, {
+      cartItems: userCartData,
+      subtotal: subtotal,
+      deliveryCharge: deliveryCharge,
+      finalAmount: finalAmount,
+      // Add other relevant data as needed
+    });
+
+    console.log("Temporary cart created successfully.");
+  } catch (error) {
+    console.error("Error creating temporary cart:", error);
+  }
+}
+
+
+const finalCheckoutBtn = document.getElementById("finalCheckoutBtn");
+
+if (finalCheckoutBtn) {
+  finalCheckoutBtn.addEventListener("click", async () => {
+    if (auth.currentUser.phoneNumber) {
+      const userUID = auth.currentUser.uid;
+      await createTemporaryCart(userUID);
+      window.location.href = "../checkout.html";
+    } else {
+      Toastify({
+        text: "Please login to continue",
+        duration: 3000,
+        gravity: "top",
+        position: "center",
+        backgroundColor: "linear-gradient(to right, #ff416c, #ff4b2b)",
+        stopOnFocus: true,
+      }).showToast();
+      const modalOverlay = document.getElementById("modalOverlay");
+      const modal = document.getElementById("modal");
+      modal.style.display = "block";
+      modalOverlay.style.display = "block";
+    }
+    // ...
+  });
+}
+
+
 
 
 const productItems = await loadProducts();
@@ -2843,29 +2930,7 @@ auth.onAuthStateChanged(async (user) => {
   }
 });
    
-await loadProducts();
 
-const finalCheckoutBtn = document.getElementById("finalCheckoutBtn");
 
-if (finalCheckoutBtn) {
-  finalCheckoutBtn.addEventListener("click", async () => {
-    if(auth.currentUser.phoneNumber){
-    window.location.href = "../checkout.html";
 
-    }else{
-      Toastify({
-        text: "Please login to continue",
-        duration: 3000,
-        gravity: "top",
-        position: "center",
-        backgroundColor: "linear-gradient(to right, #ff416c, #ff4b2b)",
-        stopOnFocus: true,
-      }).showToast();
-      const modalOverlay = document.getElementById("modalOverlay");
-      const modal = document.getElementById("modal");
-      modal.style.display = "block";
-      modalOverlay.style.display = "block";
-    }
-    // ...
-  });
-}
+

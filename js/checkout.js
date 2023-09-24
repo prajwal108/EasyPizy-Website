@@ -7,6 +7,7 @@ import {
   getFirestore,
   collection,
   addDoc,
+    setDoc,
   query,
   where,
   getDocs,
@@ -83,6 +84,9 @@ async function populateUserProfile(userUID) {
       // Populate form fields with user profile data
       document.getElementById("full-name").value = userProfile.firstName + " " + userProfile.lastName;
       document.getElementById("phoneNumber").value = userProfile.mobileNumber;
+      document.getElementById("phoneNumber2").value = userProfile.secondaryContactNumber|| "";
+        document.getElementById("email").value = userProfile.email ||"";
+
 
       // Get a reference to the select element
       const addressSelect = document.getElementById('address');
@@ -190,6 +194,98 @@ saveAddressButton.addEventListener("click", async (event) => {
   newOption.selected = true; // Select the newly added address
 });
 
+async function updateSummary(userUID) {
+  const db = getFirestore();
+  const tempCartRef = doc(db, "tempCarts", userUID);
+
+  try {
+    // Get the temporary cart data from Firestore
+    const tempCartSnapshot = await getDoc(tempCartRef);
+    if (tempCartSnapshot.exists()) {
+      const tempCartData = tempCartSnapshot.data();
+
+      // Get references to the HTML elements
+      const subtotalElement = document.getElementById("cart-subtotal-price");
+      const finalTotalElement = document.getElementById(
+        "cart-final-total-price"
+      );
+      const shippingSelect = document.getElementById("shipping-select");
+
+      // Update subtotal amount
+      subtotalElement.textContent = `${tempCartData.subtotal}`;
+      
+
+      // Update final total amount
+        finalTotalElement.textContent = `${tempCartData.finalAmount}`;
+      
+
+      // Update shipping options based on delivery charge
+     
+        const shippingOption = shippingSelect.querySelector(
+          "option[value='standard']"
+        );
+       
+          shippingOption.textContent = `Delivery Charge - ₹ ${tempCartData.deliveryCharge}`;
+        
+    } else {
+      console.error("Temporary cart data not found.");
+    }
+  } catch (error) {
+    console.error("Error updating summary:", error);
+  }
+}
+
+// Event listener for the "Proceed to Pay" buttons
+const proceedToPayButtons = document.querySelectorAll("#proceedToPayBtn");
+proceedToPayButtons.forEach((button) => {
+  button.addEventListener("click", async (event) => {
+    event.preventDefault();
+    const fullName = document.getElementById("full-name").value;
+    const phoneNumber = document.getElementById("phoneNumber").value;
+    const phoneNumber2 = document.getElementById("phoneNumber2").value;
+    const email = document.getElementById("email").value;
+    // Get the selected address from the <select> element
+    const addressSelect = document.getElementById("address");
+    const selectedAddress =
+      addressSelect.options[addressSelect.selectedIndex].text;
+
+    // Replace "your_user_uid_here" with the actual user's UID
+    const userUID = await getUserUID();
+
+    const db = getFirestore();
+    const tempCartRef = doc(db, "tempCarts", userUID);
+
+    try {
+      // Get the existing temporary cart data
+      const tempCartSnapshot = await getDoc(tempCartRef);
+      if (tempCartSnapshot.exists()) {
+        const tempCartData = tempCartSnapshot.data();
+
+        // Add the additional fields to the temporary cart data
+        tempCartData.fullName = fullName;
+        tempCartData.phoneNumber = phoneNumber;
+        tempCartData.phoneNumber2 = phoneNumber2;
+        tempCartData.email = email;
+        tempCartData.deliveryAddress = selectedAddress;
+
+        // Update the temporary cart document with the additional data
+        await setDoc(tempCartRef, tempCartData);
+
+        // Redirect to the payment page or perform other actions
+        // ...
+
+        console.log("Temporary cart data updated successfully.");
+      } else {
+        console.error("Temporary cart data not found.");
+      }
+    } catch (error) {
+      console.error("Error updating temporary cart data:", error);
+    }
+  });
+});
+
+
+
 
   function getUserUID() {
     const user = auth.currentUser;
@@ -201,10 +297,11 @@ saveAddressButton.addEventListener("click", async (event) => {
     }
   }
 
-auth.onAuthStateChanged((user) => {
+auth.onAuthStateChanged(async(user) => {
     if (user) {
-      
-        populateUserProfile(user.uid);
+      const userUID = user.uid;
+        await populateUserProfile(user.uid);
+        await updateSummary(userUID);
        
     } else {
         

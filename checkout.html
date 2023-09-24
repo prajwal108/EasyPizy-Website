@@ -100,6 +100,19 @@
                                             <input class="form-control" type="tel" id="phoneNumber" name="phoneNumber" pattern="[0-9]{10}" required="">
                                         </div>
                                     </div>
+                                    <div class="col-lg-6 col-md-6 col-12">
+                                        <label for="phoneNumber2">Secondary Phone Number (optional)</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">+91 </span>
+                                            </div>
+                                            <input class="form-control" type="tel" id="phoneNumber2" name="phoneNumber2" pattern="[0-9]{10}" required="">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-12">
+                                        <label for="email">Email (optional)</label>
+                                        <input type="email" name="email" id="email" class="form-control" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$">
+                                        </div>
                                 </div>
                             </div>
                         </div>
@@ -171,12 +184,12 @@
                     <hr>
                     <form style="margin-bottom: 15px;">
                         <span><H6>SHIPPING</H6></span>
-                        <div id="freedeliveryline">Unlock Free Delivery on Orders Totaling <br>Rs. 500 or more</div>
+                        
                         <select id="shipping-select">
                             <option class="text-muted" value="standard">
-                                Standard-Delivery- <span>₹ <span id="delivery">40 </span></span>
+                                Delivery Charge - <span>₹ <span id="delivery">40 </span></span>
                             </option>
-                            <option class="text-muted" value="free" disabled>Free-Delivery</option>
+                            
                         </select>
                     </form>
                     <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
