@@ -2185,7 +2185,7 @@ background-size: cover;
     width: 80vw;
     margin-bottom: 3em;
     margin-top: 8em;
-    background-color: #fff;
+    
 }
 @media(max-width:767px){
     .card{
@@ -2678,6 +2678,13 @@ color: var(--p-color);
   font-size: small;
   
 }
+.form-control option{
+  font-size: 0.8rem;
+
+}
+
+
+
 }
 
 p.amount-text{
@@ -2687,3 +2694,32 @@ div.card-footer{
   text-align: end;
 }
 
+
+/* Element | http://127.0.0.1:5501/checkout.html */
+
+#address-form-1 > div:nth-child(2) > h6:nth-child(1) {
+  /* width: auto; */
+  width: fit-content;
+}
+
+/* Element | http://127.0.0.1:5501/checkout.html */
+
+#address-form-1 > div:nth-child(2) {
+  display: flex;
+}
+
+#address-form-1 > div:nth-child(3){
+  margin-top: 10px;
+}
+
+.form-control option{
+  font-size: 1rem;
+
+}
+ div#address-form-div{
+  display: none;
+ }
+.payDiv{
+  margin-top: 17px;
+  text-align: center;
+}

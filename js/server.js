@@ -2175,11 +2175,11 @@ async function updateSummary(subtotal) {
   const finalTotal = subtotal + delCost;
   finalTotalElement.textContent = `${finalTotal}`;
   if(finalTotal> 0){
-    const payBtn = document.getElementById("checkoutBtn");
-    checkoutBtn.disabled = false;
+    const payBtn = document.getElementById("finalCheckoutBtn");
+    payBtn.disabled = false;
   }else{
-    const payBtn = document.getElementById("checkoutBtn");
-    checkoutBtn.disabled = true;
+    const payBtn = document.getElementById("finalCheckoutBtn");
+    payBtn.disabled = true;
   }
 }
 
@@ -2845,3 +2845,27 @@ auth.onAuthStateChanged(async (user) => {
    
 await loadProducts();
 
+const finalCheckoutBtn = document.getElementById("finalCheckoutBtn");
+
+if (finalCheckoutBtn) {
+  finalCheckoutBtn.addEventListener("click", async () => {
+    if(auth.currentUser.phoneNumber){
+    window.location.href = "../checkout.html";
+
+    }else{
+      Toastify({
+        text: "Please login to continue",
+        duration: 3000,
+        gravity: "top",
+        position: "center",
+        backgroundColor: "linear-gradient(to right, #ff416c, #ff4b2b)",
+        stopOnFocus: true,
+      }).showToast();
+      const modalOverlay = document.getElementById("modalOverlay");
+      const modal = document.getElementById("modal");
+      modal.style.display = "block";
+      modalOverlay.style.display = "block";
+    }
+    // ...
+  });
+}

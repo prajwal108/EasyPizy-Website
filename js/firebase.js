@@ -327,24 +327,30 @@ function updateUIForLoggedOutUser() {
   const logoutButton = document.getElementById("logoutBtn");
   document.addEventListener("click", (event) => {
     if (event.target && event.target.id === "logoutBtn") {
-      auth.signOut().then(() => {
-          // Sign-out successful.
-          Toastify({
-            text: "Logout successful",
-            duration: 3000,
-            close: true,
-            gravity: "top", // `top` or `bottom`
-            position: "center", // `left`, `center` or `right`
-            stopOnFocus: true, // Prevents dismissing of toast on hover
-            backgroundColor: " #ff6347",
-            onClick: function () {}, // Callback after click
-          }).showToast();
-          // You can perform additional actions here, such as redirecting the user.
-        })
-        .catch((error) => {
-          // An error happened. Handle it here.
-          console.error("Error during sign-out:", error);
-        });
+       const user = auth.currentUser;
+       if (user && user.phoneNumber){
+         auth
+           .signOut()
+           .then(() => {
+             // Sign-out successful.
+             Toastify({
+               text: "Logout successful",
+               duration: 3000,
+               close: true,
+               gravity: "top", // `top` or `bottom`
+               position: "center", // `left`, `center` or `right`
+               stopOnFocus: true, // Prevents dismissing of toast on hover
+               backgroundColor: " #ff6347",
+               onClick: function () {}, // Callback after click
+             }).showToast();
+             // You can perform additional actions here, such as redirecting the user.
+           })
+           .catch((error) => {
+             // An error happened. Handle it here.
+             console.error("Error during sign-out:", error);
+           });
+
+          }
     }
   });
 

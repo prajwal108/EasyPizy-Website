@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1" >
+
+    <meta name="description" content="" >
+    <meta name="author" content="" >
+
+    <title>EasyPizy</title>
+    <link rel="icon" href="images/title-icon.jpg" >
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/graingert-wow/1.2.2/wow.min.js"
+      integrity="sha512-W0pro5TDSuKuwBag9ERPMdNzd8E5z5p7BmWqMflUsGN+jW3JPrVvE5F5EJXIDk3vX9YYvJ+fZ55grIU9mHzvhw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+   
+    <!-- CSS FILES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" >
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin >
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100;300;400;600;700&display=swap"
+      rel="stylesheet"
+    >
+
+    <link href="css/bootstrap.min.css" rel="stylesheet" >
+
+    <link href="css/bootstrap-icons.css" rel="stylesheet" >
+
+    <link href="css/owl.carousel.min.css" rel="stylesheet" >
+
+    <link href="css/owl.theme.default.min.css" rel="stylesheet" >
+
+    <link href="css/tooplate-gotto-job.css" rel="stylesheet" >
+
+  
+  </head>
+
+  <body id="top">
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+                <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand d-flex align-items-center" href="index.html">
+          <!-- <img src="images/logo.png" class="img-fluid logo-image"> -->
+
+          <div class="d-flex flex-column">
+            <img src="images/LOGO-PNG.png" alt="Logo" class="img-fluid logo-image" >
+            <!-- <strong class="logo-text">EasyPizy</strong> -->
+            <!-- <small class="logo-slogan"></small> -->
+          </div>
+        </a>
+        <div class="nav-item dropdown ms-lg-4" id="accountNavbar">
+          <button class="btn accountDropdown dropdown-toggle" type="button" id="accountDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="bi bi-person me-2"></i><span id="accountText">Prajwal</span></button>
+         <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="dropdown-menu-light" id="accountMenu">
+    <li><a class="dropdown-item" href="../Account-Menu/account-details.html">Account Details</a></li>
+    <li><a class="dropdown-item" href="../Account-Menu/saved-items.html">Saved Items</a></li>
+    <li><a class="dropdown-item" href="../Account-Menu/order-history.html">Order History</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><a class="dropdown-item" id="logoutBtn">Logout</a></li>
+  </ul>
+        </div>
+    
+    </nav>
+
+        <main id="cart-div">
+    <section id="modalOverlay">
+        <div class="card-1">
+            <div class="row">
+                <div class="col-md-8 cart">
+                    <div class="title">
+                        <div class="row">
+                            <div class="col"><h2><b>Checkout</b></h2></div>
+                            <div class="checkoutContainer">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-12">
+                                        <label for="full-name">Full Name</label>
+                                        <input type="text" name="full-name" id="full-name" class="form-control" required>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-12">
+                                        <label for="phoneNumber">Phone Number</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">+91 </span>
+                                            </div>
+                                            <input class="form-control" type="tel" id="phoneNumber" name="phoneNumber" pattern="[0-9]{10}" required="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                    <div style="text-align: left; margin-top: 30px;">
+                        <h6>Select Delivery Address:</h6>
+                        
+                        <!-- Address Selection Form -->
+                        <div id="address-form-1" >
+                            <div class="form-group">
+                                
+                                <select class="form-control" id="address" name="address" required>
+
+                                    
+                                    
+                                    <!-- Add more address options as needed -->
+                                </select>
+                            </div>
+                            <div><h6>Or Add New Address</h6><button class="edit-info-button bi bi-pencil-fill" id="add-address">   
+                                
+            </button>
+        
+        </div>
+        <div id="address-form-div" >
+        <form id="address-form-3" >
+      <!-- Address label -->
+      <div class="mb-3">
+        <label for="address-label" class="form-label">Address Label (e.g., Home, Office):</label>
+        <input type="text" id="address-label" name="address-label" class="form-control" required>
+      </div>
+      <!-- Address details -->
+      <div class="mb-3">
+        <label for="address-details" class="form-label">Address Details:</label>
+        <textarea id="address-details" name="address-details" class="form-control" rows="3" required></textarea>
+      </div>
+      <!-- Pincode -->
+      <div class="mb-3">
+        <label for="address-pincode" class="form-label">Pincode:</label>
+        <input type="text" id="address-pincode" name="address-pincode" class="form-control" required>
+      </div>
+      <!-- State -->
+      <div class="mb-3">
+        <label for="address-state" class="form-label">City & State:</label>
+        <input type="text" id="address-state" name="address-state" class="form-control" required>
+      </div>
+
+      <!-- Submit button for adding address -->
+      <div class="mb-3" >
+        <button type="submit" class="btn btn-primary" id="save-address">Add Address</button>
+      </div>
+    </form>
+            </div>    
+                            
+                            <!-- Add additional fields for address details if needed (e.g., street, city, etc.) -->
+                            <div class="payDiv"><button class="btn col-md-8 custom-btn" id="proceedToPayBtn">PROCEED TO PAY</button></div>
+                            
+                        </div>
+                        
+
+                    </div>
+                </div>
+                <div class="col-md-4 summary">
+                    <div><h3><b>Summary</b></h3></div>
+                    <hr>
+                    <div class="row">
+                        <div class="col">SUBTOTAL AMOUNT</div>
+                        <div class="col text-right"><span>₹ <span id="cart-subtotal-price"></span></span></div>
+                    </div>
+                    <hr>
+                    <form style="margin-bottom: 15px;">
+                        <span><H6>SHIPPING</H6></span>
+                        <div id="freedeliveryline">Unlock Free Delivery on Orders Totaling <br>Rs. 500 or more</div>
+                        <select id="shipping-select">
+                            <option class="text-muted" value="standard">
+                                Standard-Delivery- <span>₹ <span id="delivery">40 </span></span>
+                            </option>
+                            <option class="text-muted" value="free" disabled>Free-Delivery</option>
+                        </select>
+                    </form>
+                    <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+                        <div class="col">FINAL AMOUNT</div>
+                        <div class="col text-right"><span>₹ <span id="cart-final-total-price"></span></span></div>
+                    </div>
+                    <button class="btn custom-btn" id="proceedToPayBtn">PROCEED TO PAY</button>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+    <!-- JAVASCRIPT FILES --> 
+   
+    <script type="module" src="js/checkout.js"></script>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/counter.js"></script>
+   
+       
+  </body>
+</html>
