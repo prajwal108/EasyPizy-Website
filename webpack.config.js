@@ -1,9 +1,11 @@
 const path = require("path");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = {
   entry: "./src/", // Entry point for your application
   output: {
-    filename: "bundle.js", // Name of the output bundle file
+    filename: "bundle.js", // Name of the output JavaScript bundle file
     path: path.resolve(__dirname, "dist"), // Output directory (create a 'dist' folder)
   },
   module: {
@@ -22,6 +24,23 @@ module.exports = {
         test: /\.handlebars$/, // Apply this rule to .handlebars files
         loader: "handlebars-loader", // Use Handlebars loader
       },
+      {
+        test: /\.css$/, // Apply this rule to .css files
+        use: [
+          MiniCssExtractPlugin.loader, // Extract CSS into separate files
+          "css-loader", // CSS loader
+        ],
+      },
+    ],
+  },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: "bundle.css", // Name of the output CSS bundle file
+    }),
+  ],
+  optimization: {
+    minimizer: [
+      new TerserPlugin(), // Minify JavaScript
     ],
   },
 };
