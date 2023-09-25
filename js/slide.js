@@ -1,3 +1,11 @@
+// Wait for the page to load completely
+window.addEventListener("load", function () {
+  // Get the loader container
+  const loaderContainer = document.getElementById("loader-container");
+
+  // Hide the loader by adding a CSS class
+  loaderContainer.style.display = "none";
+});
 
 function sendToWhatsApp() {
   // Get form data
@@ -14,18 +22,21 @@ function sendToWhatsApp() {
   window.open(whatsappURL, "_blank");
 }
 const whatsappButton = document.getElementById("whatsapp-button");
-if(whatsappButton){
-  window.addEventListener("scroll", function() {
-    
-    const windowHeight = window.innerHeight;
-    const scrollY = window.scrollY || window.pageYOffset;
+if (whatsappButton) {
+  window.addEventListener(
+    "scroll",
+    function () {
+      const windowHeight = window.innerHeight;
+      const scrollY = window.scrollY || window.pageYOffset;
 
-    if (scrollY >= windowHeight) {
-      whatsappButton.style.display = "block"; // Display the button after scrolling past 100vh
-    } else {
-      whatsappButton.style.display = "none"; // Hide the button if scrolled back above 100vh
-    }
-  },{passive: true});
+      if (scrollY >= windowHeight) {
+        whatsappButton.style.display = "block"; // Display the button after scrolling past 100vh
+      } else {
+        whatsappButton.style.display = "none"; // Hide the button if scrolled back above 100vh
+      }
+    },
+    { passive: true }
+  );
 }
 
 // Add this script before the closing </body> tag
@@ -40,17 +51,15 @@ document.addEventListener("click", (event) => {
     // Show the modal when "Login/Signup" is clicked
     modalOverlay.style.display = "flex";
     modal.style.display = "block";
-  } else if (event.target && (event.target.id === "closeModal" ||event.target.id === "closeModal1")) {
+  } else if (
+    event.target &&
+    (event.target.id === "closeModal" || event.target.id === "closeModal1")
+  ) {
     // Close the modal when the close button is clicked
     console.log("close");
     modalOverlay.style.display = "none";
   }
 });
-
-
-
-
-
 
 document.addEventListener("DOMContentLoaded", function () {
   const addToCartBtns = document.querySelectorAll(".add-to-cart-btn");
@@ -89,22 +98,22 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-  $(document).ready(function () {
-    $(".product_thumbnail_slides").owlCarousel({
-      items: 1, // Number of items to show
-      loop: true, // Loop the carousel
-      autoplay: true, // Autoplay the carousel
-      autoplayTimeout: 3000, // Autoplay every 'n' milliseconds
-      autoplayHoverPause: true, // Pause the autoplay on hover
-      nav: true, // Show navigation arrows
-      navText: [
-        '<i class="bi bi-arrow-left-circle-fill"></i>',
-        '<i class="bi bi-arrow-right-circle-fill"></i>',
-      ], // Customize navigation arrows
-      dots: true, // Show navigation dots
-      dotsEach: true, // Show navigation dots on each item
-      created: function () {
-        // carousel initialized
-      },
-    });
+$(document).ready(function () {
+  $(".product_thumbnail_slides").owlCarousel({
+    items: 1, // Number of items to show
+    loop: true, // Loop the carousel
+    autoplay: true, // Autoplay the carousel
+    autoplayTimeout: 3000, // Autoplay every 'n' milliseconds
+    autoplayHoverPause: true, // Pause the autoplay on hover
+    nav: true, // Show navigation arrows
+    navText: [
+      '<i class="bi bi-arrow-left-circle-fill"></i>',
+      '<i class="bi bi-arrow-right-circle-fill"></i>',
+    ], // Customize navigation arrows
+    dots: true, // Show navigation dots
+    dotsEach: true, // Show navigation dots on each item
+    created: function () {
+      // carousel initialized
+    },
   });
+});

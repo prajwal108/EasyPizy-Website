@@ -267,6 +267,7 @@ proceedToPayButtons.forEach((button) => {
         tempCartData.phoneNumber2 = phoneNumber2;
         tempCartData.email = email;
         tempCartData.deliveryAddress = selectedAddress;
+        tempCartData.paymentStatus = "pending";
 
         // Update the temporary cart document with the additional data
         await setDoc(tempCartRef, tempCartData);
