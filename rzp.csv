@@ -1,0 +1,5 @@
+key_id,key_secret
+,U05E6uA3Py8IltmGI1EiqQQC
+firebase functions:config:set razorpay.key_id="rzp_test_uN9wYB6blxpSJv" razorpay.key_secret="U05E6uA3Py8IltmGI1EiqQQC"
+const keyId = "rzp_test_uN9wYB6blxpSJv"; // Updated from key_id
+const keySecret = "U05E6uA3Py8IltmGI1EiqQQC"; 

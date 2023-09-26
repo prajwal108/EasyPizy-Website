@@ -1,11 +1,14 @@
+ const loaderContainer = document.getElementById("loader-container");
+if(loaderContainer){
 // Wait for the page to load completely
 window.addEventListener("load", function () {
   // Get the loader container
-  const loaderContainer = document.getElementById("loader-container");
-
+ 
   // Hide the loader by adding a CSS class
   loaderContainer.style.display = "none";
+
 });
+}
 
 function sendToWhatsApp() {
   // Get form data

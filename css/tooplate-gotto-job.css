@@ -2682,6 +2682,9 @@ color: var(--p-color);
   font-size: 0.8rem;
 
 }
+.more-button-div{
+  justify-content: center;
+}
 
 
 
@@ -2742,4 +2745,7 @@ div.card-footer{
 #loader {
     width: 100px; /* Adjust the width and height as needed */
     height: 100px;
+}
+.more-button-div{
+  justify-content: end;
 }
