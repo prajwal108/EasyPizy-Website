@@ -17,6 +17,15 @@
         ]
       },
       {
+        "source": "/getRecaptchaSiteKey",
+        "headers": [
+          {
+            "key": "Access-Control-Allow-Origin",
+            "value": "*"
+          }
+        ]
+      },
+      {
         "source": "/initiatePayment",
         "headers": [
           {
