@@ -1,6 +1,7 @@
 const functions = require("firebase-functions");
 const Razorpay = require("razorpay");
 const cors = require("cors")({origin: true});
+
 exports.getFirebaseConfig = functions
     .region("asia-south1")
     .https.onRequest((request, response) => {
@@ -19,6 +20,13 @@ exports.getFirebaseConfig = functions
         response.json(firebaseConfig);
       });
     });
+
+exports.getRecaptchaSiteKey = functions.https.onRequest((request, response) => {
+  cors(request, response, () => {
+    const siteKey = functions.config().recaptcha.site_key;
+    response.send(siteKey);
+  });
+});
 
 const razorpay = new Razorpay({
   key_id: "rzp_test_uN9wYB6blxpSJv",
