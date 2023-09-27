@@ -1,15 +1,6 @@
 const functions = require("firebase-functions");
 const Razorpay = require("razorpay");
-const corsOptions = {
-  origin: [
-    "https://easypizy-in.web.app",
-    "https://easypizy-in.web.app/cart.html",
-    "http://127.0.0.1:5501",
-  ],
-};
-
-const cors = require("cors")(corsOptions);
-
+const cors = require("cors")({origin: true});
 exports.getFirebaseConfig = functions
     .region("asia-south1")
     .https.onRequest((request, response) => {
@@ -24,13 +15,10 @@ exports.getFirebaseConfig = functions
         appId: "1:860069269388:web:b44033d7d721143eebd0a9",
         measurementId: "G-SYY5K0GJ7H",
       };
-
-      // Set CORS headers
-      response.set("Access-Control-Allow-Origin", "*");
-      response.set("Access-Control-Allow-Methods", "GET");
-      response.set("Access-Control-Allow-Headers", "Content-Type");
-
-      response.json(firebaseConfig);
+      // Enable CORS
+      cors(request, response, () => {
+        response.json(firebaseConfig);
+      });
     });
 
 const razorpay = new Razorpay({
@@ -86,4 +74,42 @@ exports.createRazorpayOrder = functions
       }
     });
 
+// exports.createOrder = functions
+//     .region("asia-south1")
+//     .https.onRequest((req, res) => {
+//       return cors(req, res, () => {
+//         const options = {
+//           amount: req.body.amount,
+//           currency: "INR",
+//           receipt: req.body.receipt,
+//         };
+//         instance.orders.create(options, (err, order) => {
+//         order ? res.status(200).send(order) : res.status(500).send(err);
+//         });
+//       });
+//     });
 
+// exports.capturePayments = functions
+//     .region("asia-south1")
+//     .https.onRequest((req, res) => {
+//       return cors(req, res, () => {
+//         request(
+//             {
+//               method: "POST",
+//               url: `https://${key_id}:${key_secret}@api.razorpay.com/v1/payments/${req.body.payment_id}/capture`,
+//               form: {
+//                 amount: req.body.amount,
+//               },
+//             },
+//             (error, response, body) => {
+//           response ?
+//             res.status(200).send({
+//               res: response,
+//               req: req.body,
+//               body: body,
+//             }) :
+//             res.status(500).send(error);
+//             },
+//         );
+//       });
+//     });

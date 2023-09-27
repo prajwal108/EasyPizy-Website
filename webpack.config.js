@@ -1,6 +1,7 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
+const Dotenv = require("dotenv-webpack");
 
 module.exports = {
   entry: "./src/", // Entry point for your application
@@ -37,6 +38,7 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: "bundle.css", // Name of the output CSS bundle file
     }),
+    new Dotenv(),
   ],
   optimization: {
     minimizer: [
