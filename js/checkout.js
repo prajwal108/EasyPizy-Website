@@ -20,19 +20,29 @@ import {
   ReCaptchaV3Provider,
 } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app-check.js";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyA4bdQPLI8i7SgvjUj9eKLirPuUWvYUXcI",
-  authDomain: "easypizy-in.firebaseapp.com",
-  databaseURL:
-    "https://easypizy-in-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "easypizy-in",
-  storageBucket: "easypizy-in.appspot.com",
-  messagingSenderId: "860069269388",
-  appId: "1:860069269388:web:b44033d7d721143eebd0a9",
-  measurementId: "G-SYY5K0GJ7H",
-};
+// Make an HTTP request to the Cloud Function endpoint
+fetch('https://easypizy-in.cloudfunctions.net/getFirebaseConfig')
+  .then(response => response.json())
+  .then(data => {
+    // Retrieve the Firebase configuration values from the response
+    const { apiKey, authDomain, databaseURL, projectId, storageBucket, messagingSenderId, appId, measurementId } = data;
 
-const app = initializeApp(firebaseConfig);
+    // Initialize Firebase with the retrieved configuration
+    const firebaseConfig = {
+      apiKey,
+      authDomain,
+      databaseURL,
+      projectId,
+      storageBucket,
+      messagingSenderId,
+      appId,
+      measurementId
+    };
+
+    // Initialize Firebase app
+    const app = firebase.initializeApp(firebaseConfig);
+
+    
 const auth = getAuth(app);
 
 // Set up local persistence
@@ -46,15 +56,13 @@ auth
   });
 
 const appCheck = initializeAppCheck(app, {
-  provider: new ReCaptchaV3Provider("6LcXifYnAAAAANWB4INPpx_rnQsunUqryz5cv6qR"),
+  provider: new ReCaptchaV3Provider(process.env.RECAPTCHA_SITE_KEY),
   isTokenAutoRefreshEnabled: true,
-  // Optional argument. If true, the SDK automatically refreshes App Check
-  // tokens as needed
 });
 
 const db = getFirestore(app);
 
- async function getUserProfile(uid) {
+async function getUserProfile(uid) {
   const db = getFirestore();
   const userProfilesRef = collection(db, "userProfiles");
 
@@ -82,21 +90,22 @@ async function populateUserProfile(userUID) {
     const userProfile = await getUserProfile(userUID);
     if (userProfile) {
       // Populate form fields with user profile data
-      document.getElementById("full-name").value = userProfile.firstName + " " + userProfile.lastName;
+      document.getElementById("full-name").value =
+        userProfile.firstName + " " + userProfile.lastName;
       document.getElementById("phoneNumber").value = userProfile.mobileNumber;
-      document.getElementById("phoneNumber2").value = userProfile.secondaryContactNumber|| "";
-        document.getElementById("email").value = userProfile.email ||"";
-
+      document.getElementById("phoneNumber2").value =
+        userProfile.secondaryContactNumber || "";
+      document.getElementById("email").value = userProfile.email || "";
 
       // Get a reference to the select element
-      const addressSelect = document.getElementById('address');
+      const addressSelect = document.getElementById("address");
 
       // Clear existing options
-      addressSelect.innerHTML = '';
+      addressSelect.innerHTML = "";
 
       // Populate the select options with user's addresses
       userProfile.addresses.forEach((addressData, index) => {
-        const option = document.createElement('option');
+        const option = document.createElement("option");
         option.value = index; // Set the value to the index of the address
         option.textContent = `${addressData.details}, ${addressData.pincode}, ${addressData.state}`; // Combine address details, pincode, and state
         addressSelect.appendChild(option);
@@ -117,7 +126,7 @@ function clearAddressFormFields() {
 }
 
 const addAddressButton = document.getElementById("add-address");
-addAddressButton.addEventListener("click",async () => {
+addAddressButton.addEventListener("click", async () => {
   const addressForm3 = document.getElementById("address-form-div");
   const saveAddressButton = document.getElementById("save-address");
 
@@ -139,7 +148,9 @@ async function addNewAddress(userUID, label, details, pincode, state) {
   const userProfilesRef = collection(db, "userProfiles");
 
   try {
-    const querySnapshot = await getDocs(query(userProfilesRef, where("uid", "==", userUID)));
+    const querySnapshot = await getDocs(
+      query(userProfilesRef, where("uid", "==", userUID))
+    );
 
     if (!querySnapshot.empty) {
       const userData = querySnapshot.docs[0].data();
@@ -184,7 +195,6 @@ saveAddressButton.addEventListener("click", async (event) => {
   addressForm3.style.display = "none";
   clearAddressFormFields();
 
-
   // Select the newly added address in the <select> element
   const addressSelect = document.getElementById("address");
   const newOption = document.createElement("option");
@@ -213,20 +223,17 @@ async function updateSummary(userUID) {
 
       // Update subtotal amount
       subtotalElement.textContent = `${tempCartData.subtotal}`;
-      
 
       // Update final total amount
-        finalTotalElement.textContent = `${tempCartData.finalAmount}`;
-      
+      finalTotalElement.textContent = `${tempCartData.finalAmount}`;
 
       // Update shipping options based on delivery charge
-     
-        const shippingOption = shippingSelect.querySelector(
-          "option[value='standard']"
-        );
-       
-          shippingOption.textContent = `Delivery Charge - ₹ ${tempCartData.deliveryCharge}`;
-        
+
+      const shippingOption = shippingSelect.querySelector(
+        "option[value='standard']"
+      );
+
+      shippingOption.textContent = `Delivery Charge - ₹ ${tempCartData.deliveryCharge}`;
     } else {
       console.error("Temporary cart data not found.");
     }
@@ -285,27 +292,30 @@ proceedToPayButtons.forEach((button) => {
   });
 });
 
-
-
-
-  function getUserUID() {
-    const user = auth.currentUser;
-    if (user) {
-      return user.uid;
-    } else {
-      // Handle the case where the user is not authenticated
-      return null; // or some other value or throw an error
-    }
+function getUserUID() {
+  const user = auth.currentUser;
+  if (user) {
+    return user.uid;
+  } else {
+    // Handle the case where the user is not authenticated
+    return null; // or some other value or throw an error
   }
+}
 
-auth.onAuthStateChanged(async(user) => {
-    if (user) {
-      const userUID = user.uid;
-        await populateUserProfile(user.uid);
-        await updateSummary(userUID);
-       
-    } else {
-        
-    }
-    }
-);
+auth.onAuthStateChanged(async (user) => {
+  if (user) {
+    const userUID = user.uid;
+    await populateUserProfile(user.uid);
+    await updateSummary(userUID);
+  } else {
+  }
+});
+  })
+  .catch(error => {
+    console.error('Error retrieving Firebase configuration:', error);
+  });
+
+
+
+
+
