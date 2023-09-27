@@ -36,8 +36,11 @@ auth
     // Handle errors
   });
 
+
   const appCheck = initializeAppCheck(app, {
-    provider: new ReCaptchaV3Provider("6LcXifYnAAAAANWB4INPpx_rnQsunUqryz5cv6qR"),
+    provider: new ReCaptchaV3Provider(
+      "6LcXifYnAAAAANWB4INPpx_rnQsunUqryz5cv6qR"
+    ),
     isTokenAutoRefreshEnabled: true,
   });
 
