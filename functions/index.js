@@ -5,15 +5,14 @@ exports.getFirebaseConfig = functions
     .region("asia-south1")
     .https.onRequest((request, response) => {
       const firebaseConfig = {
-        apiKey: "AIzaSyA4bdQPLI8i7SgvjUj9eKLirPuUWvYUXcI",
-        authDomain: "easypizy-in.firebaseapp.com",
-        databaseURL:
-        "https://easypizy-in-default-rtdb.asia-southeast1.firebasedatabase.app",
-        projectId: "easypizy-in",
-        storageBucket: "easypizy-in.appspot.com",
-        messagingSenderId: "860069269388",
-        appId: "1:860069269388:web:b44033d7d721143eebd0a9",
-        measurementId: "G-SYY5K0GJ7H",
+        apiKey: functions.config().functions.api_key,
+        authDomain: functions.config().functions.auth_domain,
+        databaseURL: functions.config().functions.database_url,
+        projectId: functions.config().functions.project_id,
+        storageBucket: functions.config().functions.storage_bucket,
+        messagingSenderId: functions.config().functions.messaging_sender_id,
+        appId: functions.config().functions.app_id,
+        measurementId: functions.config().functions.measurement_id,
       };
       // Enable CORS
       cors(request, response, () => {
