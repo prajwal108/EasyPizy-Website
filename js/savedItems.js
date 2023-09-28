@@ -3,8 +3,12 @@ import {getFirestore,collection,doc, setDoc, updateDoc, getDoc, deleteDoc, addDo
 import { getAuth, browserLocalPersistence, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js";
 import {updateAndSyncProductCard, isProductSaved,
   updateUIBasedOnSavedState} from "./server.js";
+  
 
-import { initializeFirebaseApp } from "./firebaseConfig.js";
+import {
+  initializeFirebaseApp,
+  getRecaptchaSiteKey,
+} from "./firebaseConfig.js";
 
 const app = await initializeFirebaseApp();
 
@@ -20,6 +24,13 @@ auth
   });
 const db = getFirestore(app);
 
+const recaptchaSiteKey = await getRecaptchaSiteKey();
+const appCheck = initializeAppCheck(app, {
+  provider: new ReCaptchaV3Provider(recaptchaSiteKey),
+  isTokenAutoRefreshEnabled: true,
+  // Optional argument. If true, the SDK automatically refreshes App Check
+  // tokens as needed
+});
 // Function to set up a snapshot listener for saved products
 export async function setUpSnapshotListener(userUID) {
   if (!userUID) {

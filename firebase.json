@@ -24,24 +24,6 @@
             "value": "*"
           }
         ]
-      },
-      {
-        "source": "/initiatePayment",
-        "headers": [
-          {
-            "key": "Access-Control-Allow-Origin",
-            "value": "*"
-          }
-        ]
-      },
-      {
-        "source": "/createRazorpayOrder",
-        "headers": [
-          {
-            "key": "Access-Control-Allow-Origin",
-            "value": "*"
-          }
-        ]
       }
     ]
   },

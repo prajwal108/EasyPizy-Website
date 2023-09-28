@@ -2,9 +2,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebas
 
 async function fetchFirebaseConfig() {
   try {
-    const response = await fetch(
-      "https://asia-south1-easypizy-in.cloudfunctions.net/getFirebaseConfig"
-    );
+    const response = await fetch("https://asia-south1-easypizy-in.cloudfunctions.net/getFirebaseConfig");
     if (!response.ok) {
       throw new Error("Failed to fetch Firebase configuration");
     }
@@ -15,8 +13,6 @@ async function fetchFirebaseConfig() {
     throw new Error("Failed to fetch Firebase configuration");
   }
 }
-
-fetchFirebaseConfig();
 
 async function initializeFirebaseApp() {
   try {
@@ -29,4 +25,18 @@ async function initializeFirebaseApp() {
   }
 }
 
-export { initializeFirebaseApp };
+async function getRecaptchaSiteKey() {
+  try {
+    const response = await fetch("https://asia-south1-easypizy-in.cloudfunctions.net/getRecaptchaSiteKey");
+    if (!response.ok) {
+      throw new Error("Failed to fetch Firebase configuration");
+    }
+    const siteKey = await response.text();
+    return siteKey;
+  } catch (error) {
+    console.error("Error fetching Firebase configuration:", error.message);
+    throw new Error("Failed to fetch Firebase configuration");
+  }
+}
+
+export { initializeFirebaseApp, getRecaptchaSiteKey };

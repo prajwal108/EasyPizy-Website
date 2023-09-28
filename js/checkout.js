@@ -20,7 +20,10 @@ import {
   ReCaptchaV3Provider,
 } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app-check.js";
 
-import { initializeFirebaseApp } from './firebaseConfig.js';
+import {
+  initializeFirebaseApp,
+  getRecaptchaSiteKey,
+} from "./firebaseConfig.js";
 
 
 const app = await initializeFirebaseApp();
@@ -37,12 +40,13 @@ auth
   });
 
 
-  const appCheck = initializeAppCheck(app, {
-    provider: new ReCaptchaV3Provider(
-      "6LcXifYnAAAAANWB4INPpx_rnQsunUqryz5cv6qR"
-    ),
-    isTokenAutoRefreshEnabled: true,
-  });
+    const recaptchaSiteKey = await getRecaptchaSiteKey();
+    const appCheck = initializeAppCheck(app, {
+      provider: new ReCaptchaV3Provider(recaptchaSiteKey),
+      isTokenAutoRefreshEnabled: true,
+      // Optional argument. If true, the SDK automatically refreshes App Check
+      // tokens as needed
+    });
 
 const db = getFirestore(app);
 

@@ -9,7 +9,10 @@ import {
  import { initializeAppCheck, ReCaptchaV3Provider } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app-check.js";
 
 
-  import { initializeFirebaseApp } from "./firebaseConfig.js";
+  import {
+    initializeFirebaseApp,
+    getRecaptchaSiteKey,
+  } from "./firebaseConfig.js";
   const app = await initializeFirebaseApp();
    const auth = getAuth(app);
   // Set up local persistence
@@ -20,15 +23,16 @@ import {
     .catch((error) => {
       // Handle errors
     });
-    
+
+    const recaptchaSiteKey = await getRecaptchaSiteKey();
     const appCheck = initializeAppCheck(app, {
-      provider: new ReCaptchaV3Provider(
-        "6LcXifYnAAAAANWB4INPpx_rnQsunUqryz5cv6qR"
-      ),
+      provider: new ReCaptchaV3Provider(recaptchaSiteKey),
       isTokenAutoRefreshEnabled: true,
       // Optional argument. If true, the SDK automatically refreshes App Check
       // tokens as needed
     });
+    
+
      const db = getFirestore(app);
 
      const productsData = [
@@ -2850,11 +2854,10 @@ auth.onAuthStateChanged(async (user) => {
 
     const userUID = user.uid;
     const productDescElement = document.querySelector(".single_product_desc");
-    console.log("found product desc",productDescElement);
+   
 
     if (productDescElement) {
       const productId = productDescElement.id;; // Extract productId from the id
-      console.log("found pproduct id",productId);
       updateAndSyncProductPage(productId, userUID);
       
     }

@@ -6,7 +6,10 @@
   import { initializeAppCheck, ReCaptchaV3Provider } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app-check.js";
   
   
- import { initializeFirebaseApp } from "./firebaseConfig.js";
+ import {
+   initializeFirebaseApp,
+   getRecaptchaSiteKey,
+ } from "./firebaseConfig.js";
 
  const app = await initializeFirebaseApp();
 
@@ -29,13 +32,13 @@
       // Handle errors
     });
 
-    const appCheck = initializeAppCheck(app, {
-      provider: new ReCaptchaV3Provider("6LcXifYnAAAAANWB4INPpx_rnQsunUqryz5cv6qR"),
-      isTokenAutoRefreshEnabled: true,
-      // Optional argument. If true, the SDK automatically refreshes App Check
-      // tokens as needed
-    });
-    
+      const recaptchaSiteKey = await getRecaptchaSiteKey();
+      const appCheck = initializeAppCheck(app, {
+        provider: new ReCaptchaV3Provider(recaptchaSiteKey),
+        isTokenAutoRefreshEnabled: true,
+        // Optional argument. If true, the SDK automatically refreshes App Check
+        // tokens as needed
+      });
 
     const sendOtpButton = document.getElementById("sendOtpBtn");
     const phoneNumberInput = document.getElementById("phoneNumber");
