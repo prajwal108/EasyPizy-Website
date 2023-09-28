@@ -4,13 +4,29 @@ import { getAuth, browserLocalPersistence, onAuthStateChanged} from "https://www
 import {updateAndSyncProductCard, isProductSaved,
   updateUIBasedOnSavedState} from "./server.js";
   
+ const firebaseConfig = {
+   apiKey: "AIzaSyA4bdQPLI8i7SgvjUj9eKLirPuUWvYUXcI",
 
-import {
-  initializeFirebaseApp,
-  getRecaptchaSiteKey,
-} from "./firebaseConfig.js";
+   authDomain: "easypizy-in.firebaseapp.com",
 
-const app = await initializeFirebaseApp();
+   databaseURL:
+     "https://easypizy-in-default-rtdb.asia-southeast1.firebasedatabase.app",
+
+   projectId: "easypizy-in",
+
+   storageBucket: "easypizy-in.appspot.com",
+
+   messagingSenderId: "860069269388",
+
+   appId: "1:860069269388:web:b44033d7d721143eebd0a9",
+
+   measurementId: "G-SYY5K0GJ7H",
+ };
+
+ // Initialize Firebase
+
+ const app = initializeApp(firebaseConfig);
+
 
 const auth = getAuth(app);
 // Set up local persistence
@@ -24,9 +40,9 @@ auth
   });
 const db = getFirestore(app);
 
-const recaptchaSiteKey = await getRecaptchaSiteKey();
+
 const appCheck = initializeAppCheck(app, {
-  provider: new ReCaptchaV3Provider(recaptchaSiteKey),
+  provider: new ReCaptchaV3Provider("6LcXifYnAAAAANWB4INPpx_rnQsunUqryz5cv6qR"),
   isTokenAutoRefreshEnabled: true,
   // Optional argument. If true, the SDK automatically refreshes App Check
   // tokens as needed

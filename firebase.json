@@ -8,16 +8,7 @@
     ],
     "headers": [
       {
-        "source": "/getFirebaseConfig",
-        "headers": [
-          {
-            "key": "Access-Control-Allow-Origin",
-            "value": "*"
-          }
-        ]
-      },
-      {
-        "source": "/getRecaptchaSiteKey",
+        "source": "/createOrder",
         "headers": [
           {
             "key": "Access-Control-Allow-Origin",

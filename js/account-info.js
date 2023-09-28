@@ -3,12 +3,31 @@ import { getAuth,browserLocalPersistence } from "https://www.gstatic.com/firebas
  import {getFirestore, collection, addDoc,query,where, getDocs,getDoc,doc,updateDoc } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js";
   import { initializeAppCheck, ReCaptchaV3Provider } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app-check.js";
 
- import {
-   initializeFirebaseApp,
-   getRecaptchaSiteKey,
- } from "./firebaseConfig.js";
+  const firebaseConfig = {
 
- const app = await initializeFirebaseApp();
+    apiKey: "AIzaSyA4bdQPLI8i7SgvjUj9eKLirPuUWvYUXcI",
+
+    authDomain: "easypizy-in.firebaseapp.com",
+
+    databaseURL: "https://easypizy-in-default-rtdb.asia-southeast1.firebasedatabase.app",
+
+    projectId: "easypizy-in",
+
+    storageBucket: "easypizy-in.appspot.com",
+
+    messagingSenderId: "860069269388",
+
+    appId: "1:860069269388:web:b44033d7d721143eebd0a9",
+
+    measurementId: "G-SYY5K0GJ7H"
+
+  };
+
+
+  // Initialize Firebase
+
+  const app = initializeApp(firebaseConfig);
+
 
        const auth = getAuth(app);
 
@@ -20,12 +39,11 @@ import { getAuth,browserLocalPersistence } from "https://www.gstatic.com/firebas
          .catch((error) => {
            // Handle errors
          });
-    const recaptchaSiteKey = await getRecaptchaSiteKey();
+  
     const appCheck = initializeAppCheck(app, {
-      provider: new ReCaptchaV3Provider(recaptchaSiteKey),
+      provider: new ReCaptchaV3Provider("6LcXifYnAAAAANWB4INPpx_rnQsunUqryz5cv6qR"),
       isTokenAutoRefreshEnabled: true,
-      // Optional argument. If true, the SDK automatically refreshes App Check
-      // tokens as needed
+     
     });
 
 
