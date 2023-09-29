@@ -284,9 +284,39 @@ proceedToPayButtons.forEach((button) => {
         // Update the temporary cart document with the additional data
         await setDoc(tempCartRef, tempCartData);
 
-        // Redirect to the payment page or perform other actions
-        // ...
+        const requestData = {
+          amount: tempCartData.finalAmount, // Replace with the actual amount you want to send
+        };
 
+        // Define the fetch options with CORS headers
+        const fetchOptions = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            // Add CORS headers here
+            "Access-Control-Allow-Origin": "*",
+          },
+          body: JSON.stringify(requestData),
+        };
+
+        // Make an HTTP POST request to the Firebase Cloud Function
+        try {
+          const response = await fetch(
+            "https://asia-south1-easypizy-in.cloudfunctions.net/createOrder",
+            fetchOptions
+          );
+
+          if (response.ok) {
+            // The request was successful, you can handle the response here
+            const data = await response.json();
+            console.log("Order ID:", data.orderId);
+          } else {
+            // Handle the case where the request was not successful
+            console.error("Error:", response.statusText);
+          }
+        } catch (error) {
+          console.error("Error:", error);
+        }
         console.log("Temporary cart data updated successfully.");
       } else {
         console.error("Temporary cart data not found.");

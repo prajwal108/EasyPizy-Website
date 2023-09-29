@@ -1,30 +1,37 @@
 const functions = require("firebase-functions");
-const admin = require("firebase-admin");
 const cors = require("cors")({origin: true});
 const Razorpay = require("razorpay");
-
-admin.initializeApp();
+const {v4: uuidv4} = require("uuid");
 
 exports.createOrder = functions
     .region("asia-south1")
     .https.onRequest((request, response) => {
-      const instance = new Razorpay({
-        key_id: functions.config().key_id,
-        key_secret: functions.config().key_secret,
-      });
+      cors(request, response, () => {
+        const instance = new Razorpay({
+          key_id: functions.config().razorpay.key_id,
+          key_secret: functions.config().razorpay.key_secret,
+        });
 
-      instance.orders.create({
-        amount: request.body.amount,
-        currency: "INR",
-        receipt: "receipt#1",
-      }, (error, order) => {
-        if (error) {
-          response.status(500).send(error);
-        } else {
-          // Enable CORS
-          cors(request, response, () => {
-            response.json({orderId: order.id});
-          });
-        }
+        const timestamp = Date.now();
+        const uniqueId = uuidv4();
+        const receipt = `receipt#${timestamp}-${uniqueId}`;
+
+        // Corrected the way to extract the 'amount' from the request body
+        const {amount} = request.body;
+
+        instance.orders.create(
+            {
+              amount: amount, // Use the extracted amount
+              currency: "INR",
+              receipt: receipt,
+            },
+            (error, order) => {
+              if (error) {
+                response.status(500).send(error);
+              } else {
+                response.json({orderId: order.id});
+              }
+            },
+        );
       });
     });
