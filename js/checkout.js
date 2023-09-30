@@ -279,7 +279,6 @@ proceedToPayButtons.forEach((button) => {
         tempCartData.phoneNumber2 = phoneNumber2;
         tempCartData.email = email;
         tempCartData.deliveryAddress = selectedAddress;
-        tempCartData.paymentStatus = "pending";
 
         // Update the temporary cart document with the additional data
         await setDoc(tempCartRef, tempCartData);
@@ -309,7 +308,52 @@ proceedToPayButtons.forEach((button) => {
           if (response.ok) {
             // The request was successful, you can handle the response here
             const data = await response.json();
-            console.log("Order ID:", data.orderId);
+           
+           
+            const orderCollectionRef = doc(db, "orders",userUID);
+
+           const orderDocumentId = data.id; // Assuming data.id contains the desired document ID
+            
+            // Define a query to check if the document with ID 'id' exists
+            const orderCollectionQuery = query(
+              orderCollectionRef,
+              where("orderId", "==", orderDocumentId)
+            );
+            
+
+            try {
+              // Check if the document exists using the query
+              const querySnapshot = await getDocs(orderCollectionQuery);
+
+              if (querySnapshot.size === 0) {
+                // The document with ID 'id' doesn't exist, so create it
+                await addDoc(orderCollectionRef, {
+                  // Use addDoc to create a new document
+                  orderId: data.id,
+                  amount: data.amount,
+                  amount_paid: data.amount_paid,
+                  amount_due: data.amount_due,
+                  receipt: data.receipt,
+                  status: data.status,
+                  created_at: new Date(data.created_at * 1000), // Convert to standard time format
+                });
+
+                console.log("Firestore document created successfully.");
+              } else {
+                console.log(
+                  "Firestore document with ID",
+                  id,
+                  "already exists."
+                );
+              }
+            } catch (error) {
+              console.error("Error:", error);
+            }
+
+
+
+
+
           } else {
             // Handle the case where the request was not successful
             console.error("Error:", response.statusText);
